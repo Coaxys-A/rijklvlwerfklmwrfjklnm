@@ -1,0 +1,11 @@
+[Unit]
+Description=Run Teknav scheduled publishing every 5 minutes
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=5min
+AccuracySec=30s
+Unit=teknav-publish-due.service
+
+[Install]
+WantedBy=timers.target

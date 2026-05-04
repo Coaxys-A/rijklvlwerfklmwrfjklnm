@@ -1,0 +1,657 @@
+// Teknav DB schema — Postgres 16 + Prisma 5
+// Mirrors the shapes used by the legacy localStorage TeknavStore.
+// Persian-FTS extras (tsvector + GIN index + diacritic-stripping fn) live in
+//   prisma/migrations/00000000000001_persian_fts/migration.sql
+// and are applied as a follow-up migration after the initial schema.
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum UserRole {
+  admin
+  editor
+  writer
+  reviewer
+  reader
+}
+
+enum UserStatus {
+  active
+  suspended
+  pending
+}
+
+enum NotificationType {
+  comment
+  comment_reply
+  new_article
+  review_approved
+  review_revision
+  review_rejected
+  review_submitted
+  system
+}
+
+enum ReviewStatus {
+  pending
+  revision_requested
+  approved
+  rejected
+}
+
+model User {
+  id           String     @id @default(cuid())
+  email        String     @unique
+  phone        String?    @unique
+  username     String?    @unique  // URL-safe slug, e.g. "coaxys"
+  passwordHash String?
+  name         String
+  bio          String?    @db.VarChar(280)
+  avatarUrl    String?
+  emailVerifiedAt DateTime?
+  phoneVerifiedAt DateTime?
+  twoFactorEnabled Boolean @default(false)
+  twoFactorMethod String?  @default("sms")
+  membershipTier String    @default("free")
+  membershipExpiresAt DateTime?
+  role         UserRole   @default(reader)
+  status       UserStatus @default(active)
+
+  // Growth & Community
+  streakCount  Int        @default(0)
+  lastReadAt   DateTime?
+
+  // OAuth — populated when the user signs in with Google/GitHub.
+  oauthProvider String?  // 'google' | 'github'
+  oauthSubject  String?  // provider-side user id
+
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  lastLoginAt  DateTime?
+
+  author       Author?
+  corrections  ArticleCorrection[] @relation("ArticleCorrectionEditor")
+  authoredArticles Article[]      @relation("ArticleCreatedBy")
+  uploadedMedia MediaAsset[]      @relation("MediaUploadedBy")
+  reactions    Reaction[]
+  saved        SavedArticle[]
+  activity     ActivityLog[]
+  comments     Comment[]
+  commentFlags CommentFlag[]
+  readHistory  ReadHistory[]
+  notifications Notification[]
+  following    WriterFollow[] @relation("Follower")
+  followers    WriterFollow[] @relation("Writer")
+  topicFollows TopicFollow[]
+  newsletterCampaigns NewsletterCampaign[]
+  commentLikes CommentLike[]
+  commentUpvotes CommentUpvote[]
+  reviewAssignments ArticleReview[] @relation("ArticleReviewReviewer")
+  qualityReviews Article[] @relation("ArticleQualityReviewer")
+  readingLists ReadingList[]
+  analyticsEvents AnalyticsEvent[]
+  questions    Question[]
+  answers      Answer[]
+  clientErrors ClientError[]
+  membershipPayments MembershipPayment[]
+  pushSubscriptions       PushSubscription[]
+  notificationPreferences NotificationPreference[]
+  badges                  UserBadge[]
+  revisionsAuthored       ArticleRevision[] @relation("ArticleRevisionSavedBy")
+
+  @@unique([oauthProvider, oauthSubject])
+  @@index([role, status])
+}
+
+model Author {
+  id           String   @id @default(cuid())
+  slug         String   @unique
+  name         String
+  specialty    String
+  bio          String
+  initials     String
+  color        String
+  verifiedExpert Boolean @default(false)
+  verificationNote String?
+  social       Json     @default("{}")
+  articleCount Int      @default(0)
+  user         User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  userId       String?  @unique
+  articles     Article[]
+}
+
+model Category {
+  id           String   @id @default(cuid())
+  slug         String   @unique
+  name         String
+  description  String
+  color        String
+  diagram      String?
+  articleCount Int      @default(0)
+  articles     Article[]
+}
+
+model Tag {
+  id       String       @id @default(cuid())
+  name     String       @unique
+  count    Int          @default(0)
+  articles ArticleTag[]
+}
+
+// type/status kept as String (not enum) to preserve the Persian values used by the
+// legacy frontend without round-tripping through enum maps. Validation is enforced
+// at the API layer via Zod.
+model Article {
+  id          String         @id @default(cuid())
+  slug        String         @unique
+  title       String
+  subtitle    String?
+  summary     String
+  content     String
+  type        String
+  status      String         @default("پیش‌نویس")
+  readTime    Int            @default(5)
+  views       Int            @default(0)
+  reactions   Int            @default(0)
+  featured    Boolean        @default(false)
+  sponsored   Boolean        @default(false)
+  premiumOnly Boolean        @default(false)
+  diagram     String?
+  metaDescription String? @db.VarChar(160)
+  keywords    String[]    @default([])
+  ogTitle     String?     @db.VarChar(200)
+  ogDescription String?   @db.VarChar(300)
+  ogImage     String?
+  canonicalPath String?
+  dateModified DateTime?
+  factCheckedAt DateTime?
+  reviewedBy   User?      @relation("ArticleQualityReviewer", fields: [reviewedById], references: [id], onDelete: SetNull)
+  reviewedById String?
+  sourceNotes  String?
+  contentFreshnessStatus String @default("current")
+  correctionNotice String?
+
+  category    Category       @relation(fields: [categoryId], references: [id])
+  categoryId  String
+
+  author      Author         @relation(fields: [authorId], references: [id])
+  authorId    String
+
+  createdBy   User?          @relation("ArticleCreatedBy", fields: [createdById], references: [id], onDelete: SetNull)
+  createdById String?
+
+  tags        ArticleTag[]
+  reactionLog Reaction[]
+  savedBy     SavedArticle[]
+  comments    Comment[]
+  readHistory ReadHistory[]
+  viewLogs    ArticleViewLog[]
+  seriesLinks SeriesArticle[]
+  review      ArticleReview?
+  readingListItems ReadingListItem[]
+  analyticsEvents AnalyticsEvent[]
+  corrections ArticleCorrection[]
+  questions   Question[]
+  revisions   ArticleRevision[]
+
+  publishedAt DateTime?
+  scheduledAt DateTime?
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  @@index([status, publishedAt(sort: Desc)])
+  @@index([status, scheduledAt])
+  @@index([categoryId, status])
+  @@index([authorId])
+  @@index([reviewedById])
+  @@index([featured, publishedAt(sort: Desc)])
+  @@index([sponsored, publishedAt(sort: Desc)])
+  @@index([premiumOnly, publishedAt(sort: Desc)])
+}
+
+model JobListing {
+  id          String   @id @default(cuid())
+  company    String
+  title       String
+  location    String
+  remote      Boolean  @default(true)
+  url         String?
+  contactEmail String?
+  description  String    @db.VarChar(3000)
+  status       String    @default("pending")
+  featuredUntil DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@index([status, createdAt(sort: Desc)])
+}
+
+model Course {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  summary     String
+  level       String
+  price       Int      @default(0)
+  status      String   @default("published")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([status, createdAt(sort: Desc)])
+}
+
+model ArticleCorrection {
+  id        String   @id @default(cuid())
+  article   Article  @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  articleId String
+  note      String   @db.VarChar(1000)
+  editor    User?    @relation("ArticleCorrectionEditor", fields: [editorId], references: [id], onDelete: SetNull)
+  editorId  String?
+  createdAt DateTime @default(now())
+
+  @@index([articleId, createdAt(sort: Desc)])
+  @@index([createdAt(sort: Desc)])
+}
+
+model MediaAsset {
+  id           String   @id @default(cuid())
+  url          String   @unique
+  path         String   @unique
+  filename     String
+  mimeType     String
+  sizeBytes    Int
+  width        Int?
+  height       Int?
+  uploadedBy   User?    @relation("MediaUploadedBy", fields: [uploadedById], references: [id], onDelete: SetNull)
+  uploadedById String?
+  createdAt    DateTime @default(now())
+
+  @@index([createdAt(sort: Desc)])
+  @@index([mimeType])
+  @@index([uploadedById, createdAt(sort: Desc)])
+}
+
+model ArticleTag {
+  article   Article @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  articleId String
+  tag       Tag     @relation(fields: [tagId], references: [id], onDelete: Cascade)
+  tagId     String
+
+  @@id([articleId, tagId])
+  @@index([tagId])
+}
+
+model Reaction {
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  article   Article @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  articleId String
+  type      String  // insightful | curious | applause
+  createdAt DateTime @default(now())
+
+  @@id([userId, articleId, type])
+  @@index([articleId])
+}
+
+model SavedArticle {
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  article   Article @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  articleId String
+  savedAt   DateTime @default(now())
+
+  @@id([userId, articleId])
+  @@index([userId, savedAt(sort: Desc)])
+}
+
+model Comment {
+  id        String    @id @default(cuid())
+  article   Article   @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  articleId String
+  author    User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId  String
+  replyTo   Comment?  @relation("CommentReplies", fields: [replyToId], references: [id], onDelete: Cascade)
+  replyToId String?
+  replies   Comment[] @relation("CommentReplies")
+  body      String    @db.VarChar(1000)
+  flagCount Int       @default(0)
+  likeCount Int       @default(0)
+  upvoteCount Int     @default(0)
+  flagged   Boolean   @default(false)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  flags     CommentFlag[]
+  likes     CommentLike[]
+  upvotes   CommentUpvote[]
+
+  @@index([articleId, upvoteCount(sort: Desc), createdAt(sort: Desc)])
+  @@index([authorId, createdAt(sort: Desc)])
+  @@index([flagged, createdAt(sort: Desc)])
+}
+
+model CommentFlag {
+  id        String   @id @default(cuid())
+  comment   Comment  @relation(fields: [commentId], references: [id], onDelete: Cascade)
+  commentId String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  createdAt DateTime @default(now())
+
+  @@unique([commentId, userId])
+  @@index([userId, createdAt(sort: Desc)])
+}
+
+model CommentLike {
+  id        String   @id @default(cuid())
+  comment   Comment  @relation(fields: [commentId], references: [id], onDelete: Cascade)
+  commentId String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  createdAt DateTime @default(now())
+
+  @@unique([commentId, userId])
+  @@index([userId, createdAt(sort: Desc)])
+}
+
+model CommentUpvote {
+  id        String   @id @default(cuid())
+  comment   Comment  @relation(fields: [commentId], references: [id], onDelete: Cascade)
+  commentId String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  createdAt DateTime @default(now())
+
+  @@unique([commentId, userId])
+}
+
+model ArticleViewLog {
+  id        String   @id @default(cuid())
+  article   Article  @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  articleId String
+  date      DateTime @db.Date
+  views     Int      @default(0)
+
+  @@unique([articleId, date])
+  @@index([date])
+}
+
+model ReadHistory {
+  id        String   @id @default(cuid())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  article   Article  @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  articleId String
+  progress  Float    @default(0) // 0 to 1
+  readAt    DateTime @default(now())
+
+  @@unique([userId, articleId])
+  @@index([userId, readAt(sort: Desc)])
+}
+
+model Question {
+  id        String   @id @default(cuid())
+  article   Article  @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  articleId String
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId  String
+  body      String   @db.VarChar(1000)
+  createdAt DateTime @default(now())
+  answers   Answer[]
+
+  @@index([articleId, createdAt(sort: Desc)])
+}
+
+model Answer {
+  id         String   @id @default(cuid())
+  question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  questionId String
+  author     User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId   String
+  body       String   @db.VarChar(1000)
+  createdAt  DateTime @default(now())
+
+  @@index([questionId, createdAt(sort: Desc)])
+}
+
+model Notification {
+  id        String           @id @default(cuid())
+  user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  type      NotificationType
+  payload   Json
+  read      Boolean          @default(false)
+  createdAt DateTime         @default(now())
+
+  @@index([userId, read, createdAt(sort: Desc)])
+  @@index([createdAt(sort: Desc)])
+}
+
+model WriterFollow {
+  id         String   @id @default(cuid())
+  follower   User     @relation("Follower", fields: [followerId], references: [id], onDelete: Cascade)
+  followerId String
+  writer     User     @relation("Writer", fields: [writerId], references: [id], onDelete: Cascade)
+  writerId   String
+  createdAt  DateTime @default(now())
+
+  @@unique([followerId, writerId])
+  @@index([writerId, createdAt(sort: Desc)])
+}
+
+model TopicFollow {
+  id        String   @id @default(cuid())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  topic     String
+  createdAt DateTime @default(now())
+
+  @@unique([userId, topic])
+  @@index([topic, createdAt(sort: Desc)])
+}
+
+model NewsletterSubscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  unsubscribeToken String @unique @default(cuid())
+  source    String?
+  doubleOptInToken String? @unique
+  confirmedAt DateTime?
+  createdAt DateTime @default(now())
+}
+
+model AnalyticsEvent {
+  id        String   @id @default(cuid())
+  type      String
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  userId    String?
+  article   Article? @relation(fields: [articleId], references: [id], onDelete: SetNull)
+  articleId String?
+  topic     String?
+  metadata  Json     @default("{}")
+  createdAt DateTime @default(now())
+
+  @@index([type, createdAt(sort: Desc)])
+  @@index([userId, createdAt(sort: Desc)])
+  @@index([articleId, createdAt(sort: Desc)])
+  @@index([topic, createdAt(sort: Desc)])
+}
+
+model NewsletterCampaign {
+  id          String    @id @default(cuid())
+  subject     String    @db.VarChar(200)
+  slug        String?   @unique
+  bodyHtml    String
+  sentAt      DateTime?
+  recipientCount Int    @default(0)
+  createdBy   User      @relation(fields: [createdById], references: [id])
+  createdById String
+  createdAt   DateTime  @default(now())
+
+  @@index([sentAt, createdAt])
+}
+
+model ArticleSeries {
+  id          String          @id @default(cuid())
+  title       String          @db.VarChar(200)
+  slug        String          @unique
+  description String?         @db.VarChar(500)
+  coverImage  String?
+  createdAt   DateTime        @default(now())
+  articles    SeriesArticle[]
+}
+
+model SeriesArticle {
+  id        String        @id @default(cuid())
+  series    ArticleSeries @relation(fields: [seriesId], references: [id], onDelete: Cascade)
+  seriesId  String
+  article   Article       @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  articleId String
+  position  Int
+
+  @@unique([seriesId, articleId])
+  @@unique([seriesId, position])
+  @@index([articleId])
+}
+
+model ArticleReview {
+  id        String       @id @default(cuid())
+  article   Article      @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  articleId String       @unique
+  reviewer  User?        @relation("ArticleReviewReviewer", fields: [reviewerId], references: [id])
+  reviewerId String?
+  status    ReviewStatus @default(pending)
+  note      String?      @db.VarChar(1000)
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+}
+
+model ReadingList {
+  id        String            @id @default(cuid())
+  user      User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  name      String            @db.VarChar(80)
+  isDefault Boolean           @default(false)
+  createdAt DateTime          @default(now())
+  items     ReadingListItem[]
+
+  @@unique([userId, name])
+  @@index([userId, createdAt])
+}
+
+model ReadingListItem {
+  id            String      @id @default(cuid())
+  list          ReadingList @relation(fields: [listId], references: [id], onDelete: Cascade)
+  listId        String
+  article       Article     @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  articleId     String
+  position      Int
+  addedAt       DateTime    @default(now())
+
+  @@unique([listId, articleId])
+  @@index([articleId])
+}
+
+model ActivityLog {
+  id        String   @id @default(cuid())
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  userId    String?
+  action    String
+  target    String
+  type      String
+  createdAt DateTime @default(now())
+
+  @@index([createdAt(sort: Desc)])
+  @@index([userId, createdAt(sort: Desc)])
+}
+
+model ClientError {
+  id        String   @id @default(cuid())
+  message   String   @db.VarChar(1000)
+  stack     String?  @db.VarChar(5000)
+  url       String?  @db.VarChar(500)
+  userAgent String?  @db.VarChar(500)
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  userId    String?
+  createdAt DateTime @default(now())
+
+  @@index([createdAt(sort: Desc)])
+  @@index([message, createdAt(sort: Desc)])
+}
+
+model MembershipPayment {
+  id            String   @id @default(cuid())
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId        String
+  authority     String   @unique
+  amount        Int
+  currency      String   @default("IRR")
+  status        String   @default("pending")
+  refId         String?
+  tier          String   @default("premium")
+  durationDays  Int      @default(365)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([userId, createdAt(sort: Desc)])
+  @@index([authority])
+  @@index([status, createdAt(sort: Desc)])
+}
+
+model PushSubscription {
+  id        String   @id @default(cuid())
+  user      User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String?
+  endpoint  String   @unique
+  auth      String
+  p256dh    String
+  userAgent String?
+  topics    String[] @default([])
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+}
+
+model NotificationPreference {
+  id        String  @id @default(cuid())
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  eventType String
+  channel   String
+  enabled   Boolean @default(true)
+
+  @@unique([userId, eventType, channel])
+  @@index([userId])
+}
+
+model UserBadge {
+  id        String   @id @default(cuid())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  badgeType String
+  earnedAt  DateTime @default(now())
+  metadata  Json     @default("{}")
+
+  @@unique([userId, badgeType])
+  @@index([userId])
+}
+
+model ArticleRevision {
+  id        String   @id @default(cuid())
+  article   Article  @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  articleId String
+  savedBy   User?    @relation("ArticleRevisionSavedBy", fields: [savedById], references: [id], onDelete: SetNull)
+  savedById String?
+  title     String
+  content   String
+  summary   String
+  status    String
+  createdAt DateTime @default(now())
+
+  @@index([articleId, createdAt(sort: Desc)])
+}

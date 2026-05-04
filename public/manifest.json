@@ -1,0 +1,22 @@
+{
+  "name": "تکناو",
+  "short_name": "Teknav",
+  "description": "تحلیل فناوری، هوش مصنوعی و امنیت سایبری",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "lang": "fa-IR",
+  "dir": "rtl",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "browser"],
+  "background_color": "#FAF7F0",
+  "theme_color": "#0F6B73",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

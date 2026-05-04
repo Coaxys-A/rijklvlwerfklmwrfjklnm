@@ -1,0 +1,26 @@
+{
+  "name": "teknav",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "npm run seo:sitemap && npm run og:images && vite build && node scripts/check-no-cdn.mjs && node scripts/check-responsive.mjs",
+    "preview": "vite preview --port 4173",
+    "check:no-cdn": "node scripts/check-no-cdn.mjs",
+    "check:responsive": "node scripts/check-responsive.mjs",
+    "seo:sitemap": "node scripts/generate-seo.mjs",
+    "og:images": "node scripts/generate-og-images.mjs",
+    "smoke:prod": "node scripts/production-smoke.mjs"
+  },
+  "dependencies": {
+    "@napi-rs/canvas-linux-x64-gnu": "^0.1.100",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@napi-rs/canvas": "^0.1.80",
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^5.4.10"
+  }
+}

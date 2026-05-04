@@ -1,0 +1,10 @@
+[Unit]
+Description=Daily Teknav PostgreSQL backup
+
+[Timer]
+OnCalendar=*-*-* 03:10:00
+Persistent=true
+Unit=teknav-backup.service
+
+[Install]
+WantedBy=timers.target

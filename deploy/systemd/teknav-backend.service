@@ -1,0 +1,24 @@
+[Unit]
+Description=Teknav Fastify backend
+After=network-online.target postgresql.service redis-server.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=teknav
+Group=teknav
+WorkingDirectory=/opt/teknav/current/backend
+EnvironmentFile=/etc/teknav/backend.env
+ExecStart=/usr/bin/npm run start
+Restart=always
+RestartSec=5
+KillSignal=SIGTERM
+TimeoutStopSec=30
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+ReadWritePaths=/var/lib/teknav/uploads
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تکناو | تحلیل فناوری، هوش مصنوعی و امنیت سایبری</title>
+  <meta name="description" content="تکناو رسانه فارسی تحلیل فناوری، هوش مصنوعی، علم داده، امنیت سایبری، نرم‌افزار، سخت‌افزار و آینده تکنولوژی است." />
+  <meta name="google-site-verification" content="INSERT_GOOGLE_VERIFICATION_CODE" />
+  <meta name="msvalidate.01" content="INSERT_BING_VERIFICATION_CODE" />
+  <meta name="keywords" content="تکناو, فناوری, هوش مصنوعی, علم داده, امنیت سایبری, نرم افزار, سخت افزار, استارتاپ, آینده فناوری, تحلیل تکنولوژی" />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="bingbot" content="index,follow,max-snippet:-1,max-image-preview:large" />
+  <meta name="author" content="تکناو" />
+  <meta name="language" content="fa-IR" />
+  <link rel="canonical" href="https://www.teknav.ir/" />
+  <link rel="alternate" hreflang="fa-IR" href="https://www.teknav.ir/" />
+  <link rel="alternate" type="application/rss+xml" title="تازه‌ترین مقاله‌های تکناو" href="https://www.teknav.ir/feed.xml" />
+  <meta property="og:locale" content="fa_IR" />
+  <meta property="og:site_name" content="تکناو" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="تکناو | تحلیل فناوری، هوش مصنوعی و امنیت سایبری" />
+  <meta property="og:description" content="تحلیل‌های فارسی تکناو درباره هوش مصنوعی، علم داده، امنیت سایبری، نرم‌افزار، سخت‌افزار، استارتاپ و آینده فناوری." />
+  <meta property="og:url" content="https://www.teknav.ir/" />
+  <meta property="og:image" content="https://www.teknav.ir/favicon.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="تکناو | تحلیل فناوری، هوش مصنوعی و امنیت سایبری" />
+  <meta name="twitter:description" content="تحلیل‌های فارسی تکناو درباره هوش مصنوعی، علم داده، امنیت سایبری، نرم‌افزار، سخت‌افزار، استارتاپ و آینده فناوری." />
+  <meta name="twitter:image" content="https://www.teknav.ir/favicon.png" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
+  <link rel="apple-touch-icon" sizes="512x512" href="/favicon.png" />
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#0F6B73" />
+  <link rel="stylesheet" href="/src/styles/global.css" />
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js');
+      });
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://www.teknav.ir/#organization",
+          "name": "تکناو",
+          "alternateName": "Teknav",
+          "url": "https://www.teknav.ir/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.teknav.ir/favicon.png"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.teknav.ir/#website",
+          "url": "https://www.teknav.ir/",
+          "name": "تکناو",
+          "inLanguage": "fa-IR",
+          "publisher": { "@id": "https://www.teknav.ir/#organization" },
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://www.teknav.ir/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        }
+      ]
+    }
+  </script>
+</head>
+<body>
+  <div id="loading">
+    <div style="font-size:36px;font-weight:900;color:#0F6B73;margin-bottom:8px">تکناو</div>
+    <div style="font-size:11px;color:#5F6B6D;letter-spacing:0.15em;margin-bottom:24px">TEKNAV</div>
+    <div style="width:40px;height:3px;background:#E4DDD2;border-radius:2px;overflow:hidden">
+      <div id="loading-bar" style="height:100%;width:0%;background:#0F6B73;border-radius:2px;transition:width 0.3s"></div>
+    </div>
+  </div>
+
+  <div id="root"></div>
+
+  <script>
+    (() => {
+      const bar = document.getElementById('loading-bar');
+      let p = 0;
+      const prog = setInterval(() => { p = Math.min(p + 8, 90); bar.style.width = p + '%'; }, 120);
+      window.__doneLoading = () => {
+        clearInterval(prog); bar.style.width = '100%';
+        setTimeout(() => { document.getElementById('loading').classList.add('hidden'); }, 300);
+      };
+    })();
+  </script>
+
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+</html>

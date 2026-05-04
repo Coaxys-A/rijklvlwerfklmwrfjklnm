@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /login
+Disallow: /ACCOUNTS.md
+Disallow: /api/
+
+Sitemap: https://www.teknav.ir/sitemap.xml

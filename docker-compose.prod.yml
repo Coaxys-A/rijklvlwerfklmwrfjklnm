@@ -1,0 +1,127 @@
+# Teknav production stack — Debian host with docker.io.
+# Bring up:    docker compose -f docker-compose.prod.yml up -d --build
+# Logs:        docker compose -f docker-compose.prod.yml logs -f
+# Tear down:   docker compose -f docker-compose.prod.yml down
+#
+# Operator-owned files (NOT in git):
+#   .env.prod                    — secrets + connection strings
+#   nginx/nginx.conf             — reverse-proxy config (start from nginx.conf.example)
+#   ssl-certs/{fullchain,privkey}.pem — TLS material
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: teknav-postgres
+    restart: unless-stopped
+    env_file: .env.prod
+    environment:
+      POSTGRES_USER:     ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB:       ${POSTGRES_DB}
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+    # Postgres is reachable only from within the docker network — no host port mapping in prod.
+    expose:
+      - "5432"
+
+  redis:
+    image: redis:7-alpine
+    container_name: teknav-redis
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes", "--save", "60", "1000"]
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+    expose:
+      - "6379"
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: teknav-backend
+    restart: unless-stopped
+    env_file: .env.prod
+    environment:
+      NODE_ENV:       production
+      DATABASE_URL:   ${DATABASE_URL}
+      REDIS_URL:      ${REDIS_URL}
+      SESSION_SECRET: ${SESSION_SECRET}
+      COOKIE_DOMAIN:  ${COOKIE_DOMAIN}
+      CORS_ORIGINS:   ${CORS_ORIGINS}
+      UPLOAD_DIR:     /uploads
+      LOG_LEVEL:      ${LOG_LEVEL:-info}
+      PORT:           "3010"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - uploads:/uploads
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:3010/api/health | grep -q '\"ok\":true'"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    expose:
+      - "3010"
+
+  web:
+    # Frontend SPA + nginx reverse proxy in a single container.
+    # Built from the root Dockerfile (Vite build → nginx:alpine).
+    # The conf is overlaid from ./nginx/nginx.conf at runtime so the operator
+    # tunes it without rebuilding.
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: teknav-web
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./ssl-certs:/etc/nginx/ssl:ro
+      - uploads:/var/www/uploads:ro
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  postgres-backup:
+    # Nightly pg_dump → /backups/teknav-YYYYMMDD-HHMMSS.sql.gz
+    # 14-day rotation (find -mtime +14 -delete).
+    # Run schedule lives inside the container as a tiny shell loop — no host cron needed.
+    image: postgres:16-alpine
+    container_name: teknav-pg-backup
+    restart: unless-stopped
+    env_file: .env.prod
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./backups:/backups
+      - ./scripts/pg-backup.sh:/usr/local/bin/pg-backup.sh:ro
+    entrypoint: ["/bin/sh", "/usr/local/bin/pg-backup.sh"]
+
+volumes:
+  pg_data:
+  redis_data:
+  uploads:

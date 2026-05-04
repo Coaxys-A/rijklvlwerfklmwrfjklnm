@@ -1,0 +1,11 @@
+[Unit]
+Description=Run Teknav weekly newsletter digest
+
+[Timer]
+OnCalendar=Sat 09:00
+Persistent=true
+AccuracySec=5min
+Unit=teknav-weekly-digest.service
+
+[Install]
+WantedBy=timers.target

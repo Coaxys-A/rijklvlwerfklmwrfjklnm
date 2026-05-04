@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+  <url>
+    <loc>https://www.teknav.ir/article/cve-2026-41940-cpanel-zero-day-analysis</loc>
+    <news:news>
+      <news:publication>
+        <news:name>تکنّاو</news:name>
+        <news:language>fa</news:language>
+      </news:publication>
+      <news:publication_date>2026-05-03T09:00:00+03:30</news:publication_date>
+      <news:title>تحلیل فنی Zero-Day جدید سی‌پنل (CVE-2026-41940): دسترسی روت بدون احراز هویت</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://www.teknav.ir/article/vibe-coding-2026</loc>
+    <news:news>
+      <news:publication>
+        <news:name>تکنّاو</news:name>
+        <news:language>fa</news:language>
+      </news:publication>
+      <news:publication_date>2026-05-08T09:00:00+03:30</news:publication_date>
+      <news:title>وایب‌کدینگ: وقتی تخیل به سینتکس برتری می‌یابد</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://www.teknav.ir/article/ai-energy-crisis-nuclear</loc>
+    <news:news>
+      <news:publication>
+        <news:name>تکنّاو</news:name>
+        <news:language>fa</news:language>
+      </news:publication>
+      <news:publication_date>2026-05-10T09:00:00+03:30</news:publication_date>
+      <news:title>بحران انرژی هوش مصنوعی: رنسانس هسته‌ای در دیتاسنترها</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://www.teknav.ir/article/llama-4-open-frontier</loc>
+    <news:news>
+      <news:publication>
+        <news:name>تکنّاو</news:name>
+        <news:language>fa</news:language>
+      </news:publication>
+      <news:publication_date>2026-05-12T09:00:00+03:30</news:publication_date>
+      <news:title>لاما ۴ و مرزهای باز: پایان انحصار با معماری Early Fusion</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://www.teknav.ir/article/deepseek-v4-engram</loc>
+    <news:news>
+      <news:publication>
+        <news:name>تکنّاو</news:name>
+        <news:language>fa</news:language>
+      </news:publication>
+      <news:publication_date>2026-05-05T09:00:00+03:30</news:publication_date>
+      <news:title>DeepSeek-V4: پایان انحصار با معماری Engram و حافظه شرطی</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://www.teknav.ir/article/physical-ai-humanoids-2026</loc>
+    <news:news>
+      <news:publication>
+        <news:name>تکنّاو</news:name>
+        <news:language>fa</news:language>
+      </news:publication>
+      <news:publication_date>2026-05-02T09:00:00+03:30</news:publication_date>
+      <news:title>هوش مصنوعی فیزیکی: ربات‌های انسان‌نما در آستانه تولید میلیونی</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://www.teknav.ir/article/apple-spatial-intelligence-2026</loc>
+    <news:news>
+      <news:publication>
+        <news:name>تکنّاو</news:name>
+        <news:language>fa</news:language>
+      </news:publication>
+      <news:publication_date>2026-05-15T09:00:00+03:30</news:publication_date>
+      <news:title>هوش مکانی اپل: کالبدشکافی Siri 2.0 و تراشه A20</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://www.teknav.ir/article/dna-data-storage-biomemory</loc>
+    <news:news>
+      <news:publication>
+        <news:name>تکنّاو</news:name>
+        <news:language>fa</news:language>
+      </news:publication>
+      <news:publication_date>2026-05-18T09:00:00+03:30</news:publication_date>
+      <news:title>ذخیره‌سازی داده روی DNA: رنسانس بیولوژیک در دیتاسنترها</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://www.teknav.ir/article/ai-native-operating-systems</loc>
+    <news:news>
+      <news:publication>
+        <news:name>تکنّاو</news:name>
+        <news:language>fa</news:language>
+      </news:publication>
+      <news:publication_date>2026-05-20T09:00:00+03:30</news:publication_date>
+      <news:title>سیستم‌عامل‌های نیتیو-هوشمند: تولد هسته AIOS</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://www.teknav.ir/article/neuromorphic-computing-loihi-3</loc>
+    <news:news>
+      <news:publication>
+        <news:name>تکنّاو</news:name>
+        <news:language>fa</news:language>
+      </news:publication>
+      <news:publication_date>2026-05-23T09:00:00+03:30</news:publication_date>
+      <news:title>رایانش نورومورفیک: وقتی سیلیکون به تکامل می‌رسد</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://www.teknav.ir/article/orbital-edge-computing-spacex</loc>
+    <news:news>
+      <news:publication>
+        <news:name>تکنّاو</news:name>
+        <news:language>fa</news:language>
+      </news:publication>
+      <news:publication_date>2026-05-26T09:00:00+03:30</news:publication_date>
+      <news:title>رایانش لبه‌ای مداری: فرار از بن‌بست انرژی زمین</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://www.teknav.ir/article/graphene-semiconductors-2026</loc>
+    <news:news>
+      <news:publication>
+        <news:name>تکنّاو</news:name>
+        <news:language>fa</news:language>
+      </news:publication>
+      <news:publication_date>2026-05-29T09:00:00+03:30</news:publication_date>
+      <news:title>نیمه‌رسانای گرافنی: طلوع عصر پساسیلیکون</news:title>
+    </news:news>
+  </url>
+</urlset>

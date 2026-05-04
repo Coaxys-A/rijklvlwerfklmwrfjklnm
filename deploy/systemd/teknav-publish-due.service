@@ -1,0 +1,16 @@
+[Unit]
+Description=Publish scheduled Teknav articles
+After=postgresql.service redis-server.service
+
+[Service]
+Type=oneshot
+User=teknav
+Group=teknav
+WorkingDirectory=/opt/teknav/current/backend
+EnvironmentFile=/etc/teknav/backend.env
+ExecStart=/usr/bin/npm run publish:due
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+

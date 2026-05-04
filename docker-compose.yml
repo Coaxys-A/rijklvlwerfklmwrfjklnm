@@ -1,0 +1,41 @@
+# Local dev compose — Postgres 16 + Redis 7 only.
+# The frontend (Vite) and backend (Fastify) run on the host directly during dev.
+# Production deploy uses docker-compose.prod.yml (Phase 6).
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: teknav-postgres
+    environment:
+      POSTGRES_USER: teknav
+      POSTGRES_PASSWORD: teknav_dev
+      POSTGRES_DB: teknav
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U teknav -d teknav"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: teknav-redis
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+volumes:
+  pg_data:
+  redis_data:

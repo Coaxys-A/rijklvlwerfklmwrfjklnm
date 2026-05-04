@@ -1,0 +1,15 @@
+[Unit]
+Description=Send Teknav weekly newsletter digest
+After=postgresql.service redis-server.service
+
+[Service]
+Type=oneshot
+User=teknav
+Group=teknav
+WorkingDirectory=/opt/teknav/current/backend
+EnvironmentFile=/etc/teknav/backend.env
+ExecStart=/usr/bin/npm run newsletter:digest
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
