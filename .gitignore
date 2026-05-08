@@ -1,0 +1,54 @@
+# Dependencies
+node_modules/
+backend/node_modules/
+.npm-cache/
+
+# Build output
+dist/
+backend/dist/
+
+# Prisma generated client
+backend/node_modules/.prisma/
+
+# Environment & secrets
+.env.*
+!.env.example
+backend/.env.*
+!backend/.env.example
+/etc/teknav/
+
+# Operator credentials (nginx-blocked, never public)
+ACCOUNTS.md
+accounts.md
+
+# SSL certificates & keys
+*.pem
+*.pfx
+*.key
+*.crt
+*.cer
+ssl-certs.zip
+
+# Uploads (served from /var/lib/teknav/uploads in production)
+
+# Logs
+*.log
+npm-debug.log*
+logs/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary / scratch files
+*.tmp
+*.bak
+New Text Document.txt
+
+# Screenshots (generated artefacts)
+
+# AI/agent scratchpads (not source)
