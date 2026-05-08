@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DeepSeek-V4: پایان انحصار با معماری Engram و حافظه شرطی | تکناو</title>
+  <meta name="description" content="تحلیل فنی DeepSeek-V4 و معماری Engram. بررسی چگونگی کاهش ۱۶ برابری KV Cache با مکانیزم MLA و تاثیر آن بر آینده مدل‌های زبانی متن‌باز." />
+<meta name="keywords" content="DeepSeek-V4, MLA, Engram, هوش مصنوعی, MoE, DeepSeek, DeepSeek-V4: پایان انحصار با معماری Engram و حافظه شرطی, چطور حافظه O(1) و مکانیزم MLA اقتصاد هوش مصنوعی را تغییر داد؟, تحلیل عمیق, پژوهشگر ارشد هوش مصنوعی و مهندسی داده, تحلیل فارسی فناوری, تکناو" />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="bingbot" content="index,follow,max-snippet:-1,max-image-preview:large" />
+  <meta name="author" content="تکناو" />
+  <meta name="language" content="fa-IR" />
+  <link rel="canonical" href="https://www.teknav.ir/article/deepseek-v4-engram" />
+  <link rel="alternate" hreflang="fa-IR" href="https://www.teknav.ir/" />
+  <link rel="alternate" type="application/rss+xml" title="تازه‌ترین مقاله‌های تکناو" href="https://www.teknav.ir/feed.xml" />
+  <meta property="og:locale" content="fa_IR" />
+  <meta property="og:site_name" content="تکناو" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="DeepSeek-V4: پایان انحصار با معماری Engram و حافظه شرطی | تکناو" />
+  <meta property="og:description" content="تحلیل فنی DeepSeek-V4 و معماری Engram. بررسی چگونگی کاهش ۱۶ برابری KV Cache با مکانیزم MLA و تاثیر آن بر آینده مدل‌های زبانی متن‌باز." />
+  <meta property="og:url" content="https://www.teknav.ir/article/deepseek-v4-engram" />
+  <meta property="og:image" content="https://www.teknav.ir/images/og/deepseek-v4-engram.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="DeepSeek-V4: پایان انحصار با معماری Engram و حافظه شرطی | تکناو" />
+  <meta name="twitter:description" content="تحلیل فنی DeepSeek-V4 و معماری Engram. بررسی چگونگی کاهش ۱۶ برابری KV Cache با مکانیزم MLA و تاثیر آن بر آینده مدل‌های زبانی متن‌باز." />
+  <meta name="twitter:image" content="https://www.teknav.ir/images/og/deepseek-v4-engram.jpg" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
+  <link rel="apple-touch-icon" sizes="512x512" href="/favicon.png" />
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#0F6B73" />
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js');
+      });
+    }
+  </script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Organization","NewsMediaOrganization"],"@id":"https://www.teknav.ir/#organization","name":"تکناو","alternateName":["Teknav","تکنّاو"],"url":"https://www.teknav.ir","description":"تکناو رسانه فارسی تحلیل فناوری، هوش مصنوعی، علم داده، امنیت سایبری، نرم‌افزار، سخت‌افزار و آینده تکنولوژی است.","logo":{"@type":"ImageObject","@id":"https://www.teknav.ir/#logo","url":"https://www.teknav.ir/favicon.png","width":512,"height":512},"image":{"@id":"https://www.teknav.ir/#logo"},"publishingPrinciples":"https://www.teknav.ir/about","masthead":"https://www.teknav.ir/authors","areaServed":{"@type":"Country","name":"Iran"},"audience":{"@type":"Audience","audienceType":"فارسی‌زبانان علاقه‌مند به فناوری"},"sameAs":["https://twitter.com/teknavir","https://x.com/teknavir","https://linkedin.com/company/teknav"]},{"@type":"WebSite","@id":"https://www.teknav.ir/#website","url":"https://www.teknav.ir","name":"تکناو","alternateName":"Teknav","description":"تکناو رسانه فارسی تحلیل فناوری، هوش مصنوعی، علم داده، امنیت سایبری، نرم‌افزار، سخت‌افزار و آینده تکنولوژی است.","inLanguage":"fa-IR","publisher":{"@id":"https://www.teknav.ir/#organization"}},{"@type":["NewsArticle","TechArticle"],"@id":"https://www.teknav.ir/article/deepseek-v4-engram#article","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.teknav.ir/article/deepseek-v4-engram"},"headline":"DeepSeek-V4: پایان انحصار با معماری Engram و حافظه شرطی","alternativeHeadline":"چطور حافظه O(1) و مکانیزم MLA اقتصاد هوش مصنوعی را تغییر داد؟","description":"تحلیل فنی DeepSeek-V4 و معماری Engram. بررسی چگونگی کاهش ۱۶ برابری KV Cache با مکانیزم MLA و تاثیر آن بر آینده مدل‌های زبانی متن‌باز.","abstract":"کالبدشکافی عمیق DeepSeek-V4؛ مدلی که با تفکیک حافظه از استدلال، هزینه‌های استنتاج را به حداقل رساند.","articleBody":"در اردیبهشت ۱۴۰۵، شرکت DeepSeek با معرفی DeepSeek-V4 ، بار دیگر قوانین حاکم بر اقتصاد هوش مصنوعی و طراحی معماری مدل‌های زبانی را بازنویسی کرد. در حالی که رقبای بزرگ غربی همچنان بر افزایش تعداد پارامترها و تکیه بر قدرت محاسباتی خام تمرکز داشتند، تیم DeepSeek با معرفی معماری انقلابی Engram (حافظه شرطی) و ارتقای چشمگیر مکانیزم MLA ، موفق شد عملکردی در سطح مدل‌های پیشرو (مانند GPT-5 و Claude 4.7) را با هزینه‌ی استنتاجی معادل یک‌دهم آن‌ها ارائه دهد. این تحول نشان‌دهنده بلوغ استراتژی «کارایی برتر از مقیاس» است که DeepSeek از سال ۲۰۲۴ با جدیت دنبال کرده است. در این مقاله تحلیلی و فنی، به کالبدشکافی عمیق V4، نقش Engram در کاهش بار پردازشی، نحوه حل بحران حافظه با مکانیزم MLA و تاثیر پروتکل CXL 3.1 در مدیریت مدل‌های تریلیون پارامتری در سال ۲۰۲۶ می‌پردازیم. ۱. معماری Engram: وقتی مدل به یاد می‌آورد، دیگر فکر نمی‌کند بزرگترین نوآوری در DeepSeek-V4، جداسازی هوشمندانه استدلال (Reasoning) از دانش (Knowledge) است. در مدل‌های ترنسفورمر سنتی، برای بازیابی یک فاکت ساده (مثلاً \"پایتخت ایران کجاست؟\" یا \"فرمول شیمیایی بنزن چیست؟\")، مدل مجبور بود تمام لایه‌های عمیق شبکه عصبی خود را فعال کند. این فرآیند نه تنها کند و پرهزینه بود، بلکه بخش بزرگی از ظرفیت پردازشی مدل را صرف بازسازی اطلاعاتی می‌کرد که به صورت ایستا در داده‌های آموزشی وجود داشتند. در DeepSeek-V4، یک لایه جدید و مجزا به نام Engram (Conditional Memory) اضافه شده است. این لایه شامل یک پایگاه داده برداری متراکم و یک مکانیزم جست‌وجوی مستقیم (Lookup) است که با لایه‌های MoE (Mixture-of-Experts) در هم تنیده شده است. وقتی مدل تشخیص می‌دهد که توکن ورودی مربوط به یک موجودیت شناخته شده است، به جای استفاده از لایه‌های سنگین توجه (Attention)، مستقیماً بازنمایی آن را از حافظه Engram فراخوانی می‌کند. «ما متوجه شدیم که بخش بزرگی از لایه‌های ترنسفورمر صرف بازسازی حقایق ایستا می‌شود. با Engram، ما این دانش را به یک جدول جست‌وجوی $O(1)$ منتقل کردیم تا لایه‌های MoE فقط روی استدلال منطقی و حل مسئله تمرکز کنند. این کار باعث شده تا عمق موثر مدل برای مسائل پیچیده مهندسی تا ۳۰٪ افزایش یابد.» – تیم فنی DeepSeek, می ۲۰۲۶ در نمودار تعاملی زیر، نحوه توزیع بودجه پارامتری بین لایه‌های استدلال MoE و حافظه Engram را در معماری V4 مشاهده می‌کنید. توجه داشته باشید که Engram حدود ۲۵٪ از وزن‌های مدل را به خود اختصاص داده است اما هزینه محاسباتی آن در زمان اجرا نزدیک به صفر است. MLA: پایانِ بحرانِ حافظه KV Cache در سال ۱۴۰۵، Multi-head Latent Attention (MLA) به استاندارد طلایی صنعت هوش مصنوعی تبدیل شده است. یکی از بزرگترین موانع در مدل‌های با پنجره زمینه طولانی (Context Window)، حجم عظیم KV Cache بود که حافظه گرافیکی (VRAM) را به سرعت پر می‌کرد. برای مثال، یک مدل سنتی ۱ تریلیون پارامتری برای مدیریت ۱ میلیون توکن زمینه به صدها گیگابایت حافظه فقط برای ذخیره کلیدها و مقادیر نیاز داشت. MLA این مشکل را با فشرده‌سازی بردارهای کلید (Key) و مقدار (Value) به یک فضای نهان (Latent Space) کم‌بعد حل می‌کند. در زمان استنتاج، مدل به جای ذخیره کامل بردارها، نسخه فشرده آن‌ها را نگه می‌دارد و در لحظه محاسبه توجه، آن‌ها را بازسازی می‌کند. این مکانیزم با استفاده از تکنیک Decoupled RoPE، اطلاعات موقعیتی را نیز بدون از دست دادن دقت حفظ می‌کند، که منجر به کاهش ۱۶ برابری حجم حافظه مورد نیاز شده است. آمار فنی V4: این مدل با مجموع ۱.۲ تریلیون پارامتر، تنها از ۴۵ میلیارد پارامتر فعال در هر توکن استفاده می‌کند. بهینه‌سازی MLA باعث شده تا یک سرور با ۸ کارت H200 اکنون بتواند به راحتی یک میلیون توکن را به صورت بومی پردازش کند؛ کاری که پیش از این به کلاسترهای عظیم سرور نیاز داشت. ۲. استراتژی Prefetching و عبور از سد HBM با پروتکل CXL 3.1 یکی از چالش‌های مدل‌های ۱ تریلیون پارامتری در سال ۲۰۲۶، محدودیت فیزیکی حافظه گرافیکی (HBM) است. حتی تراشه‌های Blackwell نیز فضای محدودی برای بارگذاری کامل مدل دارند. DeepSeek-V4 این بن‌بست را با استفاده از پروتکل CXL 3.1 حل کرده است. در این معماری، بخش عظیم حافظه Engram که شامل دانش ایستا است، در حافظه DRAM سیستم (که بسیار ارزان‌تر و پرحجم‌تر است) میزبانی می‌شود. به لطف پیش‌بینی‌ پذیری توکن‌های ورودی، مدل می‌تواند پیش از رسیدن پردازش به لایه‌های مربوطه، بردارهای مورد نیاز را از رم سیستم به حافظه گرافیکی فراخوانی (Prefetch) کند. این کار باعث می‌شود مدل تریلیونی با سرعتی معادل مدل‌های کوچک‌تر اجرا شود، چرا که گلوگاه پهنای باند حافظه با این جداسازی هوشمندانه دور زده شده است. ۳. بنچمارک‌ها: نبرد در قله استدلال منطقی در بنچمارک‌های منتشر شده در اردیبهشت ۱۴۰۵، DeepSeek-V4 موفق شد در آزمون HumanEval (تولید کد) امتیاز خیره‌کننده ۹۲٪ و در SWE-bench (حل باگ‌های واقعی پروژه‌های نرم‌افزاری پیچیده) امتیاز ۸۱٪ را کسب کند. این نتایج نشان‌دهنده برتری مطلق این مدل در کدنویسی و حل مسائل مهندسی است. نکته جالب اینجاست که در آزمون‌های استدلال ریاضی (MATH)، نسخه V4 توانست به دقتی معادل o3-high شرکت OpenAI دست یابد، اما با زمان تاخیر (Latency) بسیار کمتر. این سرعت بالا به دلیل همان معماری Engram است که اجازه می‌دهد مدل بدون مکث‌های طولانی برای «تأمل» (Chain of Thought)، مستقیماً به حقایق پایه و فرمول‌های تثبیت شده دسترسی داشته باشد. تحلیل اقتصادی: هزینه آموزش DeepSeek-V4 حدود ۶ میلیون دلار برآورد شده است، در حالی که مدل‌های رقیب با عملکرد مشابه هزینه‌هایی بالای ۱۲۰ میلیون دلار داشته‌اند. این بهره‌وری بی‌سابقه، تهدیدی جدی برای مدل‌های تجاری گران‌قیمت محسوب می‌شود و عصر جدیدی از دموکراسی در هوش مصنوعی را نوید می‌دهد. نتیجه‌گیری:…","image":{"@type":"ImageObject","url":"https://www.teknav.ir/images/og/deepseek-v4-engram.jpg","width":1200,"height":630},"datePublished":"2026-05-05","dateModified":"2026-05-05T10:00:00Z","inLanguage":"fa-IR","articleSection":"هوش مصنوعی","keywords":["DeepSeek-V4","MLA","Engram","هوش مصنوعی","MoE","DeepSeek","DeepSeek-V4: پایان انحصار با معماری Engram و حافظه شرطی","چطور حافظه O(1) و مکانیزم MLA اقتصاد هوش مصنوعی را تغییر داد؟","تحلیل عمیق","پژوهشگر ارشد هوش مصنوعی و مهندسی داده","تحلیل فارسی فناوری","تکناو"],"wordCount":1032,"timeRequired":"PT14M","genre":"تحلیل عمیق","teaches":["۱. معماری Engram: وقتی مدل به یاد می‌آورد، دیگر فکر نمی‌کند","۲. استراتژی Prefetching و عبور از سد HBM با پروتکل CXL 3.1","۳. بنچمارک‌ها: نبرد در قله استدلال منطقی","نتیجه‌گیری: دموکراسیِ هوش در عصر Engram"],"author":{"@type":"Person","name":"آرسام صباغ","url":"https://www.teknav.ir/author/sabbagh","jobTitle":"پژوهشگر ارشد هوش مصنوعی و مهندسی داده","description":"آرسام صباغ پژوهشگر ارشد هوش مصنوعی و سردبیر تکنّاو است. او بیش از سه سال تجربه در یادگیری ماشین، مهندسی داده، و استقرار سیستم‌های هوشمند در مقیاس صنعتی دارد. تخصص اصلی او طراحی پایپ‌لاین‌های داده برای مدل‌های زبانی بزرگ (LLM)، بهینه‌سازی استنتاج (Inference Optimization) و ارزیابی کمّی مدل‌های مرزی (Frontier Models) است. آرسام پیش از تأسیس تکنّاو، در چندین شرکت حوزه فناوری به عنوان محقق و مهندس ارشد فعالیت داشته و مقالات فنی او در حوزه‌های داده-محوری، ایمنی هوش مصنوعی و سیستم‌های عاملی مرجع بسیاری از تیم‌های مهندسی فارسی‌زبان است.","knowsAbout":["یادگیری ماشین","LLM","مهندسی داده","استنتاج مدل","هوش مصنوعی داده‌محور","سیستم‌های عاملی"],"sameAs":["https://x.com/teknavir","https://linkedin.com/company/teknav"]},"publisher":{"@id":"https://www.teknav.ir/#organization"},"about":[{"@type":"Thing","name":"هوش مصنوعی","url":"https://www.teknav.ir/topics/ai"},{"@type":"Thing","name":"هوش مصنوعی"},{"@type":"Thing","name":"DeepSeek"},{"@type":"Thing","name":"MLA"},{"@type":"Thing","name":"Engram"},{"@type":"Thing","name":"MoE"}],"mentions":[{"@type":"Thing","name":"هوش مصنوعی"},{"@type":"Thing","name":"DeepSeek"},{"@type":"Thing","name":"MLA"},{"@type":"Thing","name":"Engram"},{"@type":"Thing","name":"MoE"},{"@type":"Thing","name":"DeepSeek-V4"}],"isPartOf":[{"@id":"https://www.teknav.ir/#website"},{"@type":"CollectionPage","@id":"https://www.teknav.ir/topics/ai"}],"speakable":{"@type":"SpeakableSpecification","xpath":["/html/head/title","/html/head/meta[@name=\"description\"]/@content"]},"isAccessibleForFree":true,"educationalLevel":"Intermediate","reviewedBy":{"@id":"https://www.teknav.ir/#organization"},"lastReviewed":"2026-05-05"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"تکناو","item":"https://www.teknav.ir"},{"@type":"ListItem","position":2,"name":"مقاله‌ها","item":"https://www.teknav.ir/articles"},{"@type":"ListItem","position":3,"name":"هوش مصنوعی","item":"https://www.teknav.ir/category/ai"},{"@type":"ListItem","position":4,"name":"DeepSeek-V4: پایان انحصار با معماری Engram و حافظه شرطی"}]}]}</script>
+  <script type="module" crossorigin src="/assets/index-C2DS9v2Q.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/vendor-DYLXRpC5.js">
+  <link rel="modulepreload" crossorigin href="/assets/vendor-react-CPqEaazJ.js">
+  <link rel="stylesheet" crossorigin href="/assets/index-Bvy2V8vE.css">
+</head>
+<body>
+  <div id="loading">
+    <div style="font-size:36px;font-weight:900;color:#0F6B73;margin-bottom:8px">تکناو</div>
+    <div style="font-size:11px;color:#5F6B6D;letter-spacing:0.15em;margin-bottom:24px">TEKNAV</div>
+    <div style="width:40px;height:3px;background:#E4DDD2;border-radius:2px;overflow:hidden">
+      <div id="loading-bar" style="height:100%;width:0%;background:#0F6B73;border-radius:2px;transition:width 0.3s"></div>
+    </div>
+  </div>
+
+  <div id="root"></div>
+
+  <script>
+    (() => {
+      const bar = document.getElementById('loading-bar');
+      let p = 0;
+      const prog = setInterval(() => { p = Math.min(p + 8, 90); bar.style.width = p + '%'; }, 120);
+      window.__doneLoading = () => {
+        clearInterval(prog); bar.style.width = '100%';
+        setTimeout(() => { document.getElementById('loading').classList.add('hidden'); }, 300);
+      };
+    })();
+  </script>
+
+</body>
+</html>

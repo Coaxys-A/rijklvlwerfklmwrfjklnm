@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تراشه‌های سفارشی هوش مصنوعی: پایان عصر پردازنده‌های عمومی | تکناو</title>
+  <meta name="description" content="کالبدشکافی تراشه‌های سفارشی هوش مصنوعی در سال ۲۰۲۶. بررسی معماری NVIDIA GB200 و استراتژی سیلیکون‌های اختصاصی گوگل و آمازون." />
+<meta name="keywords" content="تراشه هوش مصنوعی, NVIDIA, GB200, سخت‌افزار, سیلیکون اختصاصی, GPU, تراشه, تراشه‌های سفارشی هوش مصنوعی: پایان عصر پردازنده‌های عمومی, چرا غول‌های فناوری به ساخت سیلیکون‌های اختصاصی روی آورده‌اند؟, گزارش تحلیلی, استراتژیست فناوری و تحلیلگر اکوسیستم نوآوری, تحلیل فارسی فناوری, تکناو" />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="bingbot" content="index,follow,max-snippet:-1,max-image-preview:large" />
+  <meta name="author" content="تکناو" />
+  <meta name="language" content="fa-IR" />
+  <link rel="canonical" href="https://www.teknav.ir/article/custom-ai-chips" />
+  <link rel="alternate" hreflang="fa-IR" href="https://www.teknav.ir/" />
+  <link rel="alternate" type="application/rss+xml" title="تازه‌ترین مقاله‌های تکناو" href="https://www.teknav.ir/feed.xml" />
+  <meta property="og:locale" content="fa_IR" />
+  <meta property="og:site_name" content="تکناو" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="تراشه‌های سفارشی هوش مصنوعی: پایان عصر پردازنده‌های عمومی | تکناو" />
+  <meta property="og:description" content="کالبدشکافی تراشه‌های سفارشی هوش مصنوعی در سال ۲۰۲۶. بررسی معماری NVIDIA GB200 و استراتژی سیلیکون‌های اختصاصی گوگل و آمازون." />
+  <meta property="og:url" content="https://www.teknav.ir/article/custom-ai-chips" />
+  <meta property="og:image" content="https://www.teknav.ir/images/og/custom-ai-chips.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="تراشه‌های سفارشی هوش مصنوعی: پایان عصر پردازنده‌های عمومی | تکناو" />
+  <meta name="twitter:description" content="کالبدشکافی تراشه‌های سفارشی هوش مصنوعی در سال ۲۰۲۶. بررسی معماری NVIDIA GB200 و استراتژی سیلیکون‌های اختصاصی گوگل و آمازون." />
+  <meta name="twitter:image" content="https://www.teknav.ir/images/og/custom-ai-chips.jpg" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
+  <link rel="apple-touch-icon" sizes="512x512" href="/favicon.png" />
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#0F6B73" />
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js');
+      });
+    }
+  </script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Organization","NewsMediaOrganization"],"@id":"https://www.teknav.ir/#organization","name":"تکناو","alternateName":["Teknav","تکنّاو"],"url":"https://www.teknav.ir","description":"تکناو رسانه فارسی تحلیل فناوری، هوش مصنوعی، علم داده، امنیت سایبری، نرم‌افزار، سخت‌افزار و آینده تکنولوژی است.","logo":{"@type":"ImageObject","@id":"https://www.teknav.ir/#logo","url":"https://www.teknav.ir/favicon.png","width":512,"height":512},"image":{"@id":"https://www.teknav.ir/#logo"},"publishingPrinciples":"https://www.teknav.ir/about","masthead":"https://www.teknav.ir/authors","areaServed":{"@type":"Country","name":"Iran"},"audience":{"@type":"Audience","audienceType":"فارسی‌زبانان علاقه‌مند به فناوری"},"sameAs":["https://twitter.com/teknavir","https://x.com/teknavir","https://linkedin.com/company/teknav"]},{"@type":"WebSite","@id":"https://www.teknav.ir/#website","url":"https://www.teknav.ir","name":"تکناو","alternateName":"Teknav","description":"تکناو رسانه فارسی تحلیل فناوری، هوش مصنوعی، علم داده، امنیت سایبری، نرم‌افزار، سخت‌افزار و آینده تکنولوژی است.","inLanguage":"fa-IR","publisher":{"@id":"https://www.teknav.ir/#organization"}},{"@type":["NewsArticle","TechArticle"],"@id":"https://www.teknav.ir/article/custom-ai-chips#article","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.teknav.ir/article/custom-ai-chips"},"headline":"تراشه‌های سفارشی هوش مصنوعی: پایان عصر پردازنده‌های عمومی","alternativeHeadline":"چرا غول‌های فناوری به ساخت سیلیکون‌های اختصاصی روی آورده‌اند؟","description":"کالبدشکافی تراشه‌های سفارشی هوش مصنوعی در سال ۲۰۲۶. بررسی معماری NVIDIA GB200 و استراتژی سیلیکون‌های اختصاصی گوگل و آمازون.","abstract":"از GB200 انویدیا تا TPU گوگل؛ رقابت بر سر بهینه‌ترین تراشه هوش مصنوعی.","articleBody":"صنعت سخت‌افزار در اردیبهشت ۱۴۰۵ (می ۲۰۲۶) شاهد یکی از بزرگترین تحولات تاریخی خود از زمان اختراع ترانزیستور است: پایان دوران پردازنده‌های عمومی و آغاز پادشاهی تراشه‌های سفارشی هوش مصنوعی (Custom AI Silicon) . در حالی که تا دو سال پیش، کل بحث صنعت بر روی کمبود تراشه‌های H100 انویدیا متمرکز بود، اکنون بازار به سمت معماری‌های خاص‌منظوره و پلتفرم‌های محاسباتی عظیمی چون NVIDIA GB200 NVL72 و تراشه‌های اختصاصی غول‌های ابری حرکت کرده است. در این مقاله تخصصی، به کالبدشکافی ساختار تراشه‌های مدرن، نبرد بین طراحان سیلیکون، تکنولوژی خنک‌سازی مایع و آینده پردازش ابری در اواسط دهه ۲۰۲۰ می‌پردازیم. ۱. عبور از سیلیکون‌های عمومی به ASICهای استدلالی محدودیت‌های فیزیکی ماده (قانون مور) و بحران مصرف انرژی، شرکت‌های فناوری را وادار کرده است تا از پردازنده‌های گرافیکی همه‌منظوره (General-Purpose GPUs) فاصله گرفته و به سمت مدارهای مجتمع با کاربرد خاص (ASIC) حرکت کنند. این تراشه‌های جدید صرفاً برای دو هدف طراحی شده‌اند: ضرب ماتریس‌های عظیم در فاز آموزش و استنتاج فوق‌سریع در فاز اجرا. «ما در سال ۱۴۰۵ دیگر فقط \"تراشه\" نمی‌فروشیم، ما \"دیتاسنترهای یکپارچه\" می‌فروشیم. واحد محاسبات در عصر هوش مصنوعی، یک قطعه سیلیکونی نیست، بلکه یک رک کامل سرور است که به عنوان یک ابرپردازنده واحد عمل می‌کند. کسی که کنترل لایه‌ی فیزیکی را داشته باشد، کنترل آینده‌ی هوش را در دست دارد.» – جنسن هوانگ، مدیرعامل انویدیا در اجلاس GTC 2026 این تغییر دیدگاه بنیادین منجر به تولد معماری Blackwell و سیستم‌هایی نظیر GB200 شده است. در نمودار تعاملی زیر، بلوک‌های اساسی یک تراشه مدرن هوش مصنوعی و مسیرهای ارتباطی (Data Bus) با پهنای باند تراهرتزی آن‌ها را مشاهده می‌کنید. توجه کنید که چطور حافظه HBM4 به طور مستقیم روی هسته‌های پردازشی قرار گرفته است. معماری Blackwell و پادشاهی سیستم‌های GB200 قلب تپنده ابرکامپیوترهای هوشمند در سال ۱۴۰۵، سیستم NVIDIA GB200 NVL72 است. این غول سخت‌افزاری از ۳۶ پردازنده Grace (مبتنی بر ARM) و ۷۲ پردازنده گرافیکی Blackwell (B200) تشکیل شده است که با استفاده از فناوری NVLink 5.0 با پهنای باند خیره‌کننده ۱.۸ ترابایت بر ثانیه به یکدیگر متصل شده‌اند. این سیستم می‌تواند به عنوان یک کارت گرافیک واحد با حافظه‌ای در مقیاس ۱۸ ترابایت عمل کند که برای آموزش و اجرای مدل‌های تریلیون پارامتری (نظیر GPT-5 یا Claude 4.7) حیاتی است. ۲. استقلال سیلیکونی: تراشه‌های اختصاصی گوگل، آمازون و مایکروسافت وابستگی مطلق به انویدیا و قیمت‌های سرسام‌آور آن، غول‌های فناوری را به توسعه سیلیکون‌های اختصاصی خود در سال ۲۰۲۶ ترغیب کرده است. این تراشه‌ها اکنون سهم بزرگی از بازار را در اختیار دارند: Google TPU v6 (Trillium): گوگل ششمین نسل از پردازنده‌های تنسور خود را با تمرکز بر معماری MoE (Mixture-of-Experts) توسعه داده است. این تراشه موتور اصلی اجرای Gemini 2.5 Pro است و بهره‌وری انرژی آن ۴ برابر بهتر از نسل قبلی است. AWS Trainium 3: آمازون با معرفی این تراشه‌ها، هزینه‌های آموزش مدل‌های پایه را برای مشتریان ابری خود تا ۴۵ درصد کاهش داده است. این تراشه با بهینه‌سازی‌های نرم‌افزاری برای PyTorch و JAX جفت شده است. Microsoft Maia 200: مایکروسافت این تراشه‌ها را اختصاصاً برای اجرای سرویس‌های Copilot و عامل‌های هوشمند در پلتفرم Azure طراحی کرده است. تمرکز اصلی مایا ۲۰۰ بر روی کاهش تاخیر (Latency) در پاسخگویی به کاربران است. تحلیل بازار ۱۴۰۵: در حالی که انویدیا همچنان حاکم بلامنازع فاز «آموزش مدل‌های عظیم» است، تراشه‌های سفارشی شرکت‌های ابری در فاز «استنتاج» (Inference) – که ۸۰٪ هزینه‌های جاری هوش مصنوعی را شامل می‌شود – در حال تسخیر بازار هستند. ۳. بحران گرما و انقلاب خنک‌کننده‌های مایع مستقیم مصرف انرژی یک رک از سیستم‌های مدرن در سال ۲۰۲۶ می‌تواند به ۱۳۰ کیلووات (kW) برسد. خنک‌سازی با هوا برای چنین چگالی توانی کاملاً منسوخ و غیرممکن شده است. به همین دلیل، در سال ۱۴۰۵، سیستم‌های Direct-to-Chip Liquid Cooling به یک استاندارد اجباری برای تمامی دیتاسنترهای هوش مصنوعی تبدیل شده‌اند. این یعنی آب یا مایعات خنک‌کننده مخصوص مستقیماً بر روی سطح تراشه جریان می‌یابند تا دمای آن را در محدوده امن نگه دارند. تقاضا برای تجهیزات خنک‌کننده مایع در سال ۲۰۲۶ با رشد ۵۰۰ درصدی روبرو بوده و شرکت‌های سازنده رادیاتورهای صنعتی به بازیگران جدید و استراتژیک دنیای تکنولوژی تبدیل شده‌اند. نتیجه‌گیری: آینده در گروی سخت‌افزار هوشمند صنعت سخت‌افزار هوش مصنوعی در سال ۱۴۰۵ ثابت کرد که نرم‌افزار بدون خانه (سخت‌افزار) کارآمد، بی‌معناست. تراشه‌های سفارشی نه تنها هزینه‌ها را کاهش داده‌اند، بلکه امکان ساخت مدل‌هایی را فراهم کرده‌اند که پیش از این به دلیل محدودیت‌های حافظه غیرممکن بودند. ما در تکناو معتقدیم که دهه آینده، دهه‌ی «سیلیکون‌های زنده» است؛ تراشه‌هایی که با الهام از ساختار مغز و با هدف به حداکثر رساندن بهره‌وری، جهان دیجیتال ما را بازسازی خواهند کرد.","image":{"@type":"ImageObject","url":"https://www.teknav.ir/images/og/custom-ai-chips.jpg","width":1200,"height":630},"datePublished":"2026-04-14","dateModified":"2026-04-14","inLanguage":"fa-IR","articleSection":"سخت‌افزار","keywords":["تراشه هوش مصنوعی","NVIDIA","GB200","سخت‌افزار","سیلیکون اختصاصی","GPU","تراشه","تراشه‌های سفارشی هوش مصنوعی: پایان عصر پردازنده‌های عمومی","چرا غول‌های فناوری به ساخت سیلیکون‌های اختصاصی روی آورده‌اند؟","گزارش تحلیلی","استراتژیست فناوری و تحلیلگر اکوسیستم نوآوری","تحلیل فارسی فناوری","تکناو"],"wordCount":745,"timeRequired":"PT12M","genre":"گزارش تحلیلی","teaches":["۱. عبور از سیلیکون‌های عمومی به ASICهای استدلالی","۲. استقلال سیلیکونی: تراشه‌های اختصاصی گوگل، آمازون و مایکروسافت","۳. بحران گرما و انقلاب خنک‌کننده‌های مایع مستقیم","نتیجه‌گیری: آینده در گروی سخت‌افزار هوشمند"],"author":{"@type":"Person","name":"رادمان قلیچی","url":"https://www.teknav.ir/author/radman-ghelichi","jobTitle":"استراتژیست فناوری و تحلیلگر اکوسیستم نوآوری","description":"رادمان قلیچی استراتژیست فناوری و تحلیلگر اکوسیستم استارتاپ و سرمایه‌گذاری خطرپذیر در تکنّاو است. او با نگاهی کلان به ترندهای بلندمدت فناوری، تأثیر نوآوری بر مدل‌های کسب‌وکار، و مسیر رشد شرکت‌های فناور می‌پردازد. تخصص رادمان در تحلیل موج‌های سرمایه‌گذاری در هوش مصنوعی، ارزیابی اکوسیستم استارتاپ‌های ایرانی و منطقه‌ای، و تبیین استراتژی‌های رقابتی شرکت‌های فناوری جهانی است. او پیش از تکنّاو، به عنوان مشاور استراتژی با چندین استارتاپ مرحله رشد (Growth Stage) همکاری داشته است.","knowsAbout":["استراتژی فناوری","سرمایه‌گذاری VC","اکوسیستم استارتاپ","تحلیل بازار","نوآوری باز","استارتاپ‌های ایرانی"],"sameAs":["https://x.com/teknavir","https://linkedin.com/company/teknav"]},"publisher":{"@id":"https://www.teknav.ir/#organization"},"about":[{"@type":"Thing","name":"سخت‌افزار","url":"https://www.teknav.ir/topics/hardware"},{"@type":"Thing","name":"سخت‌افزار"},{"@type":"Thing","name":"GPU"},{"@type":"Thing","name":"تراشه"},{"@type":"Thing","name":"GB200"},{"@type":"Thing","name":"تراشه هوش مصنوعی"}],"mentions":[{"@type":"Thing","name":"سخت‌افزار"},{"@type":"Thing","name":"GPU"},{"@type":"Thing","name":"تراشه"},{"@type":"Thing","name":"GB200"},{"@type":"Thing","name":"تراشه هوش مصنوعی"},{"@type":"Thing","name":"NVIDIA"},{"@type":"Thing","name":"سیلیکون اختصاصی"}],"isPartOf":[{"@id":"https://www.teknav.ir/#website"},{"@type":"CollectionPage","@id":"https://www.teknav.ir/topics/hardware"}],"speakable":{"@type":"SpeakableSpecification","xpath":["/html/head/title","/html/head/meta[@name=\"description\"]/@content"]},"isAccessibleForFree":true,"educationalLevel":"Intermediate","reviewedBy":{"@id":"https://www.teknav.ir/#organization"},"lastReviewed":"2026-04-14"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"تکناو","item":"https://www.teknav.ir"},{"@type":"ListItem","position":2,"name":"مقاله‌ها","item":"https://www.teknav.ir/articles"},{"@type":"ListItem","position":3,"name":"سخت‌افزار","item":"https://www.teknav.ir/category/hardware"},{"@type":"ListItem","position":4,"name":"تراشه‌های سفارشی هوش مصنوعی: پایان عصر پردازنده‌های عمومی"}]}]}</script>
+  <script type="module" crossorigin src="/assets/index-C2DS9v2Q.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/vendor-DYLXRpC5.js">
+  <link rel="modulepreload" crossorigin href="/assets/vendor-react-CPqEaazJ.js">
+  <link rel="stylesheet" crossorigin href="/assets/index-Bvy2V8vE.css">
+</head>
+<body>
+  <div id="loading">
+    <div style="font-size:36px;font-weight:900;color:#0F6B73;margin-bottom:8px">تکناو</div>
+    <div style="font-size:11px;color:#5F6B6D;letter-spacing:0.15em;margin-bottom:24px">TEKNAV</div>
+    <div style="width:40px;height:3px;background:#E4DDD2;border-radius:2px;overflow:hidden">
+      <div id="loading-bar" style="height:100%;width:0%;background:#0F6B73;border-radius:2px;transition:width 0.3s"></div>
+    </div>
+  </div>
+
+  <div id="root"></div>
+
+  <script>
+    (() => {
+      const bar = document.getElementById('loading-bar');
+      let p = 0;
+      const prog = setInterval(() => { p = Math.min(p + 8, 90); bar.style.width = p + '%'; }, 120);
+      window.__doneLoading = () => {
+        clearInterval(prog); bar.style.width = '100%';
+        setTimeout(() => { document.getElementById('loading').classList.add('hidden'); }, 300);
+      };
+    })();
+  </script>
+
+</body>
+</html>

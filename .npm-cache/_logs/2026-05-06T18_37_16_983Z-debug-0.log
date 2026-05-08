@@ -1,0 +1,19 @@
+0 verbose cli /root/.nvm/versions/node/v20.20.2/bin/node /root/.nvm/versions/node/v20.20.2/bin/npm
+1 info using npm@10.8.2
+2 info using node@v20.20.2
+3 silly config load:file:/root/.nvm/versions/node/v20.20.2/lib/node_modules/npm/npmrc
+4 silly config load:file:/srv/teknav/app/.npmrc
+5 silly config load:file:/root/.npmrc
+6 silly config load:file:/root/.nvm/versions/node/v20.20.2/etc/npmrc
+7 verbose title npm run seo:sitemap
+8 verbose argv "run" "seo:sitemap"
+9 verbose logfile logs-max:10 dir:/srv/teknav/app/.npm-cache/_logs/2026-05-06T18_37_16_983Z-
+10 verbose logfile /srv/teknav/app/.npm-cache/_logs/2026-05-06T18_37_16_983Z-debug-0.log
+11 silly logfile start cleaning logs, removing 1 files
+12 silly logfile done cleaning log files
+13 verbose cwd /srv/teknav/app
+14 verbose os Linux 5.15.0-176-generic
+15 verbose node v20.20.2
+16 verbose npm  v10.8.2
+17 verbose exit 0
+18 info ok

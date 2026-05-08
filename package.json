@@ -5,10 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run seo:sitemap && npm run og:images && vite build && node scripts/check-no-cdn.mjs && node scripts/check-responsive.mjs",
+    "build": "npm run seo:sitemap && npm run og:images && vite build && node scripts/check-no-cdn.mjs && node scripts/check-responsive.mjs && node scripts/generate-article-pages.mjs && node scripts/compress-dist.mjs",
+    "pages": "node scripts/generate-article-pages.mjs",
+    "compress": "node scripts/compress-dist.mjs",
     "preview": "vite preview --port 4173",
     "check:no-cdn": "node scripts/check-no-cdn.mjs",
     "check:responsive": "node scripts/check-responsive.mjs",
+    "check:seo": "node scripts/check-persian-seo.mjs",
     "seo:sitemap": "node scripts/generate-seo.mjs",
     "og:images": "node scripts/generate-og-images.mjs",
     "smoke:prod": "node scripts/production-smoke.mjs"

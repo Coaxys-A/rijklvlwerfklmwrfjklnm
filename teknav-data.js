@@ -10,11 +10,13 @@ import { ART24_CONTENT, ART25_CONTENT, ART26_CONTENT } from './article-contents-
 import { ART29_CONTENT } from './article-contents-9.js';
 import { ART30_CONTENT, ART31_CONTENT, ART32_CONTENT } from './article-contents-10.js';
 import { ART33_CONTENT } from './article-contents-11.js';
+import { ART34_CONTENT } from './article-contents-12.js';
+import { ART35_CONTENT } from './article-contents-13.js';
 
 export const TeknavData = (() => {
 
   const categories = [
-    { id: 'ai', slug: 'ai', name: 'هوش مصنوعی', color: '#0F6B73', description: 'تحلیل‌های عمیق از پیشرفت‌های هوش مصنوعی و مدل‌های زبانی', articleCount: 7, authorCount: 1, avgReadTime: 13, diagram: 'neural' },
+    { id: 'ai', slug: 'ai', name: 'هوش مصنوعی', color: '#0F6B73', description: 'تحلیل‌های عمیق از پیشرفت‌های هوش مصنوعی و مدل‌های زبانی', articleCount: 9, authorCount: 1, avgReadTime: 13, diagram: 'neural' },
     { id: 'data', slug: 'data', name: 'علم داده', color: '#D49A2A', description: 'تحلیل داده، یادگیری ماشین و مهندسی داده', articleCount: 2, authorCount: 1, avgReadTime: 14, diagram: 'pipeline' },
     { id: 'startup', slug: 'startup', name: 'استارتاپ', color: '#C76D4A', description: 'اکوسیستم نوآوری و تحلیل استارتاپ‌های تکنولوژی', articleCount: 3, authorCount: 1, avgReadTime: 11, diagram: 'growth' },
     { id: 'security', slug: 'security', name: 'امنیت سایبری', color: '#2F8F6B', description: 'تحلیل تهدیدات سایبری و امنیت در دنیای دیجیتال', articleCount: 3, authorCount: 1, avgReadTime: 12, diagram: 'cyber' },
@@ -118,12 +120,116 @@ export const TeknavData = (() => {
   ];
 
   const authors = [
-    { id: 'a1', name: 'آرسام صباغ', slug: 'sabbagh', username: 'arsam-sabbagh', specialty: 'متخصص یادگیری ماشین و تحلیل داده', articleCount: 23, bio: 'تحلیلگر و پژوهشگر ارشد در حوزه هوش مصنوعی و یادگیری ماشین.', social: { twitter: '#', linkedin: '#', github: '#' }, initials: 'آ', color: '#0F6B73' },
-    { id: 'a2', name: 'سیداحمدرضا محجوب', slug: 'mahjoob', username: 'ahmadreza-mahjoub', specialty: 'تحلیلگر امنیت سایبری و بلاک‌چین', articleCount: 7, bio: 'کارشناس امنیت با تمرکز بر امنیت هوش مصنوعی و دفاع دیجیتال.', social: { twitter: '#', linkedin: '#', github: '#' }, initials: 'س', color: '#2F8F6B' },
-    { id: 'a3', name: 'رادمان قلیچی', slug: 'radman-ghelichi', username: 'radman-ghelichi', specialty: 'استراتژیست فناوری و کسب‌وکار', articleCount: 3, bio: 'مشاور استارتاپ‌ها و تحلیلگر اکوسیستم نوآوری.', social: { twitter: '#', linkedin: '#', github: '#' }, initials: 'ر', color: '#C76D4A' },
+    {
+      id: 'a1',
+      name: 'آرسام صباغ',
+      slug: 'sabbagh',
+      username: 'arsam-sabbagh',
+      specialty: 'پژوهشگر ارشد هوش مصنوعی و مهندسی داده',
+      articleCount: 24,
+      bio: 'آرسام صباغ پژوهشگر ارشد هوش مصنوعی و سردبیر تکنّاو است. او بیش از سه سال تجربه در یادگیری ماشین، مهندسی داده، و استقرار سیستم‌های هوشمند در مقیاس صنعتی دارد. تخصص اصلی او طراحی پایپ‌لاین‌های داده برای مدل‌های زبانی بزرگ (LLM)، بهینه‌سازی استنتاج (Inference Optimization) و ارزیابی کمّی مدل‌های مرزی (Frontier Models) است. آرسام پیش از تأسیس تکنّاو، در چندین شرکت حوزه فناوری به عنوان محقق و مهندس ارشد فعالیت داشته و مقالات فنی او در حوزه‌های داده-محوری، ایمنی هوش مصنوعی و سیستم‌های عاملی مرجع بسیاری از تیم‌های مهندسی فارسی‌زبان است.',
+      expertise: ['یادگیری ماشین', 'LLM', 'مهندسی داده', 'استنتاج مدل', 'هوش مصنوعی داده‌محور', 'سیستم‌های عاملی'],
+      education: 'مهندسی کامپیوتر — گرایش هوش مصنوعی',
+      social: { twitter: 'https://x.com/teknavir', linkedin: 'https://linkedin.com/company/teknav', github: '#' },
+      initials: 'آ',
+      color: '#0F6B73',
+      verifiedExpert: true,
+      verificationNote: 'پژوهشگر ارشد هوش مصنوعی با بیش از ۳ سال تجربه در مهندسی LLM و سیستم‌های داده‌محور',
+      joinedDate: '2023-09-01',
+    },
+    {
+      id: 'a2',
+      name: 'سیداحمدرضا محجوب',
+      slug: 'mahjoob',
+      username: 'ahmadreza-mahjoub',
+      specialty: 'تحلیلگر ارشد امنیت سایبری و هوش مصنوعی',
+      articleCount: 7,
+      bio: 'سیداحمدرضا محجوب تحلیلگر ارشد امنیت سایبری و از نویسندگان اصلی تکنّاو در حوزه تهدیدات دیجیتال است. تخصص اصلی او تحلیل آسیب‌پذیری‌های Zero-Day، امنیت زیرساخت‌های ابری، و بررسی تقاطع هوش مصنوعی و امنیت سایبری است. احمدرضا با رویکردی دقیق و فنی، پیچیده‌ترین حملات و بردارهای نفوذ را برای مخاطبان فارسی‌زبان تشریح می‌کند؛ از تحلیل بدافزارهای پیشرفته (APT) تا بررسی تأثیر AI بر اتوماسیون حملات سایبری. او پیش از تکنّاو، سابقه همکاری با تیم‌های Red Team و تحلیل تهدید در سازمان‌های امنیتی را دارد.',
+      expertise: ['امنیت سایبری', 'Zero-Day Research', 'تحلیل APT', 'امنیت ابری', 'هوش مصنوعی در امنیت', 'رمزنگاری پس‌کوانتومی'],
+      education: 'مهندسی شبکه و امنیت اطلاعات',
+      social: { twitter: 'https://x.com/teknavir', linkedin: 'https://linkedin.com/company/teknav', github: '#' },
+      initials: 'س',
+      color: '#2F8F6B',
+      verifiedExpert: true,
+      verificationNote: 'تحلیلگر امنیت سایبری با تخصص در Zero-Day Research و تهدیدات APT',
+      joinedDate: '2023-10-15',
+    },
+    {
+      id: 'a3',
+      name: 'رادمان قلیچی',
+      slug: 'radman-ghelichi',
+      username: 'radman-ghelichi',
+      specialty: 'استراتژیست فناوری و تحلیلگر اکوسیستم نوآوری',
+      articleCount: 3,
+      bio: 'رادمان قلیچی استراتژیست فناوری و تحلیلگر اکوسیستم استارتاپ و سرمایه‌گذاری خطرپذیر در تکنّاو است. او با نگاهی کلان به ترندهای بلندمدت فناوری، تأثیر نوآوری بر مدل‌های کسب‌وکار، و مسیر رشد شرکت‌های فناور می‌پردازد. تخصص رادمان در تحلیل موج‌های سرمایه‌گذاری در هوش مصنوعی، ارزیابی اکوسیستم استارتاپ‌های ایرانی و منطقه‌ای، و تبیین استراتژی‌های رقابتی شرکت‌های فناوری جهانی است. او پیش از تکنّاو، به عنوان مشاور استراتژی با چندین استارتاپ مرحله رشد (Growth Stage) همکاری داشته است.',
+      expertise: ['استراتژی فناوری', 'سرمایه‌گذاری VC', 'اکوسیستم استارتاپ', 'تحلیل بازار', 'نوآوری باز', 'استارتاپ‌های ایرانی'],
+      education: 'مدیریت استراتژیک فناوری',
+      social: { twitter: 'https://x.com/teknavir', linkedin: 'https://linkedin.com/company/teknav', github: '#' },
+      initials: 'ر',
+      color: '#C76D4A',
+      verifiedExpert: true,
+      verificationNote: 'استراتژیست فناوری با تمرکز بر اکوسیستم استارتاپ و سرمایه‌گذاری در حوزه هوش مصنوعی',
+      joinedDate: '2024-01-10',
+    },
   ];
 
   const articles = [
+    {
+      id: 'art35',
+      slug: 'mcp-model-context-protocol-2026',
+      title: 'از چت‌بات تا دستیار واقعی: پروتکل MCP چطور هوش مصنوعی را به ابزارهای روزمره وصل کرد',
+      subtitle: 'کالبدشکافی پروتکل استانداردی که ChatGPT، Gemini و همه‌ی مدل‌های بزرگ دنیا آن را پذیرفتند',
+      summary: 'پروتکل MCP یا Model Context Protocol، استانداردی است که هوش مصنوعی را از یک چت‌بات ساده به دستیاری تبدیل می‌کند که می‌تواند به ایمیل، پایگاه داده، فایل‌ها و سرویس‌های واقعی دسترسی داشته باشد. تحلیل فنی معماری، امنیت، و اکوسیستم جهانی که بر این پروتکل شرط‌بندی کرده است.',
+      category: 'ai',
+      categoryName: 'هوش مصنوعی',
+      authorId: 'a1',
+      authorName: 'آرسام صباغ',
+      authorUsername: 'arsam-sabbagh',
+      date: '۱۴۰۵/۰۲/۱۶',
+      dateEn: '2026-05-06',
+      readTime: 14,
+      type: 'تحلیل عمیق',
+      status: 'منتشرشده',
+      featured: false,
+      tags: ['MCP', 'Model Context Protocol', 'هوش مصنوعی عاملی', 'ChatGPT', 'Function Calling', 'Agentic AI', 'پروتکل', 'هوش مصنوعی', 'دستیار هوشمند'],
+      diagram: 'arch',
+      views: 1840,
+      reactions: 124,
+      content: ART35_CONTENT,
+      metaDescription: 'تحلیل فنی عمیق پروتکل MCP (Model Context Protocol): معماری کلاینت-سرور، سه ستون Tools/Resources/Prompts، تفاوت با Function Calling، امنیت MCP، و اکوسیستم ۲۰۲۶ از Claude تا OpenAI. راهنمای جامع فارسی MCP.',
+      keywords: ['MCP چیست', 'Model Context Protocol', 'پروتکل MCP', 'هوش مصنوعی عاملی', 'Claude MCP', 'Cursor MCP', 'Function Calling', 'JSON-RPC', 'Agentic AI', 'اتصال هوش مصنوعی به ابزار', 'سرور MCP', 'اینترنت عاملی'],
+      canonicalPath: '/article/mcp-model-context-protocol-2026',
+      ogImage: '/images/og/agentic-ai-production-2026.jpg',
+      factCheckedAt: '2026-05-06',
+    },
+    {
+      id: 'art34',
+      slug: 'ai-data-centric-2026',
+      title: 'هوش مصنوعی داده‌محور ۲۰۲۶: وقتی قانون مقیاس‌گذاری به بن‌بست رسید',
+      subtitle: 'از فروپاشی مدل تا مهندسی هوشمندی؛ چرا کیفیت داده از معماری مدل مهم‌تر شده است',
+      summary: 'در سال ۲۰۲۶، قانون مقیاس‌گذاری به دیوار سختی برخورده است. مهندسی کیفیت داده جایگزین مهندسی معماری مدل شده؛ تحلیل عمیق فنی از بحران Model Collapse، Semantic Layers، Data Provenance و اقتصاد داده‌های قابل اعتماد.',
+      category: 'ai',
+      categoryName: 'هوش مصنوعی',
+      authorId: 'a1',
+      authorName: 'آرسام صباغ',
+      authorUsername: 'arsam-sabbagh',
+      date: '۱۴۰۵/۰۲/۱۵',
+      dateEn: '2026-05-05',
+      readTime: 13,
+      type: 'تحلیل عمیق',
+      status: 'منتشرشده',
+      featured: true,
+      tags: ['هوش مصنوعی', 'Data-Centric AI', 'Model Collapse', 'Data Governance', 'LLM', 'داده', 'مهندسی هوشمندی'],
+      diagram: 'neural',
+      views: 3210,
+      reactions: 187,
+      content: ART34_CONTENT,
+      metaDescription: 'تحلیل عمیق فنی بحران داده در هوش مصنوعی ۲۰۲۶: چرا قانون مقیاس‌گذاری به بن‌بست رسید؟ بررسی فروپاشی مدل (Model Collapse)، Data-Centric AI، لایه‌های معنایی، اثبات اصالت داده و اقتصاد داده‌های قابل اعتماد برای سیستم‌های عاملی.',
+      keywords: ['Data-Centric AI', 'Model Collapse', 'فروپاشی مدل', 'Data Provenance', 'Semantic Layer', 'Data Governance', 'هوش مصنوعی ۲۰۲۶', 'مهندسی هوشمندی', 'قانون مقیاس‌گذاری', 'داده‌های قابل اعتماد', 'EU AI Act'],
+      canonicalPath: '/article/ai-data-centric-2026',
+      ogImage: '/images/og/data-governance-2026.jpg',
+      factCheckedAt: '2026-05-05',
+    },
     {
       id: 'art33',
       slug: 'cve-2026-41940-cpanel-zero-day-analysis',
@@ -149,6 +255,8 @@ export const TeknavData = (() => {
       keywords: ['CVE-2026-41940', 'cPanel Zero-Day', 'تزریق CRLF', 'امنیت سرور لینوکس', 'آسیب‌پذیری وب سرور', 'دسترسی روت cPanel', 'WHM Exploit'],
       content: ART33_CONTENT,
       canonicalPath: '/article/cve-2026-41940-cpanel-zero-day-analysis',
+      ogImage: '/images/og/cve-2026-41940-cpanel-zero-day-analysis.jpg',
+      factCheckedAt: '2026-05-03',
     },
     {
       id: 'art1',
@@ -292,7 +400,7 @@ export const TeknavData = (() => {
       views: 5200,
       reactions: 180,
       content: ART5_CONTENT,
-      metaDescription: 'تحلیل چالش‌های فنی و اقتصادی مقیاس‌پذیری استارتاپ‌ها در ایران سال ۱۴۰۵. بررسی راهکارهای بقا در شرایط محدودیت زیرساختی.',
+      metaDescription: 'تحلیل چالش‌های فنی و اقتصادی مقیاس‌پذیری استارتاپ‌های ایرانی در سال ۱۴۰۵؛ از تاب‌آوری زیرساخت، هزینه ابر و مهاجرت نخبگان تا معماری‌های بقا در شرایط محدودیت.',
       keywords: ['استارتاپ ایران', 'مقیاس‌پذیری', 'اکوسیستم فناوری', 'زیرساخت', 'نظام صنفی رایانه‌ای'],
       canonicalPath: '/article/iranian-startups-scale',
       ogImage: '/images/og/iranian-startups-scale.jpg',
@@ -748,7 +856,7 @@ export const TeknavData = (() => {
       views: 1200,
       reactions: 45,
       content: ART20_CONTENT,
-      metaDescription: 'تحلیل ظهور عامل‌های هوشمند (Agentic AI) در سال ۲۰۲۶. بررسی چگونگی تغییر محیط کار توسط همکاران دیجیتال خودگردان.',
+      metaDescription: 'تحلیل ظهور عامل‌های هوشمند (Agentic AI) در سال ۲۰۲۶؛ بررسی معماری AI Agents، همکاران دیجیتال خودگردان، ابزارخوانی، حافظه کاری و تغییر آینده کار.',
       keywords: ['عامل هوشمند', 'Agentic AI', 'AI Agents', 'خودکارسازی', 'آینده کار'],
       ogImage: '/images/og/agentic-ai-production-2026.jpg',
       canonicalPath: '/article/agentic-ai-production-2026',
@@ -1132,6 +1240,7 @@ export const TeknavData = (() => {
   ];
 
   const activityLog = [
+    { id: 6, user: 'آرسام صباغ', action: 'تحلیل عمیق منتشر کرد', target: 'چرا مدل‌های هوش مصنوعی به داده‌های قابل اعتماد نیاز دارند؟', time: 'اکنون', type: 'publish' },
     { id: 1, user: 'آرسام صباغ', action: 'مقاله جدید منتشر کرد', target: 'عصر عامل‌های هوش مصنوعی', time: '۲ ساعت پیش', type: 'publish' },
     { id: 2, user: 'آرسام صباغ', action: 'مقاله جدید منتشر کرد', target: 'هوش مکانی اپل', time: '۱ ساعت پیش', type: 'publish' },
     { id: 3, user: 'آرسام صباغ', action: 'تحلیل جدید منتشر کرد', target: 'ذخیره‌سازی داده روی DNA', time: '۴۵ دقیقه پیش', type: 'publish' },
@@ -1140,7 +1249,7 @@ export const TeknavData = (() => {
   ];
 
   const users = [
-    { id: 'u1', name: 'آرسام صباغ', username: 'arsam-sabbagh', email: 'arsam@teknav.ir', role: 'writer', status: 'active', articleCount: 23, joindate: '۱۴۰۴/۰۱/۰۱' },
+    { id: 'u1', name: 'آرسام صباغ', username: 'arsam-sabbagh', email: 'arsam@teknav.ir', role: 'writer', status: 'active', articleCount: 24, joindate: '۱۴۰۴/۰۱/۰۱' },
     { id: 'u2', name: 'سیداحمدرضا محجوب', username: 'ahmadreza-mahjoub', email: 'ahmadreza@teknav.ir', role: 'writer', status: 'active', articleCount: 7, joindate: '۱۴۰۴/۰۱/۰۱' },
     { id: 'u3', name: 'رادمان قلیچی', username: 'radman-ghelichi', email: 'radman@teknav.ir', role: 'writer', status: 'active', articleCount: 3, joindate: '۱۴۰۴/۰۱/۰۱' },
   ];

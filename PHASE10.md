@@ -41,6 +41,13 @@ Default target: a 90-day SEO growth roadmap, followed by reader retention and mo
 - The article editor includes a structured "X vs Y" comparison template with responsive comparison-table styling for published articles.
 - Topic pages continue to expose visible FAQ content and `FAQPage` schema for rich-result eligibility.
 - Google Discover readiness is improved with local 1200x630 article hero images, `fetchPriority="high"` on the article hero image, `max-image-preview:large`, and OG image dimensions.
+- Persian article SEO has been normalized around the `ai-data-centric-2026` success pattern:
+  - Older article pages automatically get a semantic `.lead` introduction block at render time when their stored content does not already provide one.
+  - Runtime article JSON-LD includes enriched `NewsArticle`/`TechArticle` signals: `alternativeHeadline`, `abstract`, `articleBody`, `wordCount`, `timeRequired`, `about`, `mentions`, `teaches`, author `knowsAbout`, review metadata, and topic-hub linkage.
+  - Static article pages generated under `dist/article/{slug}/index.html` receive the same enriched metadata before React hydration.
+  - Future-dated articles are excluded from article sitemaps, feeds, and static article page generation until their `dateEn` is current.
+  - Article image sitemap entries now use explicit `ogImage` values or generated `/images/og/{slug}.jpg` assets.
+  - `npm run check:seo` audits current Persian indexable articles for canonical, meta, OG image, review date, heading structure, entity coverage, and body-depth warnings.
 - OAuth login remains production-wired for Google and GitHub through `/api/auth/oauth/:provider` and `OAUTH_CALLBACK_BASE=https://www.teknav.ir`.
 - SMS-based 2FA is implemented through Kavenegar OTP: users can enable it from profile settings, login returns a 2FA ticket, and `/api/auth/2fa/verify` completes session creation.
 - Verified expert badges are supported on author records and rendered on author lists, author profiles, public user profiles, and article bylines.
@@ -73,6 +80,7 @@ cd backend && npm run prisma:apply
 cd backend && npm run seed
 cd ..
 npm run seo:sitemap
+npm run check:seo
 npm run og:images
 npm run build
 cd backend && npm run build
@@ -121,6 +129,7 @@ TEKNAV_SMOKE_URL=https://www.teknav.ir TEKNAV_SMOKE_ARTICLES=/article/agentic-ai
   - `cd backend && npm run prisma:apply`
   - `cd backend && npm run seed`
   - `npm run seo:sitemap && npm run og:images && npm run build`
+  - `npm run check:seo`
   - `cd backend && npm run build`
   - `npm run smoke:prod`
 - Verify all flows after schema apply: auth, comments/likes/flags, history, notifications/SSE, reading lists, topic/writer follows, tag pages, series, topic hubs, newsletter archive/campaigns, review workflow, analytics endpoints, panel metrics, first-party events.

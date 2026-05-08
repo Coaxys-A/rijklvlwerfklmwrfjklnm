@@ -1,0 +1,16 @@
+0 verbose cli /root/.nvm/versions/node/v20.20.2/bin/node /root/.nvm/versions/node/v20.20.2/bin/npm
+1 info using npm@10.8.2
+2 info using node@v20.20.2
+3 silly config load:file:/root/.nvm/versions/node/v20.20.2/lib/node_modules/npm/npmrc
+4 silly config load:file:/root/.npmrc
+5 silly config load:file:/root/.nvm/versions/node/v20.20.2/etc/npmrc
+6 verbose title npm root
+7 verbose argv "root" "--global"
+8 verbose logfile logs-max:10 dir:/srv/teknav/app/.npm-cache/_logs/2026-05-08T15_57_44_310Z-
+9 verbose logfile /srv/teknav/app/.npm-cache/_logs/2026-05-08T15_57_44_310Z-debug-0.log
+10 verbose cwd /srv/teknav/app
+11 verbose os Linux 5.15.0-176-generic
+12 verbose node v20.20.2
+13 verbose npm  v10.8.2
+14 verbose exit 0
+15 info ok

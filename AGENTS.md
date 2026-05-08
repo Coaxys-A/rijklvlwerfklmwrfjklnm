@@ -8,10 +8,11 @@ Teknav is a Persian RTL React SPA (`teknav.ir`) with a Fastify/PostgreSQL/Redis 
 
 **Frontend** (repo root):
 - `npm run dev` — Vite dev server on **port 3009**, proxies `/api` → `http://localhost:3010`. Backend must be running first.
-- `npm run build` — runs `scripts/generate-seo.mjs` (sitemap/robots/feed), `vite build`, then `scripts/check-no-cdn.mjs`.
+- `npm run build` — runs SEO artifact generation, OG image generation, Vite build, CDN/responsive checks, static article page generation, and gzip/brotli compression.
 - `npm run preview` — preview built `dist/` on **port 4173**.
 - `npm run seo:sitemap` — regenerate `public/sitemap.xml`, `public/robots.txt`, `public/feed.xml` from `teknav-data.js`.
 - `npm run og:images` — generate local Open Graph images into `public/images/og/` from article metadata. Run on Linux after dependencies are installed.
+- `npm run check:seo` — audit current Persian indexable articles for canonical, meta, OG image, review date, heading structure, entity coverage, and body-depth warnings.
 
 **Backend** (`backend/`):
 - `npm run dev` — `tsx watch src/server.ts` on **port 3010** (env `PORT`, default 3010).
@@ -23,7 +24,7 @@ Teknav is a Persian RTL React SPA (`teknav.ir`) with a Fastify/PostgreSQL/Redis 
 
 **Dev startup order**: PostgreSQL + Redis → `cd backend && npm run dev` → `npm run dev`.
 
-**No formal test suite.** Validate with `npm run build` (frontend) and `cd backend && npm run build` (backend).
+**No formal test suite.** Validate with `npm run check:seo`, `npm run build` (frontend), and `cd backend && npm run build` (backend).
 
 ## Hard Constraints
 
@@ -53,8 +54,8 @@ Argon2id hashing, Redis sessions (`tek_sid`), CSRF double-submit cookie (`tek_cs
 
 When changing `backend/prisma/schema.prisma`: run `prisma:generate` before backend build/type-check, then `prisma:apply`.
 For production/Linux deployment, run `cd backend && npm ci && npm run prisma:generate && npm run prisma:apply` on the Linux host after uploading code. Never copy Windows-generated Prisma engine files (`backend/query_engine*.node`, `backend/schema-engine*`) or local `node_modules` into production.
-When changing `teknav-data.js` slugs/dates: run `npm run seo:sitemap`.
-When changing article Open Graph metadata: run `npm run og:images` and `npm run seo:sitemap` on Linux.
+When changing `teknav-data.js` slugs/dates: run `npm run check:seo` and `npm run seo:sitemap`.
+When changing article Open Graph metadata: run `npm run og:images`, `npm run check:seo`, and `npm run seo:sitemap` on Linux.
 When changing seed logic: run `cd backend && npm run seed` against running PostgreSQL/Redis.
 
 ## Phase 9 Files

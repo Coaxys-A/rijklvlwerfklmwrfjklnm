@@ -40,7 +40,10 @@ function getCurrentPage() {
     window.history.replaceState(null, '', hashPath);
     return hashPath;
   }
-  const path = `${window.location.pathname}${window.location.search}`;
+  const pathname = window.location.pathname;
+  // Strip trailing slash (except root "/") so /article/slug/ resolves same as /article/slug
+  const cleanPath = pathname.length > 1 && pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
+  const path = `${cleanPath}${window.location.search}`;
   return path === '' ? '/' : path;
 }
 function NavProvider({ children }) {

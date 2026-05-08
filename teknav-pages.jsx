@@ -1,6 +1,11 @@
 // teknav-pages.jsx — Search, Category, Authors pages (ES module)
 import { useState, useMemo, useEffect } from 'react';
 import { TeknavData } from './teknav-data.js';
+
+function authorProfilePath(author) {
+  const username = author.username || TeknavData.authors.find(a => a.slug === author.slug)?.username;
+  return username ? `/profile/@${username}` : `/author/${author.slug}`;
+}
 import {
   useNav, useToast, useAuth,
   AuthorAvatar, CategoryBadge, TypeBadge, EmptyState,
@@ -303,7 +308,7 @@ function AuthorsListPage() {
           {authors.map(author => {
             const latestArt = articles.find(a => a.authorId === author.id || a.authorSlug === author.slug);
             return (
-              <div key={author.id} onClick={() => navigate('/author/' + author.slug)} style={{
+              <div key={author.id} onClick={() => navigate(authorProfilePath(author))} style={{
                 background: '#fff', border: '1px solid #E4DDD2', borderRadius: 14, padding: 24,
                 cursor: 'pointer', direction: 'rtl', transition: 'all 0.2s',
               }} onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = '0 10px 32px rgba(0,0,0,0.08)'; }}
@@ -517,7 +522,7 @@ function TopicHubPage({ slug }) {
           <div style={{ background: '#fff', border: '1px solid #E4DDD2', borderRadius: 12, padding: 20 }}>
             <h2 style={{ color: '#263238', fontSize: 18, margin: '0 0 14px' }}>نویسندگان مرتبط</h2>
             {authors.length === 0 ? <p style={{ color: '#5F6B6D', lineHeight: 1.8, margin: 0 }}>نویسنده مرتبطی پیدا نشد.</p> : authors.map((author) => (
-              <button key={author.id} onClick={() => navigate(`/author/${author.slug}`)} style={{ display: 'flex', alignItems: 'center', gap: 10, width: '100%', background: 'transparent', border: 0, padding: '8px 0', color: '#263238', cursor: 'pointer', fontFamily: 'Vazirmatn,sans-serif', textAlign: 'right' }}>
+              <button key={author.id} onClick={() => navigate(authorProfilePath(author))} style={{ display: 'flex', alignItems: 'center', gap: 10, width: '100%', background: 'transparent', border: 0, padding: '8px 0', color: '#263238', cursor: 'pointer', fontFamily: 'Vazirmatn,sans-serif', textAlign: 'right' }}>
                 <AuthorAvatar author={author} size={36} />
                 <span>{author.name}</span>
               </button>
@@ -546,18 +551,10 @@ function AuthorProfilePage({ slug }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    let cancelled = false;
-    setLoading(true);
-    Promise.all([
-      contentApi.getAuthor(slug).catch(() => null),
-      contentApi.listArticles({ author: slug, limit: 100 }).catch(() => null),
-    ]).then(([authorRow, articleRows]) => {
-      if (cancelled) return;
-      if (authorRow) setAuthor(authorRow);
-      if (articleRows?.items) setArticles(articleRows.items);
-      setLoading(false);
-    });
-    return () => { cancelled = true; };
+    // Redirect /author/:slug → /profile/@:username
+    const staticAuthor = TeknavData.authors.find(a => a.slug === slug);
+    const username = staticAuthor?.username || slug;
+    navigate(`/profile/@${username}`);
   }, [slug]);
 
   if (loading) return <div style={{ paddingTop: 120, textAlign: 'center', fontFamily: 'Vazirmatn,sans-serif', color: '#5F6B6D' }}>در حال بارگذاری…</div>;

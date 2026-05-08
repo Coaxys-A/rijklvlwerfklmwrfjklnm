@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>امنیت زنجیره تأمین نرم‌افزار: نبرد در رگ‌های کد | تکناو</title>
+  <meta name="description" content="راهنمای جامع امنیت زنجیره تامین نرم‌افزار. بررسی استانداردهای SBOM و VEX در سال ۲۰۲۶ برای مقابله با حملات نفوذ به رگ‌های کد." />
+<meta name="keywords" content="امنیت نرم‌افزار, زنجیره تامین, SBOM, VEX, امنیت سایبری, امنیت, Open Source, امنیت زنجیره تأمین نرم‌افزار: نبرد در رگ‌های کد, چطور SBOMهای زنده و استاندارد VEX امنیت ۲۰۲۶ را تغییر می‌دهند؟, تحلیل امنیتی, تحلیلگر ارشد امنیت سایبری و هوش مصنوعی, تحلیل فارسی فناوری, تکناو" />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="bingbot" content="index,follow,max-snippet:-1,max-image-preview:large" />
+  <meta name="author" content="تکناو" />
+  <meta name="language" content="fa-IR" />
+  <link rel="canonical" href="https://www.teknav.ir/article/software-supply-chain" />
+  <link rel="alternate" hreflang="fa-IR" href="https://www.teknav.ir/" />
+  <link rel="alternate" type="application/rss+xml" title="تازه‌ترین مقاله‌های تکناو" href="https://www.teknav.ir/feed.xml" />
+  <meta property="og:locale" content="fa_IR" />
+  <meta property="og:site_name" content="تکناو" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="امنیت زنجیره تأمین نرم‌افزار: نبرد در رگ‌های کد | تکناو" />
+  <meta property="og:description" content="راهنمای جامع امنیت زنجیره تامین نرم‌افزار. بررسی استانداردهای SBOM و VEX در سال ۲۰۲۶ برای مقابله با حملات نفوذ به رگ‌های کد." />
+  <meta property="og:url" content="https://www.teknav.ir/article/software-supply-chain" />
+  <meta property="og:image" content="https://www.teknav.ir/images/og/software-supply-chain.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="امنیت زنجیره تأمین نرم‌افزار: نبرد در رگ‌های کد | تکناو" />
+  <meta name="twitter:description" content="راهنمای جامع امنیت زنجیره تامین نرم‌افزار. بررسی استانداردهای SBOM و VEX در سال ۲۰۲۶ برای مقابله با حملات نفوذ به رگ‌های کد." />
+  <meta name="twitter:image" content="https://www.teknav.ir/images/og/software-supply-chain.jpg" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
+  <link rel="apple-touch-icon" sizes="512x512" href="/favicon.png" />
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#0F6B73" />
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js');
+      });
+    }
+  </script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Organization","NewsMediaOrganization"],"@id":"https://www.teknav.ir/#organization","name":"تکناو","alternateName":["Teknav","تکنّاو"],"url":"https://www.teknav.ir","description":"تکناو رسانه فارسی تحلیل فناوری، هوش مصنوعی، علم داده، امنیت سایبری، نرم‌افزار، سخت‌افزار و آینده تکنولوژی است.","logo":{"@type":"ImageObject","@id":"https://www.teknav.ir/#logo","url":"https://www.teknav.ir/favicon.png","width":512,"height":512},"image":{"@id":"https://www.teknav.ir/#logo"},"publishingPrinciples":"https://www.teknav.ir/about","masthead":"https://www.teknav.ir/authors","areaServed":{"@type":"Country","name":"Iran"},"audience":{"@type":"Audience","audienceType":"فارسی‌زبانان علاقه‌مند به فناوری"},"sameAs":["https://twitter.com/teknavir","https://x.com/teknavir","https://linkedin.com/company/teknav"]},{"@type":"WebSite","@id":"https://www.teknav.ir/#website","url":"https://www.teknav.ir","name":"تکناو","alternateName":"Teknav","description":"تکناو رسانه فارسی تحلیل فناوری، هوش مصنوعی، علم داده، امنیت سایبری، نرم‌افزار، سخت‌افزار و آینده تکنولوژی است.","inLanguage":"fa-IR","publisher":{"@id":"https://www.teknav.ir/#organization"}},{"@type":["NewsArticle","TechArticle"],"@id":"https://www.teknav.ir/article/software-supply-chain#article","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.teknav.ir/article/software-supply-chain"},"headline":"امنیت زنجیره تأمین نرم‌افزار: نبرد در رگ‌های کد","alternativeHeadline":"چطور SBOMهای زنده و استاندارد VEX امنیت ۲۰۲۶ را تغییر می‌دهند؟","description":"راهنمای جامع امنیت زنجیره تامین نرم‌افزار. بررسی استانداردهای SBOM و VEX در سال ۲۰۲۶ برای مقابله با حملات نفوذ به رگ‌های کد.","abstract":"مهاجمان دیگر به درهای بسته حمله نمی‌کنند؛ آن‌ها وارد مواد اولیه نرم‌افزار می‌شوند.","articleBody":"در اردیبهشت ۱۴۰۵ (می ۲۰۲۶)، امنیت سایبری دیگر به دیوارهای آتش (Firewalls) سنتی و آنتی‌ویروس‌های کلاسیک خلاصه نمی‌شود. بزرگترین و خطرناک‌ترین میدان نبرد، زنجیره تأمین نرم‌افزار (Software Supply Chain) است. جایی که مهاجمان نه به محصول نهایی، بلکه به اجزای سازنده، کتابخانه‌های متن‌باز و ابزارهای ساخت (Build Tools) حمله می‌کنند تا از همان لحظه‌ی تولد، در خون نرم‌افزار نفوذ کنند. یک نفوذ موفق در این لایه می‌تواند میلیون‌ها سیستم را به طور همزمان آلوده کند. در این مقاله عمیق و فنی، به بررسی تحولات بنیادین در امنیت زنجیره تأمین، بلوغ استانداردهایی نظیر SLSA 1.2، نقش حیاتی عامل‌های هوشمند در پایش خودکار امنیت و ضرورت مدیریت AIBOM در سال ۲۰۲۶ می‌پردازیم. ۱. گذر از SBOMهای ایستا به موجودات زنده (Living SBOMs) تا دو سال پیش، داشتن یک لیست ساده از قطعات نرم‌افزاری (Software Bill of Materials) یک «مزیت رقابتی» محسوب می‌شد. اما در سال ۲۰۲۶، SBOMهای ایستایی که در مخازن کد خاک می‌خوردند، کاملاً منسوخ شده‌اند. معماری مدرن امنیتی بر پایه SBOMهای زنده (Living SBOMs) بنا شده است که در هر لحظه وضعیت فعلی نرم‌افزار در محیط تولید را منعکس می‌کنند. «مشکل ما در سال ۲۰۲۴ این بود که می‌دانستیم چه چیزی در کد ماست. مشکل ما در سال ۱۴۰۵ این است که آیا آن قطعه، در همین لحظه و در محیط عملیاتی ما قابل بهره‌برداری (Exploitable) توسط هوش مصنوعی مهاجم هست یا خیر؟ دانشِ بدونِ بافت (Context)، امروز فقط نویز تولید می‌کند.» – گزارش وضعیت امنیت متن‌باز، می ۲۰۲۶ اینجاست که استاندارد VEX (Vulnerability Exploitability eXchange) وارد میدان می‌شود. VEX به توسعه‌دهندگان اجازه می‌دهد به صورت ماشین‌خوان و خودکار به اسکنرهای امنیتی اعلام کنند که آیا یک آسیب‌پذیری شناخته‌شده در یک کتابخانه خاص، واقعاً در بافت محصول آن‌ها قابل دسترسی و سوءاستفاده هست یا نه. این رویکرد توانسته است نویز هشدارهای امنیتی را در تیم‌های فنی تا ۹۰٪ کاهش دهد و تمرکز را به تهدیدات واقعی بازگرداند. ۲. چهارچوب SLSA و امنیت فرآیند ساخت در مقیاس صنعتی برای اطمینان از اینکه کدی که در سرور اجرا می‌شود، دقیقاً و بدون تغییر همان کدی است که توسط توسعه‌دهنده تایید شده، استاندارد SLSA (Supply-chain Levels for Software Artifacts) به سطح بلوغ ۱.۲ رسیده است. در نمودار تعاملی زیر، چگونگی محافظت از فرآیند ساخت در برابر تهدیدات نفوذ (نظیر حملات تزریق کد در CI/CD) را مشاهده می‌کنید. توجه کنید که چطور امضاهای دیجیتال در هر مرحله زنجیره را قفل می‌کنند. الزام قانونی ۱۴۰۵: رسیدن به سطح ۳ استاندارد SLSA (SLSA Level 3) برای تمامی نرم‌افزارهای زیرساختی، بانکی و دولتی در ایران و اروپا به یک الزام قانونی تبدیل شده است. این سطح تضمین می‌کند که فرآیند ساخت در محیط‌های کاملاً ایزوله، موقت (Ephemeral) و بدون دخالت مستقیم انسان انجام شده است. نظارت عامل‌محور (Agentic Governance) در خط لوله CI/CD یکی از بزرگترین جهش‌های امنیتی سال جاری، ورود عامل‌های هوشمند امنیتی (Security Agents) به قلب خطوط لوله توسعه است. این عامل‌ها فراتر از اسکنرهای قدیمی عمل می‌کنند؛ آن‌ها نه تنها آسیب‌پذیری‌ها را شناسایی می‌کنند، بلکه به صورت خودکار تست‌های رگرسیون را اجرا کرده و Pull Requestهای اصلاحی حاوی پچ‌های امنیتی (Auto-Patching) را برای تیم‌های فنی ارسال می‌کنند. این یعنی زمان میانگین برای رفع خطا (MTTR) از میانگین ۲۱ روز در سال ۱۴۰۳ به کمتر از ۶ ساعت در سال ۱۴۰۵ کاهش یافته است. ظهور مفهوم AIBOM: شفافیت در مدل‌های هوشمند با فراگیر شدن مدل‌های هوش مصنوعی در قلب اکثر نرم‌افزارها، مفهوم جدیدی به نام AI Bill of Materials (AIBOM) متولد شده است. AIBOM شامل مستنداتی است که منشأ داده‌های آموزشی، ورژن وزن‌های مدل، فرآیند تنظیم دقیق (Fine-tuning) و فیلترهای اخلاقی اعمال شده را رهگیری می‌کند. این شفافیت برای جلوگیری از حملات مسموم‌سازی داده (Data Poisoning) که در آن مهاجم تلاش می‌کند رفتار مدل را در درازمدت منحرف کند، حیاتی است. ۳. چالش‌های قانونی و مسئولیت مدنی در سال ۲۰۲۶ مقررات جدیدی مانند Cyber Resilience Act (CRA) در اتحادیه اروپا و استانداردهای مشابه امنیتی در نهادهای نظارتی ایران، مسئولیت حقوقی و مالی امنیت زنجیره تأمین را مستقیماً بر عهده تولیدکنندگان و عرضه‌کنندگان نهایی نرم‌افزار گذاشته‌اند. در سال ۱۴۰۵، دیگر نمی‌توان مسئولیت نشت داده ناشی از یک کتابخانه متن‌باز ناامن را به گردن جامعه داوطلبان یا توسعه‌دهندگان مستقل انداخت. شرکت‌ها موظف به ممیزی دقیق تمامی اجزای شخص ثالث (Third-party) خود هستند. استفاده از پروتکل‌هایی نظیر Sigstore برای امضای دیجیتال بدون نیاز به مدیریت کلیدهای پیچیده، اکنون به استاندارد پیش‌فرض در ۹۵٪ پروژه‌های متن‌باز محبوب تبدیل شده است. این تکنولوژی ردیابی منشأ کد (Provenance) را برای همگان رایگان و آسان کرده است. نتیجه‌گیری: بهداشت سایبری با سرعت بالا در عصری که حملات مبتنی بر هوش مصنوعی مولد می‌توانند در عرض چند ساعت از یک آسیب‌پذیری روزِ صفر (Zero-day) در یک کتابخانه کوچک بهره‌برداری کنند، تنها راه بقا «بهداشت با سرعت بالا» (High-Velocity Hygiene) است. امنیت در سال ۱۴۰۵ دیگر یک چک‌لیست دوره‌ای یا یک مانع در برابر توسعه نیست؛ بلکه یک فرآیند مداوم، خودکار و هوشمند است که در تار و پود زنجیره تأمین نرم‌افزار تنیده شده است. تکناو شما را در این مسیر پیچیده امنیتی، با جدیدترین ابزارها و استانداردها مسلح خواهد کرد.","image":{"@type":"ImageObject","url":"https://www.teknav.ir/images/og/software-supply-chain.jpg","width":1200,"height":630},"datePublished":"2026-04-04","dateModified":"2026-04-04","inLanguage":"fa-IR","articleSection":"امنیت سایبری","keywords":["امنیت نرم‌افزار","زنجیره تامین","SBOM","VEX","امنیت سایبری","امنیت","Open Source","امنیت زنجیره تأمین نرم‌افزار: نبرد در رگ‌های کد","چطور SBOMهای زنده و استاندارد VEX امنیت ۲۰۲۶ را تغییر می‌دهند؟","تحلیل امنیتی","تحلیلگر ارشد امنیت سایبری و هوش مصنوعی","تحلیل فارسی فناوری","تکناو"],"wordCount":817,"timeRequired":"PT11M","genre":"تحلیل امنیتی","teaches":["۱. گذر از SBOMهای ایستا به موجودات زنده (Living SBOMs)","۲. چهارچوب SLSA و امنیت فرآیند ساخت در مقیاس صنعتی","۳. چالش‌های قانونی و مسئولیت مدنی در سال ۲۰۲۶","نتیجه‌گیری: بهداشت سایبری با سرعت بالا"],"author":{"@type":"Person","name":"سیداحمدرضا محجوب","url":"https://www.teknav.ir/author/mahjoob","jobTitle":"تحلیلگر ارشد امنیت سایبری و هوش مصنوعی","description":"سیداحمدرضا محجوب تحلیلگر ارشد امنیت سایبری و از نویسندگان اصلی تکنّاو در حوزه تهدیدات دیجیتال است. تخصص اصلی او تحلیل آسیب‌پذیری‌های Zero-Day، امنیت زیرساخت‌های ابری، و بررسی تقاطع هوش مصنوعی و امنیت سایبری است. احمدرضا با رویکردی دقیق و فنی، پیچیده‌ترین حملات و بردارهای نفوذ را برای مخاطبان فارسی‌زبان تشریح می‌کند؛ از تحلیل بدافزارهای پیشرفته (APT) تا بررسی تأثیر AI بر اتوماسیون حملات سایبری. او پیش از تکنّاو، سابقه همکاری با تیم‌های Red Team و تحلیل تهدید در سازمان‌های امنیتی را دارد.","knowsAbout":["امنیت سایبری","Zero-Day Research","تحلیل APT","امنیت ابری","هوش مصنوعی در امنیت","رمزنگاری پس‌کوانتومی"],"sameAs":["https://x.com/teknavir","https://linkedin.com/company/teknav"]},"publisher":{"@id":"https://www.teknav.ir/#organization"},"about":[{"@type":"Thing","name":"امنیت سایبری","url":"https://www.teknav.ir/topics/security"},{"@type":"Thing","name":"امنیت سایبری"},{"@type":"Thing","name":"امنیت"},{"@type":"Thing","name":"Open Source"},{"@type":"Thing","name":"SBOM"},{"@type":"Thing","name":"VEX"}],"mentions":[{"@type":"Thing","name":"امنیت سایبری"},{"@type":"Thing","name":"امنیت"},{"@type":"Thing","name":"Open Source"},{"@type":"Thing","name":"SBOM"},{"@type":"Thing","name":"VEX"},{"@type":"Thing","name":"امنیت نرم‌افزار"},{"@type":"Thing","name":"زنجیره تامین"}],"isPartOf":[{"@id":"https://www.teknav.ir/#website"},{"@type":"CollectionPage","@id":"https://www.teknav.ir/topics/security"}],"speakable":{"@type":"SpeakableSpecification","xpath":["/html/head/title","/html/head/meta[@name=\"description\"]/@content"]},"isAccessibleForFree":true,"educationalLevel":"Intermediate","reviewedBy":{"@id":"https://www.teknav.ir/#organization"},"lastReviewed":"2026-04-04"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"تکناو","item":"https://www.teknav.ir"},{"@type":"ListItem","position":2,"name":"مقاله‌ها","item":"https://www.teknav.ir/articles"},{"@type":"ListItem","position":3,"name":"امنیت سایبری","item":"https://www.teknav.ir/category/security"},{"@type":"ListItem","position":4,"name":"امنیت زنجیره تأمین نرم‌افزار: نبرد در رگ‌های کد"}]}]}</script>
+  <script type="module" crossorigin src="/assets/index-C2DS9v2Q.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/vendor-DYLXRpC5.js">
+  <link rel="modulepreload" crossorigin href="/assets/vendor-react-CPqEaazJ.js">
+  <link rel="stylesheet" crossorigin href="/assets/index-Bvy2V8vE.css">
+</head>
+<body>
+  <div id="loading">
+    <div style="font-size:36px;font-weight:900;color:#0F6B73;margin-bottom:8px">تکناو</div>
+    <div style="font-size:11px;color:#5F6B6D;letter-spacing:0.15em;margin-bottom:24px">TEKNAV</div>
+    <div style="width:40px;height:3px;background:#E4DDD2;border-radius:2px;overflow:hidden">
+      <div id="loading-bar" style="height:100%;width:0%;background:#0F6B73;border-radius:2px;transition:width 0.3s"></div>
+    </div>
+  </div>
+
+  <div id="root"></div>
+
+  <script>
+    (() => {
+      const bar = document.getElementById('loading-bar');
+      let p = 0;
+      const prog = setInterval(() => { p = Math.min(p + 8, 90); bar.style.width = p + '%'; }, 120);
+      window.__doneLoading = () => {
+        clearInterval(prog); bar.style.width = '100%';
+        setTimeout(() => { document.getElementById('loading').classList.add('hidden'); }, 300);
+      };
+    })();
+  </script>
+
+</body>
+</html>

@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useNav, useAuth, useToast, EmptyState, pillBtn, inputStyle } from './teknav-ui.jsx';
 import { api } from './src/lib/api.js';
 import { engagementApi, pushApi, notificationPreferencesApi } from './src/lib/engagement-api.js';
+import { TeknavData } from './teknav-data.js';
 
 // ── Theme ────────────────────────────────────────────────────────────────────
 const P = {
@@ -21,11 +22,11 @@ const P = {
 };
 
 const ROLE_LABELS = {
-  admin:    { label: 'ادمین',    bg: '#2D1B0E', color: '#E07A3A' },
-  editor:   { label: 'سردبیر',   bg: '#1A2D1A', color: '#3A7D5E' },
-  writer:   { label: 'نویسنده',  bg: '#2D1A1A', color: '#C45C3D' },
-  reviewer: { label: 'بازبین',   bg: '#1A1A2D', color: '#8899CC' },
-  reader:   { label: 'خواننده',  bg: '#2A2A2A', color: '#AAA' },
+  admin:    { label: 'ادمین',    bg: 'rgba(196,92,61,0.10)', color: '#C45C3D', border: 'rgba(196,92,61,0.22)' },
+  editor:   { label: 'سردبیر',   bg: 'rgba(58,125,94,0.10)', color: '#2F8F6B', border: 'rgba(58,125,94,0.22)' },
+  writer:   { label: 'نویسنده',  bg: 'rgba(212,154,42,0.10)', color: '#A87A10', border: 'rgba(212,154,42,0.22)' },
+  reviewer: { label: 'بازبین',   bg: 'rgba(100,120,200,0.10)', color: '#5566AA', border: 'rgba(100,120,200,0.22)' },
+  reader:   { label: 'خواننده',  bg: 'rgba(95,107,109,0.08)', color: '#5F6B6D', border: 'rgba(95,107,109,0.18)' },
 };
 
 function RolePill({ role }) {
@@ -33,8 +34,8 @@ function RolePill({ role }) {
   return (
     <span style={{
       display: 'inline-block', padding: '3px 12px', borderRadius: 20,
-      fontSize: 11, fontWeight: 700, letterSpacing: 0.5,
-      background: r.bg, color: r.color,
+      fontSize: 11, fontWeight: 700, letterSpacing: 0.4,
+      background: r.bg, color: r.color, border: `1px solid ${r.border}`,
     }}>{r.label}</span>
   );
 }
@@ -72,8 +73,8 @@ function AvatarUpload({ user, editable, onUploaded }) {
   const initials = user.name ? user.name.slice(0, 2) : '؟';
   const avatarStyle = {
     width: 110, height: 110, borderRadius: '50%',
-    border: `3px solid ${P.terracotta}`,
-    boxShadow: '0 4px 24px rgba(196,92,61,0.25)',
+    border: `3px solid rgba(196,92,61,0.35)`,
+    boxShadow: '0 4px 20px rgba(196,92,61,0.15)',
     objectFit: 'cover', display: 'block',
   };
 
@@ -602,7 +603,39 @@ export function UserProfilePage({ username }) {
     setLoading(true);
     api.get(`/api/profile/${slug}`)
       .then(d => { if (!cancelled) setProfile(d.profile); })
-      .catch(() => { if (!cancelled) setProfile(null); })
+      .catch(() => {
+        if (cancelled) return;
+        // Fallback: check if this username matches a known static author
+        const author = TeknavData.authors.find(a => a.username === slug || a.slug === slug);
+        if (author) {
+          const authorArticles = TeknavData.articles
+            .filter(a => (a.authorId === author.id || a.authorName === author.name) && a.status === 'منتشرشده')
+            .map(a => ({ id: a.id, slug: a.slug, title: a.title, summary: a.summary, publishedAt: a.dateEn ? `${a.dateEn}T09:00:00+03:30` : null, views: a.views ?? 0, reactions: a.reactions ?? 0 }));
+          setProfile({
+            id: author.id,
+            username: author.username,
+            name: author.name,
+            bio: author.bio,
+            avatarUrl: null,
+            role: 'writer',
+            createdAt: author.joinedDate ? new Date(author.joinedDate).toISOString() : null,
+            author: {
+              articles: authorArticles,
+              articleCount: authorArticles.length,
+              verifiedExpert: author.verifiedExpert ?? false,
+              verificationNote: author.verificationNote ?? author.specialty,
+            },
+            // Extended static fields
+            _static: true,
+            expertise: author.expertise ?? [],
+            education: author.education ?? null,
+            social: author.social ?? {},
+            specialty: author.specialty,
+          });
+        } else {
+          setProfile(null);
+        }
+      })
       .finally(() => { if (!cancelled) setLoading(false); });
     return () => { cancelled = true; };
   }, [slug]);
@@ -662,16 +695,18 @@ export function UserProfilePage({ username }) {
     <div style={{ paddingTop: 80, background: P.cream, minHeight: '100vh', fontFamily: 'Vazirmatn,sans-serif', direction: 'rtl' }}>
       {/* Hero banner */}
       <div style={{
-        background: `linear-gradient(135deg, #1E110A 0%, #2D1810 50%, #0F1F18 100%)`,
-        padding: '56px 24px 48px',
+        background: `linear-gradient(145deg, #FDF6EE 0%, #F7EDE0 55%, #EEF5F0 100%)`,
+        borderBottom: `1px solid ${P.line}`,
+        padding: '52px 24px 44px',
         position: 'relative',
         overflow: 'hidden',
       }}>
-        {/* Decorative circles */}
-        <div style={{ position: 'absolute', top: -60, right: -60, width: 260, height: 260, borderRadius: '50%', background: 'rgba(196,92,61,0.08)', pointerEvents: 'none' }} />
-        <div style={{ position: 'absolute', bottom: -40, left: 80, width: 180, height: 180, borderRadius: '50%', background: 'rgba(58,125,94,0.1)', pointerEvents: 'none' }} />
+        {/* Decorative shapes */}
+        <div style={{ position: 'absolute', top: -50, right: -50, width: 240, height: 240, borderRadius: '50%', background: 'rgba(196,92,61,0.06)', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', bottom: -30, left: 60, width: 160, height: 160, borderRadius: '50%', background: 'rgba(58,125,94,0.07)', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', top: 30, left: '40%', width: 80, height: 80, borderRadius: '50%', background: 'rgba(212,154,42,0.06)', pointerEvents: 'none' }} />
 
-        <div style={{ maxWidth: 900, margin: '0 auto', display: 'flex', gap: 32, alignItems: 'flex-end', flexWrap: 'wrap' }}>
+        <div style={{ maxWidth: 900, margin: '0 auto', display: 'flex', gap: 32, alignItems: 'flex-start', flexWrap: 'wrap' }}>
           <AvatarUpload
             user={profile}
             editable={!!isOwn}
@@ -679,20 +714,38 @@ export function UserProfilePage({ username }) {
           />
 
           <div style={{ flex: 1, minWidth: 200 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8, flexWrap: 'wrap' }}>
-              <h1 style={{ fontSize: 26, fontWeight: 900, color: '#F4EFE6', margin: 0, lineHeight: 1.3, display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6, flexWrap: 'wrap' }}>
+              <h1 style={{ fontSize: 26, fontWeight: 900, color: P.ink, margin: 0, lineHeight: 1.3, display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
                 {profile.name}
-                {profile.author?.verifiedExpert && <span style={{ fontSize: 11, color: P.orange, background: 'rgba(224,122,58,0.12)', border: '1px solid rgba(224,122,58,0.45)', borderRadius: 999, padding: '2px 8px' }}>متخصص تاییدشده</span>}
+                {profile.author?.verifiedExpert && <span style={{ fontSize: 11, color: P.terracotta, background: 'rgba(196,92,61,0.08)', border: `1px solid rgba(196,92,61,0.22)`, borderRadius: 999, padding: '2px 9px' }}>متخصص تاییدشده</span>}
               </h1>
               <RolePill role={profile.role} />
             </div>
-            <div style={{ fontSize: 14, color: P.orange, fontWeight: 600, marginBottom: 10 }}>@{profile.username}</div>
-            {profile.author?.verifiedExpert && profile.author?.verificationNote && <div style={{ fontSize: 12, color: '#D4E6DF', marginBottom: 10 }}>{profile.author.verificationNote}</div>}
-            {profile.bio && <p style={{ fontSize: 14, color: '#B8C5C2', lineHeight: 1.8, margin: '0 0 14px', maxWidth: 560 }}>{profile.bio}</p>}
-            <div style={{ display: 'flex', gap: 18, flexWrap: 'wrap', fontSize: 12, color: '#7A9B94' }}>
+            <div style={{ fontSize: 13, color: P.terracotta, fontWeight: 600, marginBottom: 8 }}>@{profile.username}</div>
+            {profile.author?.verifiedExpert && profile.author?.verificationNote && (
+              <div style={{ fontSize: 12, color: P.green, fontWeight: 600, marginBottom: 10, display: 'flex', alignItems: 'center', gap: 6 }}>
+                <span style={{ display: 'inline-block', width: 6, height: 6, borderRadius: '50%', background: P.green, flexShrink: 0 }} />
+                {profile.author.verificationNote}
+              </div>
+            )}
+            {profile.bio && <p style={{ fontSize: 14, color: P.muted, lineHeight: 1.85, margin: '0 0 14px', maxWidth: 580 }}>{profile.bio}</p>}
+            {profile.expertise?.length > 0 && (
+              <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 14 }}>
+                {profile.expertise.map(tag => (
+                  <span key={tag} style={{ fontSize: 11, padding: '3px 11px', borderRadius: 20, background: P.greenLight, color: P.green, border: `1px solid rgba(58,125,94,0.18)`, fontWeight: 500 }}>{tag}</span>
+                ))}
+              </div>
+            )}
+            <div style={{ display: 'flex', gap: 18, flexWrap: 'wrap', fontSize: 12, color: P.muted, alignItems: 'center' }}>
               {joinDate && <span>عضو از {joinDate}</span>}
-              {showArticles && <span style={{ color: P.green, fontWeight: 700 }}>{articleCount} مقاله</span>}
-              {['writer', 'editor', 'admin'].includes(profile.role) && <span>{followers.count.toLocaleString('fa-IR')} دنبال‌کننده</span>}
+              {showArticles && <span style={{ color: P.terracotta, fontWeight: 700 }}>{articleCount} مقاله</span>}
+              {['writer', 'editor', 'admin'].includes(profile.role) && !profile._static && <span>{followers.count.toLocaleString('fa-IR')} دنبال‌کننده</span>}
+              {profile.social?.twitter && profile.social.twitter !== '#' && (
+                <a href={profile.social.twitter} target="_blank" rel="noopener noreferrer" style={{ color: P.muted, textDecoration: 'none', fontWeight: 700, fontSize: 13 }}>𝕏</a>
+              )}
+              {profile.social?.linkedin && profile.social.linkedin !== '#' && (
+                <a href={profile.social.linkedin} target="_blank" rel="noopener noreferrer" style={{ color: P.muted, textDecoration: 'none', fontWeight: 700, fontSize: 13 }}>in</a>
+              )}
             </div>
           </div>
 
@@ -700,10 +753,10 @@ export function UserProfilePage({ username }) {
             <button
               onClick={toggleFollow}
               style={{
-                ...pillBtn, background: followers.following ? 'rgba(58,125,94,0.18)' : 'rgba(196,92,61,0.15)',
-                color: followers.following ? P.green : P.orange,
-                border: `1px solid ${followers.following ? 'rgba(58,125,94,0.35)' : 'rgba(196,92,61,0.35)'}`, padding: '9px 20px', fontSize: 13,
-                backdropFilter: 'blur(8px)', alignSelf: 'flex-start',
+                ...pillBtn, background: followers.following ? P.greenLight : 'rgba(196,92,61,0.08)',
+                color: followers.following ? P.green : P.terracotta,
+                border: `1px solid ${followers.following ? 'rgba(58,125,94,0.28)' : 'rgba(196,92,61,0.25)'}`, padding: '9px 20px', fontSize: 13,
+                alignSelf: 'flex-start',
               }}
             >{followers.following ? 'دنبال می‌کنی' : 'دنبال کردن'}</button>
           )}
@@ -712,9 +765,9 @@ export function UserProfilePage({ username }) {
             <button
               onClick={() => setShowSettings(true)}
               style={{
-                ...pillBtn, background: 'rgba(196,92,61,0.15)', color: P.orange,
-                border: `1px solid rgba(196,92,61,0.35)`, padding: '9px 20px', fontSize: 13,
-                backdropFilter: 'blur(8px)', alignSelf: 'flex-start',
+                ...pillBtn, background: 'rgba(196,92,61,0.08)', color: P.terracotta,
+                border: `1px solid rgba(196,92,61,0.25)`, padding: '9px 20px', fontSize: 13,
+                alignSelf: 'flex-start',
               }}
             >ویرایش پروفایل</button>
           )}

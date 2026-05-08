@@ -1,374 +1,374 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://www.teknav.ir/</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/articles</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/authors</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/newsletter</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/jobs</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/courses</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/membership</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.45</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/search</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/category/ai</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/category/data</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/category/startup</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/category/security</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/category/hardware</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/category/software</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/category/future</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/tag/%DB%8C%D8%A7%D8%AF%DA%AF%DB%8C%D8%B1%DB%8C%20%D9%85%D8%A7%D8%B4%DB%8C%D9%86</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/tag/%D9%87%D9%88%D8%B4%20%D9%85%D8%B5%D9%86%D9%88%D8%B9%DB%8C</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/tag/GPT</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/tag/%D8%B9%D9%84%D9%85%20%D8%AF%D8%A7%D8%AF%D9%87</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/tag/%D8%A7%D9%85%D9%86%DB%8C%D8%AA</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/tag/%D8%AA%DA%A9%D9%86%D9%88%D9%84%D9%88%DA%98%DB%8C</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/tag/%D9%85%D8%AF%D9%84%20%D8%B2%D8%A8%D8%A7%D9%86%DB%8C</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/tag/%D8%A7%D8%B3%D8%AA%D8%A7%D8%B1%D8%AA%D8%A7%D9%BE</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/tag/%D8%AF%D8%A7%D8%AF%D9%87</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/tag/%D9%86%D9%88%D8%A2%D9%88%D8%B1%DB%8C</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/tag/%D8%A2%DB%8C%D9%86%D8%AF%D9%87</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/tag/%D9%86%D8%B1%D9%85%E2%80%8C%D8%A7%D9%81%D8%B2%D8%A7%D8%B1</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/tag/%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87%E2%80%8C%D9%86%D9%88%DB%8C%D8%B3%DB%8C</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/tag/%D8%A7%D9%85%D9%86%DB%8C%D8%AA%20%D8%B3%D8%A7%DB%8C%D8%A8%D8%B1%DB%8C</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/tag/%D8%AF%D9%86%DB%8C%D8%A7%DB%8C%20%D8%AF%DB%8C%D8%AC%DB%8C%D8%AA%D8%A7%D9%84</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/tag/%D8%B1%D8%A8%D8%A7%D8%AA%DB%8C%DA%A9</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/tag/%D8%AA%D8%B1%D8%A7%D8%B4%D9%87</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/tag/RISC-V</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/tag/GPU</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/tag/LLM</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/tag/RAG</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/tag/%D9%87%D9%88%D8%B4%20%D9%85%D8%B5%D9%86%D9%88%D8%B9%DB%8C%20%D8%B9%D8%A7%D9%85%D9%84%DB%8C</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/tag/%D8%A7%DB%8C%D9%86%D8%AA%D8%B1%D9%86%D8%AA%20%D8%A7%D8%B4%DB%8C%D8%A7</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/tag/%D8%B1%D8%A7%DB%8C%D8%A7%D9%86%D8%B4%20%D8%A7%D8%A8%D8%B1%DB%8C</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/tag/%D9%81%D9%86%D8%A7%D9%88%D8%B1%DB%8C%20%D9%86%D9%88%D8%B8%D9%87%D9%88%D8%B1</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/tag/%D8%AA%D8%AD%D9%84%DB%8C%D9%84%20%D9%81%D9%86%D8%A7%D9%88%D8%B1%DB%8C</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/tag/AI%20Agents</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/tag/Agentic%20AI</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/tag/%D8%AA%D9%88%D8%B3%D8%B9%D9%87%E2%80%8C%D8%AF%D9%87%D9%86%D8%AF%D9%87</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/glossary/ai</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/glossary/llm</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/glossary/rag</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/glossary/prompt-injection</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/glossary/vector-database</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/glossary/agentic-ai</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/topics/ai</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/topics/security</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/topics/software</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/topics/hardware</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/topics/startup</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/topics/data</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/author/sabbagh</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/author/mahjoob</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/author/radman-ghelichi</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/profile/@arsam-sabbagh</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/profile/@ahmadreza-mahjoub</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.teknav.ir/profile/@radman-ghelichi</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>

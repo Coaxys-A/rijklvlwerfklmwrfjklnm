@@ -1,9 +1,13 @@
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { TeknavData } from '../teknav-data.js';
 
 const SITE_URL = (process.env.TEKNAV_SITE_URL || process.env.VITE_SITE_URL || 'https://www.teknav.ir').replace(/\/$/, '');
 const today = new Date().toISOString().slice(0, 10);
+const SITEMAP_XMLNS = 'xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"';
+const XHTML_XMLNS = 'xmlns:xhtml="http://www.w3.org/1999/xhtml"';
+const IMAGE_XMLNS = 'xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"';
+const NEWS_XMLNS = 'xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"';
 
 function xml(value) {
   return String(value ?? '')
@@ -15,11 +19,34 @@ function xml(value) {
     .replace(/'/g, '&apos;');
 }
 
+function capDate(date) {
+  return String(date ?? today).slice(0, 10) > today ? today : String(date ?? today).slice(0, 10);
+}
+
+function isPastOrTodayDate(date) {
+  const value = String(date ?? '').slice(0, 10);
+  return /^\d{4}-\d{2}-\d{2}$/.test(value) && value <= today;
+}
+
+function assertBoundNamespacePrefixes(name, source) {
+  const declared = new Set([...source.matchAll(/\sxmlns:([A-Za-z_][\w.-]*)=/g)].map((match) => match[1]));
+  const used = new Set([...source.matchAll(/<\/?([A-Za-z_][\w.-]*):[A-Za-z_][\w.-]*(?:\s|>|\/>)/g)].map((match) => match[1]));
+  const missing = [...used].filter((prefix) => !declared.has(prefix));
+  if (missing.length > 0) {
+    throw new Error(`[seo] ${name} has unbound XML namespace prefix(es): ${missing.join(', ')}`);
+  }
+}
+
+function writeXml(path, source) {
+  assertBoundNamespacePrefixes(path, source);
+  writeFileSync(resolve(path), source, 'utf8');
+}
+
 function url(path, lastmod = today, priority = '0.7', changefreq = 'weekly', images = []) {
   const lines = [
     '  <url>',
     `    <loc>${SITE_URL}${path}</loc>`,
-    `    <lastmod>${lastmod}</lastmod>`,
+    `    <lastmod>${capDate(lastmod)}</lastmod>`,
     `    <changefreq>${changefreq}</changefreq>`,
     `    <priority>${priority}</priority>`,
   ];
@@ -68,6 +95,7 @@ function isPublishedArticle(article) {
 }
 
 const publishedArticles = TeknavData.articles.filter(isPublishedArticle);
+const indexableArticles = publishedArticles.filter((article) => isPastOrTodayDate(article.dateEn));
 const topicHubs = TeknavData.topicHubs ?? [];
 const seriesPages = TeknavData.articleSeries ?? [];
 
@@ -91,32 +119,36 @@ const mainUrls = [
 ];
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<urlset ${SITEMAP_XMLNS} ${XHTML_XMLNS}>
 ${mainUrls.join('\n')}
 </urlset>
 `;
 
 // Articles Sitemap (with Images)
-const articleUrls = publishedArticles.map((article) => {
-  const images = article.ogImage ? [{ url: article.ogImage, title: article.title }] : [];
+const articleUrls = indexableArticles.map((article) => {
+  const slugImage = `/images/og/${article.slug}.jpg`;
+  const image = article.ogImage || (existsSync(resolve(`public${slugImage}`)) ? slugImage : null);
+  const images = image ? [{ url: image, title: article.title, caption: article.summary || article.subtitle }] : [];
   return url(article.canonicalPath || `/article/${article.slug}`, String(article.dateModified || article.dateEn || today).slice(0, 10), '0.85', 'monthly', images);
 });
 
 const articlesSitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<urlset ${SITEMAP_XMLNS} ${XHTML_XMLNS} ${IMAGE_XMLNS}>
 ${articleUrls.join('\n')}
 </urlset>
 `;
 
-// News Sitemap (last 48 hours)
-const recentArticles = publishedArticles.filter(a => {
-  const date = new Date(a.dateEn);
-  const now = new Date();
-  return (now - date) < (48 * 60 * 60 * 1000);
+// News Sitemap: Google News expects only recent, already-published articles.
+const newsCutoff = new Date();
+newsCutoff.setUTCDate(newsCutoff.getUTCDate() - 2);
+const newsCutoffDate = newsCutoff.toISOString().slice(0, 10);
+const recentArticles = indexableArticles.filter(a => {
+  const date = String(a.dateEn ?? '').slice(0, 10);
+  return date >= newsCutoffDate && date <= today;
 });
 
 const newsSitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+<urlset ${SITEMAP_XMLNS} ${XHTML_XMLNS} ${NEWS_XMLNS}>
 ${recentArticles.map(a => newsUrl(a.canonicalPath || `/article/${a.slug}`, a.title, a.dateEn)).join('\n')}
 </urlset>
 `;
@@ -144,13 +176,21 @@ const robots = `User-agent: *
 Allow: /
 Disallow: /admin
 Disallow: /login
+Disallow: /signup
+Disallow: /forgot-password
+Disallow: /reset-password
+Disallow: /verify-email
+Disallow: /writer
 Disallow: /ACCOUNTS.md
 Disallow: /api/
 
 Sitemap: ${SITE_URL}/sitemap.xml
+Sitemap: ${SITE_URL}/sitemap-main.xml
+Sitemap: ${SITE_URL}/sitemap-articles.xml
+Sitemap: ${SITE_URL}/sitemap-news.xml
 `;
 
-const feedItems = publishedArticles
+const feedItems = indexableArticles
   .slice()
   .sort((a, b) => String(b.dateEn || '').localeCompare(String(a.dateEn || '')))
   .slice(0, 20)
@@ -223,15 +263,15 @@ ${scopedItems}
 `;
 }
 
-writeFileSync(resolve('public/sitemap-main.xml'), sitemap, 'utf8');
-writeFileSync(resolve('public/sitemap-articles.xml'), articlesSitemap, 'utf8');
-if (recentArticles.length > 0) writeFileSync(resolve('public/sitemap-news.xml'), newsSitemap, 'utf8');
-writeFileSync(resolve('public/sitemap.xml'), sitemapIndex, 'utf8');
+writeXml('public/sitemap-main.xml', sitemap);
+writeXml('public/sitemap-articles.xml', articlesSitemap);
+writeXml('public/sitemap-news.xml', newsSitemap);
+writeXml('public/sitemap.xml', sitemapIndex);
 writeFileSync(resolve('public/robots.txt'), robots, 'utf8');
 writeFileSync(resolve('public/feed.xml'), feed, 'utf8');
 mkdirSync(resolve('public/feeds'), { recursive: true });
 for (const topic of topicHubs) {
-  const topicArticles = publishedArticles.filter((article) => article.category === topic.categorySlug || article.categorySlug === topic.categorySlug);
+  const topicArticles = indexableArticles.filter((article) => article.category === topic.categorySlug || article.categorySlug === topic.categorySlug);
   writeFileSync(resolve(`public/feeds/topic-${topic.slug}.xml`), scopedFeed({
     title: `${topic.title} | خوراک موضوعی تکنّاو`,
     link: `${SITE_URL}/feeds/topic-${topic.slug}.xml`,
@@ -240,7 +280,7 @@ for (const topic of topicHubs) {
   }), 'utf8');
 }
 for (const author of TeknavData.authors) {
-  const authorArticles = publishedArticles.filter((article) => article.authorId === author.id || article.authorSlug === author.slug || article.authorName === author.name);
+  const authorArticles = indexableArticles.filter((article) => article.authorId === author.id || article.authorSlug === author.slug || article.authorName === author.name);
   writeFileSync(resolve(`public/feeds/author-${author.slug}.xml`), scopedFeed({
     title: `${author.name} | خوراک نویسنده در تکنّاو`,
     link: `${SITE_URL}/feeds/author-${author.slug}.xml`,

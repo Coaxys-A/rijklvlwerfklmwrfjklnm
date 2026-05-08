@@ -101,7 +101,7 @@ export default async function commentRoutes(app: FastifyInstance) {
       where: { slug, status: PUBLISHED, publishedAt: { not: null } },
       select: { id: true },
     });
-    if (!article) return reply.code(404).send({ error: 'not_found' });
+    if (!article) return reply.send({ items: [], total: 0, page, limit, pages: 0 });
     const where = { articleId: article.id, replyToId: null } satisfies Prisma.CommentWhereInput;
     const [total, rows] = await Promise.all([
       prisma.comment.count({ where: { articleId: article.id } }),

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مدل‌های زبانی کوچک (SLM): وقتی کوچک‌تر، هوشمندتر است | تکناو</title>
+  <meta name="description" content="تحلیل ظهور مدل‌های زبانی کوچک (SLM) در سال ۲۰۲۶. بررسی عملکرد Phi-4 و Llama 4 Scout در پردازش‌های بومی و کاهش هزینه‌های استنتاج." />
+<meta name="keywords" content="SLM, Llama 4 Scout, Phi-4, هوش مصنوعی محلی, مدل زبانی کوچک, هوش مصنوعی, LLM, Llama 4, مدل‌های زبانی کوچک (SLM): وقتی کوچک‌تر، هوشمندتر است, بررسی Phi-4 و Llama 4 Scout؛ انقلاب هوش مصنوعی محلی, بررسی فنی, پژوهشگر ارشد هوش مصنوعی و مهندسی داده, تحلیل فارسی فناوری, تکناو" />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="bingbot" content="index,follow,max-snippet:-1,max-image-preview:large" />
+  <meta name="author" content="تکناو" />
+  <meta name="language" content="fa-IR" />
+  <link rel="canonical" href="https://www.teknav.ir/article/small-llms" />
+  <link rel="alternate" hreflang="fa-IR" href="https://www.teknav.ir/" />
+  <link rel="alternate" type="application/rss+xml" title="تازه‌ترین مقاله‌های تکناو" href="https://www.teknav.ir/feed.xml" />
+  <meta property="og:locale" content="fa_IR" />
+  <meta property="og:site_name" content="تکناو" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="مدل‌های زبانی کوچک (SLM): وقتی کوچک‌تر، هوشمندتر است | تکناو" />
+  <meta property="og:description" content="تحلیل ظهور مدل‌های زبانی کوچک (SLM) در سال ۲۰۲۶. بررسی عملکرد Phi-4 و Llama 4 Scout در پردازش‌های بومی و کاهش هزینه‌های استنتاج." />
+  <meta property="og:url" content="https://www.teknav.ir/article/small-llms" />
+  <meta property="og:image" content="https://www.teknav.ir/images/og/small-llms.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="مدل‌های زبانی کوچک (SLM): وقتی کوچک‌تر، هوشمندتر است | تکناو" />
+  <meta name="twitter:description" content="تحلیل ظهور مدل‌های زبانی کوچک (SLM) در سال ۲۰۲۶. بررسی عملکرد Phi-4 و Llama 4 Scout در پردازش‌های بومی و کاهش هزینه‌های استنتاج." />
+  <meta name="twitter:image" content="https://www.teknav.ir/images/og/small-llms.jpg" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
+  <link rel="apple-touch-icon" sizes="512x512" href="/favicon.png" />
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#0F6B73" />
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js');
+      });
+    }
+  </script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Organization","NewsMediaOrganization"],"@id":"https://www.teknav.ir/#organization","name":"تکناو","alternateName":["Teknav","تکنّاو"],"url":"https://www.teknav.ir","description":"تکناو رسانه فارسی تحلیل فناوری، هوش مصنوعی، علم داده، امنیت سایبری، نرم‌افزار، سخت‌افزار و آینده تکنولوژی است.","logo":{"@type":"ImageObject","@id":"https://www.teknav.ir/#logo","url":"https://www.teknav.ir/favicon.png","width":512,"height":512},"image":{"@id":"https://www.teknav.ir/#logo"},"publishingPrinciples":"https://www.teknav.ir/about","masthead":"https://www.teknav.ir/authors","areaServed":{"@type":"Country","name":"Iran"},"audience":{"@type":"Audience","audienceType":"فارسی‌زبانان علاقه‌مند به فناوری"},"sameAs":["https://twitter.com/teknavir","https://x.com/teknavir","https://linkedin.com/company/teknav"]},{"@type":"WebSite","@id":"https://www.teknav.ir/#website","url":"https://www.teknav.ir","name":"تکناو","alternateName":"Teknav","description":"تکناو رسانه فارسی تحلیل فناوری، هوش مصنوعی، علم داده، امنیت سایبری، نرم‌افزار، سخت‌افزار و آینده تکنولوژی است.","inLanguage":"fa-IR","publisher":{"@id":"https://www.teknav.ir/#organization"}},{"@type":["NewsArticle","TechArticle"],"@id":"https://www.teknav.ir/article/small-llms#article","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.teknav.ir/article/small-llms"},"headline":"مدل‌های زبانی کوچک (SLM): وقتی کوچک‌تر، هوشمندتر است","alternativeHeadline":"بررسی Phi-4 و Llama 4 Scout؛ انقلاب هوش مصنوعی محلی","description":"تحلیل ظهور مدل‌های زبانی کوچک (SLM) در سال ۲۰۲۶. بررسی عملکرد Phi-4 و Llama 4 Scout در پردازش‌های بومی و کاهش هزینه‌های استنتاج.","abstract":"چرا در سال ۱۴۰۵، شرکت‌ها به جای مدل‌های غول‌آسا به مدل‌های کوچک روی آورده‌اند؟","articleBody":"تا دو سال پیش، قدرت و اعتبار هوش مصنوعی تنها در مدل‌های غول‌آسایی خلاصه می‌شد که صدها میلیارد یا حتی تریلیون‌ها پارامتر داشتند و برای اجرا به ابرکامپیوترهای عظیم نیاز داشتند. اما در اردیبهشت ۱۴۰۵، ورق کاملاً برگشته است. مدل‌های زبانی کوچک (Small Language Models - SLMs) نظیر Phi-4 ، Llama 4 Scout و Mistral Nano 2 به جهان ثابت کرده‌اند که برای بسیاری از کاربردهای تخصصی، صنعتی و حریم‌خصوصی‌محور، «کوچک‌تر، هوشمندتر و کارآمدتر است». در این مقاله فنی، به بررسی معماری مدل‌های کوچک نسل چهارم، بنچمارک‌های استدلالی شگفت‌انگیز آن‌ها و مزیت‌های استراتژیک اجرای محلی در سال ۲۰۲۶ می‌پردازیم. ۱. معماری MoE و کارایی فوق‌العاده Llama 4 Scout مدل Llama 4 Scout با مجموع ۱۷ میلیارد پارامتر، از یک معماری Mixture-of-Experts (MoE) بسیار بهینه استفاده می‌کند. برخلاف مدل‌های قدیمی که تمام وزن‌های خود را برای هر کلمه فعال می‌کردند، Scout در هر لحظه فقط حدود ۲.۵ میلیارد پارامتر فعال را درگیر می‌کند. این یعنی شما قدرتی در سطح مدل‌های ۱۰۰ میلیاردی نسل قبلی را در اختیار دارید، اما با سرعتی که اجازه می‌دهد آن را روی یک لپ‌تاپ معمولی یا حتی تبلت‌های قدرتمند اجرا کنید. «بزرگترین جهش مهندسی در سال ۲۰۲۶، نه در افزایش تعداد پارامترها، بلکه در \"پنجره زمینه\" (Context Window) مدل‌های کوچک رخ داده است. دیدن یک مدل ۱۴ میلیارد پارامتری که می‌تواند ۱۰ میلیون توکن را به صورت بومی و بدون فراموشی پردازش کند، تمام معادلات کلاسیکِ بازیابی اطلاعات (RAG) را تغییر داده است. هوش مصنوعی اکنون در جیب شماست، نه در کلاود.» در نمودار تعاملی زیر، نحوه چرخش داده و فعال‌سازی بخش‌های مختلف یک مدل MoE کوچک را در مدار استنتاج مشاهده می‌کنید. توجه کنید که چطور لایه \"Expert Routing\" با دقت اتمی، وظایف را بین متخصص‌های مدل تقسیم می‌کند. Phi-4: پادشاه جدید استدلال فنی و ریاضی مایکروسافت با معرفی Phi-4 (۱۲ میلیارد پارامتر)، فلسفه «داده‌های با کیفیت کتابخانه‌ای» را به اوج رسانده است. این مدل به جای بلعیدن کل اینترنت، صرفاً بر روی داده‌های آموزشی فوق‌تصفیه شده و کتاب‌های مرزهای دانش آموزش دیده است. نتیجه این کار شگفت‌انگیز است: Phi-4 در بنچمارک‌های استدلال منطقی (Math & Coding)، امتیازی بالاتر از مدل‌های عمومی ۵۰ برابر بزرگتر از خود کسب کرده است. این مدل اکنون موتور اصلی بسیاری از دستیاران کدنویسی پیشرو در جهان است. چرا SLMها برنده میدان هستند؟ مدل‌های کوچک در سال ۱۴۰۵ سه مزیت رقابتی دارند: ۱. هزینه استنتاج ناچیز: کاهش ۹۰ درصدی هزینه‌های API برای سازمان‌ها؛ ۲. اجرای آفلاین: تضمین امنیت داده‌ها در صنایع حساس؛ ۳. تخصصی‌سازی: امکان Fine-tune کردن سریع مدل بر روی داده‌های اختصاصی یک شرکت در کمتر از چند ساعت. ۲. مقایسه مدل‌های کوچک پیشرو در بازار سال ۱۴۰۵ Phi-4 (Microsoft): بهترین گزینه برای حل مسائل پیچیده ریاضی، اثبات فرمول‌ها و بازنویسی کدهای سیستمی. Llama 4 Scout (Meta): قهرمان بلامنازع تحلیل اسناد حجیم و سیستم‌های پرسش‌وپاسخ (Q&A) به دلیل حافظه بلندمدت خیره‌کننده. Gemma 3 Nano (Google): بهینه‌ترین مدل برای اجرای مستقیم در مرورگرها با استفاده از WebGPU، مخصوص سیستم‌های ترجمه آنی. ۳. آینده: هوش مصنوعی شخصی و بومی (Local AI) با بلوغ این مدل‌ها در سال ۲۰۲۶، مفهوم \"Edge AI\" از یک شعار تبلیغاتی به یک واقعیت روزمره تبدیل شده است. اکنون یک گوشی هوشمند میان‌رده می‌تواند مدل Phi-4 را با سرعت ۴۰ توکن بر ثانیه اجرا کند. این یعنی حریم خصوصی مطلق؛ جایی که هوش مصنوعی شما، تمام نامه‌ها، عکس‌ها و رازهای شما را بدون ارسال حتی یک بیت داده به سرورهای سیلیکون‌ولی، تحلیل و مدیریت می‌کند. در سال ۱۴۰۵، داشتن یک مدل محلی قوی، نشانه‌ی «بهداشت دیجیتال» است. پروژه‌های متن‌بازی نظیر Ollama 2 و تکنولوژی‌های کوانتیزاسیون ۴ بیتی (4-bit Quantization) نقش کلیدی در همگانی کردن استفاده از این مدل‌ها روی سخت‌افزارهای ارزان‌قیمت ایفا کرده‌اند. نتیجه‌گیری: تخصص بر حجم پیروز شد دوران مدل‌های «همه کاره‌ی غول‌آسا» به سر نیامده، اما مدل‌های کوچک و تخصصی در حال تسخیر بازار نرم‌افزارهای سازمانی و شخصی هستند. در سال ۱۴۰۵، هوشمندی دیگر با حجم سرور سنجیده نمی‌شود، بلکه با «دقت پاسخ در ازای هر وات انرژی مصرفی» سنجیده می‌شود. ما در تکناو شما را برای عصر هوش مصنوعی محلی و کارآمد آماده می‌کنیم.","image":{"@type":"ImageObject","url":"https://www.teknav.ir/images/og/small-llms.jpg","width":1200,"height":630},"datePublished":"2026-03-25","dateModified":"2026-03-25","inLanguage":"fa-IR","articleSection":"هوش مصنوعی","keywords":["SLM","Llama 4 Scout","Phi-4","هوش مصنوعی محلی","مدل زبانی کوچک","هوش مصنوعی","LLM","Llama 4","مدل‌های زبانی کوچک (SLM): وقتی کوچک‌تر، هوشمندتر است","بررسی Phi-4 و Llama 4 Scout؛ انقلاب هوش مصنوعی محلی","بررسی فنی","پژوهشگر ارشد هوش مصنوعی و مهندسی داده","تحلیل فارسی فناوری","تکناو"],"wordCount":660,"timeRequired":"PT13M","genre":"بررسی فنی","teaches":["۱. معماری MoE و کارایی فوق‌العاده Llama 4 Scout","۲. مقایسه مدل‌های کوچک پیشرو در بازار سال ۱۴۰۵","۳. آینده: هوش مصنوعی شخصی و بومی (Local AI)","نتیجه‌گیری: تخصص بر حجم پیروز شد"],"author":{"@type":"Person","name":"آرسام صباغ","url":"https://www.teknav.ir/author/sabbagh","jobTitle":"پژوهشگر ارشد هوش مصنوعی و مهندسی داده","description":"آرسام صباغ پژوهشگر ارشد هوش مصنوعی و سردبیر تکنّاو است. او بیش از سه سال تجربه در یادگیری ماشین، مهندسی داده، و استقرار سیستم‌های هوشمند در مقیاس صنعتی دارد. تخصص اصلی او طراحی پایپ‌لاین‌های داده برای مدل‌های زبانی بزرگ (LLM)، بهینه‌سازی استنتاج (Inference Optimization) و ارزیابی کمّی مدل‌های مرزی (Frontier Models) است. آرسام پیش از تأسیس تکنّاو، در چندین شرکت حوزه فناوری به عنوان محقق و مهندس ارشد فعالیت داشته و مقالات فنی او در حوزه‌های داده-محوری، ایمنی هوش مصنوعی و سیستم‌های عاملی مرجع بسیاری از تیم‌های مهندسی فارسی‌زبان است.","knowsAbout":["یادگیری ماشین","LLM","مهندسی داده","استنتاج مدل","هوش مصنوعی داده‌محور","سیستم‌های عاملی"],"sameAs":["https://x.com/teknavir","https://linkedin.com/company/teknav"]},"publisher":{"@id":"https://www.teknav.ir/#organization"},"about":[{"@type":"Thing","name":"هوش مصنوعی","url":"https://www.teknav.ir/topics/ai"},{"@type":"Thing","name":"هوش مصنوعی"},{"@type":"Thing","name":"LLM"},{"@type":"Thing","name":"SLM"},{"@type":"Thing","name":"Llama 4"},{"@type":"Thing","name":"Llama 4 Scout"}],"mentions":[{"@type":"Thing","name":"هوش مصنوعی"},{"@type":"Thing","name":"LLM"},{"@type":"Thing","name":"SLM"},{"@type":"Thing","name":"Llama 4"},{"@type":"Thing","name":"Llama 4 Scout"},{"@type":"Thing","name":"Phi-4"},{"@type":"Thing","name":"هوش مصنوعی محلی"},{"@type":"Thing","name":"مدل زبانی کوچک"}],"isPartOf":[{"@id":"https://www.teknav.ir/#website"},{"@type":"CollectionPage","@id":"https://www.teknav.ir/topics/ai"}],"speakable":{"@type":"SpeakableSpecification","xpath":["/html/head/title","/html/head/meta[@name=\"description\"]/@content"]},"isAccessibleForFree":true,"educationalLevel":"Intermediate","reviewedBy":{"@id":"https://www.teknav.ir/#organization"},"lastReviewed":"2026-03-25"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"تکناو","item":"https://www.teknav.ir"},{"@type":"ListItem","position":2,"name":"مقاله‌ها","item":"https://www.teknav.ir/articles"},{"@type":"ListItem","position":3,"name":"هوش مصنوعی","item":"https://www.teknav.ir/category/ai"},{"@type":"ListItem","position":4,"name":"مدل‌های زبانی کوچک (SLM): وقتی کوچک‌تر، هوشمندتر است"}]}]}</script>
+  <script type="module" crossorigin src="/assets/index-C2DS9v2Q.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/vendor-DYLXRpC5.js">
+  <link rel="modulepreload" crossorigin href="/assets/vendor-react-CPqEaazJ.js">
+  <link rel="stylesheet" crossorigin href="/assets/index-Bvy2V8vE.css">
+</head>
+<body>
+  <div id="loading">
+    <div style="font-size:36px;font-weight:900;color:#0F6B73;margin-bottom:8px">تکناو</div>
+    <div style="font-size:11px;color:#5F6B6D;letter-spacing:0.15em;margin-bottom:24px">TEKNAV</div>
+    <div style="width:40px;height:3px;background:#E4DDD2;border-radius:2px;overflow:hidden">
+      <div id="loading-bar" style="height:100%;width:0%;background:#0F6B73;border-radius:2px;transition:width 0.3s"></div>
+    </div>
+  </div>
+
+  <div id="root"></div>
+
+  <script>
+    (() => {
+      const bar = document.getElementById('loading-bar');
+      let p = 0;
+      const prog = setInterval(() => { p = Math.min(p + 8, 90); bar.style.width = p + '%'; }, 120);
+      window.__doneLoading = () => {
+        clearInterval(prog); bar.style.width = '100%';
+        setTimeout(() => { document.getElementById('loading').classList.add('hidden'); }, 300);
+      };
+    })();
+  </script>
+
+</body>
+</html>

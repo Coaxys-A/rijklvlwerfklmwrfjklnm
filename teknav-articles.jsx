@@ -578,7 +578,10 @@ function ArticleDetail({ slug }) {
   const processedContent = useMemo(() => {
     if (!article?.content) return '';
     let hidx = 0;
-    return article.content.replace(/<h([23])[^>]*>([^<]+)<\/h\1>/g, (_, lvl, txt) => {
+    const withLead = article.content.includes('class="lead"')
+      ? article.content
+      : article.content.replace(/<p(?![^>]*class=)([^>]*)>/, '<p class="lead"$1>');
+    return withLead.replace(/<h([23])[^>]*>([^<]+)<\/h\1>/g, (_, lvl, txt) => {
       const id = 'h-' + hidx++;
       return `<h${lvl} id="${id}">${txt}</h${lvl}>`;
     });
@@ -949,6 +952,7 @@ const articleCSS = `
   article h2 { font-size: 22px; font-weight: 800; color: #263238; margin: 40px 0 16px; padding-bottom: 8px; border-bottom: 2px solid #E4DDD2; font-family: Vazirmatn,sans-serif; }
   article h3 { font-size: 18px; font-weight: 700; color: #263238; margin: 32px 0 12px; font-family: Vazirmatn,sans-serif; }
   article p { margin: 0 0 20px; }
+  article .lead { font-size: 18px; line-height: 2.05; color: #1A3035; font-weight: 500; background: #FFFFFF; border: 1px solid #E4DDD2; border-right: 4px solid #0F6B73; border-radius: 12px; padding: 20px 22px; margin: 0 0 30px; }
   article blockquote { border-right: 4px solid #D49A2A; margin: 28px 0; padding: 16px 20px; background: #D49A2A0A; border-radius: 0 8px 8px 0; font-size: 16px; color: #263238; font-style: normal; }
   article blockquote.security-quote { border-right-color: #C94C4D; background: #C94C4D08; }
   article strong { color: #263238; font-weight: 700; }
@@ -1041,6 +1045,7 @@ const articleCSS = `
     article table td, article table th { padding: 6px 8px !important; min-width: 80px !important; }
     
     article .metric-grid { grid-template-columns: 1fr !important; }
+    article .lead { font-size: 16px !important; padding: 16px !important; }
   }
 `;
 const styleEl = document.createElement('style');

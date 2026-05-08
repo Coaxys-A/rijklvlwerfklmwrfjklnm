@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>نقشه راه سخت‌افزار هوش مصنوعی: از Blackwell تا Vera Rubin | تکناو</title>
+  <meta name="description" content="بررسی نقشه راه سخت‌افزارهای هوش مصنوعی در سال ۲۰۲۶. تحلیل معماری جدید Rubin انویدیا و تاثیر حافظه‌های HBM4 بر سرعت پردازش مدل‌های تریلیونی." />
+<meta name="keywords" content="سخت‌افزار هوش مصنوعی, NVIDIA Rubin, HBM4, تراشه, معماری Blackwell, سخت‌افزار, NVIDIA, Rubin, نقشه راه سخت‌افزار هوش مصنوعی: از Blackwell تا Vera Rubin, تحلیل معماری تراشه‌های ۲۰۲۶ و پایان دیوار حافظه, تحلیل عمیق, استراتژیست فناوری و تحلیلگر اکوسیستم نوآوری, تحلیل فارسی فناوری, تکناو" />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="bingbot" content="index,follow,max-snippet:-1,max-image-preview:large" />
+  <meta name="author" content="تکناو" />
+  <meta name="language" content="fa-IR" />
+  <link rel="canonical" href="https://www.teknav.ir/article/ai-hardware-roadmap" />
+  <link rel="alternate" hreflang="fa-IR" href="https://www.teknav.ir/" />
+  <link rel="alternate" type="application/rss+xml" title="تازه‌ترین مقاله‌های تکناو" href="https://www.teknav.ir/feed.xml" />
+  <meta property="og:locale" content="fa_IR" />
+  <meta property="og:site_name" content="تکناو" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="نقشه راه سخت‌افزار هوش مصنوعی: از Blackwell تا Vera Rubin | تکناو" />
+  <meta property="og:description" content="بررسی نقشه راه سخت‌افزارهای هوش مصنوعی در سال ۲۰۲۶. تحلیل معماری جدید Rubin انویدیا و تاثیر حافظه‌های HBM4 بر سرعت پردازش مدل‌های تریلیونی." />
+  <meta property="og:url" content="https://www.teknav.ir/article/ai-hardware-roadmap" />
+  <meta property="og:image" content="https://www.teknav.ir/images/og/ai-hardware-roadmap.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="نقشه راه سخت‌افزار هوش مصنوعی: از Blackwell تا Vera Rubin | تکناو" />
+  <meta name="twitter:description" content="بررسی نقشه راه سخت‌افزارهای هوش مصنوعی در سال ۲۰۲۶. تحلیل معماری جدید Rubin انویدیا و تاثیر حافظه‌های HBM4 بر سرعت پردازش مدل‌های تریلیونی." />
+  <meta name="twitter:image" content="https://www.teknav.ir/images/og/ai-hardware-roadmap.jpg" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
+  <link rel="apple-touch-icon" sizes="512x512" href="/favicon.png" />
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#0F6B73" />
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js');
+      });
+    }
+  </script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Organization","NewsMediaOrganization"],"@id":"https://www.teknav.ir/#organization","name":"تکناو","alternateName":["Teknav","تکنّاو"],"url":"https://www.teknav.ir","description":"تکناو رسانه فارسی تحلیل فناوری، هوش مصنوعی، علم داده، امنیت سایبری، نرم‌افزار، سخت‌افزار و آینده تکنولوژی است.","logo":{"@type":"ImageObject","@id":"https://www.teknav.ir/#logo","url":"https://www.teknav.ir/favicon.png","width":512,"height":512},"image":{"@id":"https://www.teknav.ir/#logo"},"publishingPrinciples":"https://www.teknav.ir/about","masthead":"https://www.teknav.ir/authors","areaServed":{"@type":"Country","name":"Iran"},"audience":{"@type":"Audience","audienceType":"فارسی‌زبانان علاقه‌مند به فناوری"},"sameAs":["https://twitter.com/teknavir","https://x.com/teknavir","https://linkedin.com/company/teknav"]},{"@type":"WebSite","@id":"https://www.teknav.ir/#website","url":"https://www.teknav.ir","name":"تکناو","alternateName":"Teknav","description":"تکناو رسانه فارسی تحلیل فناوری، هوش مصنوعی، علم داده، امنیت سایبری، نرم‌افزار، سخت‌افزار و آینده تکنولوژی است.","inLanguage":"fa-IR","publisher":{"@id":"https://www.teknav.ir/#organization"}},{"@type":["NewsArticle","TechArticle"],"@id":"https://www.teknav.ir/article/ai-hardware-roadmap#article","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.teknav.ir/article/ai-hardware-roadmap"},"headline":"نقشه راه سخت‌افزار هوش مصنوعی: از Blackwell تا Vera Rubin","alternativeHeadline":"تحلیل معماری تراشه‌های ۲۰۲۶ و پایان دیوار حافظه","description":"بررسی نقشه راه سخت‌افزارهای هوش مصنوعی در سال ۲۰۲۶. تحلیل معماری جدید Rubin انویدیا و تاثیر حافظه‌های HBM4 بر سرعت پردازش مدل‌های تریلیونی.","abstract":"انویدیا با Rubin قوانین بازی را تغییر می‌دهد؛ بررسی حافظه‌های HBM4 و پردازنده Vera.","articleBody":"در اردیبهشت ۱۴۰۵، دنیای سخت‌افزار هوش مصنوعی از مرحله «تب‌وتاب تولید» به مرحله «بهینه‌سازی برای استدلال» (Inference Optimization) رسیده است. در حالی که معماری Blackwell (سری B200) استاندارد فعلی بازار محسوب می‌شود، انویدیا با معرفی نقشه‌راه Vera Rubin ، قوانین بازی را برای سال ۲۰۲۶ و ۲۰۲۷ تغییر داده است. ما در حال عبور از محدودیت‌های پهنای باند حافظه و ورود به عصر رایانش نوری هستیم. در این مقاله عمیق، به کالبدشکافی معماری Rubin، نقش حافظه‌های HBM4، پایان «دیوار حافظه» و تحول در زیرساخت‌های دیتاسنترهای گیگاواتی می‌پردازیم. ۱. معماری Rubin: فراتر از Blackwell انویدیا در سال جاری تراشه R100 (Rubin) را روانه بازار کرد. این تراشه که با فرآیند ۳ نانومتری (N3) شرکت TSMC تولید شده، از بسته‌بندی پیشرفته Chiplet-on-Wafer-on-Substrate (CoWoS-L) بهره می‌برد. تفاوت اصلی Rubin با نسل‌های قبلی، تمرکز بر روی «بهره‌وری به ازای هر وات» است. در حالی که نسل Blackwell با مصرف انرژی ۱۲۰ کیلووات برای هر رک، دیتاسنترها را به چالش کشیده بود، Rubin با استفاده از هسته‌های جدید NPU که مخصوص مدل‌های MoE (Mixture-of-Experts) بهینه‌سازی شده‌اند، توانسته است قدرت پردازشی را ۲ برابر افزایش داده و مصرف انرژی را ۳۰٪ کاهش دهد. «دیوار حافظه (Memory Wall) بزرگترین دشمن هوش مصنوعی در دهه گذشته بود. ما در سال ۱۴۰۵ با معرفی Rubin و حافظه‌های HBM4، این دیوار را نه تنها سوراخ، بلکه به کلی ویران کردیم. آینده هوش مصنوعی دیگر محدود به سرعت جابجایی داده‌ها نیست؛ ما به سرعتِ فکر کردن نزدیک شده‌ایم.» – گزارش سالانه NVIDIA, ۲۰۲۶ در نمودار تعاملی زیر، نقشه راه تراشه‌های انویدیا از Ampere تا Rubin و تغییر نسبت قدرت پردازشی به پهنای باند حافظه را مشاهده می‌کنید. HBM4: پایان عصر انتظار برای داده در سال ۱۴۰۵، حافظه‌های HBM4 با رابط کاربری ۲۰۴۸ بیتی به استاندارد تراشه‌های پرچمدار تبدیل شده‌اند. این حافظه‌ها پهنای باندی بیش از ۲ ترابایت بر ثانیه را فراهم می‌کنند. مهم‌تر از آن، استفاده از تکنولوژی Vertical Stacking (پشته‌سازی عمودی) اجازه داده است تا حافظه و پردازنده به قدری به هم نزدیک شوند که تاخیر ارتباطی (Latency) به حداقل ممکن برسد. این موضوع برای مدل‌هایی که نیاز به حافظه بلندمدت (Context Window بزرگ) دارند، حیاتی است. تحلیل فنی: در سال ۲۰۲۶، گلوگاه اصلی دیگر قدرت محاسباتی (FLOPS) نیست، بلکه «نرخ انتقال داده از حافظه به هسته» است. Rubin با استفاده از لینک‌های نوری داخلی، توانسته است این نرخ را به سطحی برساند که استنتاج مدل‌های ۱۰۰ تریلیون پارامتری به صورت زمان-واقعی ممکن شود. ۲. تراشه Vera: همراهی وفادار برای Rubin انویدیا در کنار GPUهای Rubin، نسل جدید پردازنده مرکزی خود با نام Vera (CPU) را معرفی کرد. ورا که بر پایه معماری ARMv10 طراحی شده، دارای واحدهای اختصاصی برای مدیریت کانتکست‌های هوش مصنوعی است. ترکیب Vera و Rubin یک ابر-تراشه واحد می‌سازد که مدیریت داده‌های سنگین را بدون درگیر کردن پهنای باند شبکه اصلی انجام می‌دهد. ۳. رقبای جدید: ظهور تراشه‌های بومی و RISC-V سال ۱۴۰۵ سالِ شکوفایی رقبای انویدیا نیز هست. شرکت‌هایی مانند Groq و Cerebras با معماری‌های بدون کَش (No-cache) سهم بازار استنتاج را به شدت افزایش داده‌اند. همچنین، معماری متن‌باز RISC-V در سال جاری به بلوغ کافی رسیده و بسیاری از دیتاسنترهای چینی و اروپایی برای کاهش وابستگی به لایسنس‌های آمریکایی، به سمت پردازنده‌های NPU مبتنی بر RISC-V حرکت کرده‌اند. بر اساس پیش‌بینی‌های تکناو، تا پایان سال ۲۰۲۷، معماری RISC-V حدود ۱۵٪ از بازار پردازش‌های لبه‌ای هوش مصنوعی را در اختیار خواهد گرفت. نتیجه‌گیری: سیلیکون در خدمتِ نیت نقشه راه سخت‌افزار در سال ۱۴۰۵ نشان می‌دهد که ما از دوران «سخت‌افزار همه‌منظوره» به دوران «سخت‌افزار نیت‌محور» وارد شده‌ایم. Rubin و رقبای آن تنها قطعات الکترونیکی نیستند؛ آن‌ها بسترهای فیزیکی هستند که اجازه می‌دهند هوش مصنوعی از یک ابزار دیجیتال به یک همکار فیزیکی و زمان-واقعی تبدیل شود. آینده تکنولوژی در گروی هماهنگی کامل بین اتم‌های سیلیکون و بیت‌های منطق است. تکناو شما را در جریان هر پالس الکتریکی در این مسیر قرار خواهد داد. به عصر پردازنده‌های تراهرتزی و هوشِ سخت‌افزاری خوش آمدید.","image":{"@type":"ImageObject","url":"https://www.teknav.ir/images/og/ai-hardware-roadmap.jpg","width":1200,"height":630},"datePublished":"2026-02-24","dateModified":"2026-02-24","inLanguage":"fa-IR","articleSection":"سخت‌افزار","keywords":["سخت‌افزار هوش مصنوعی","NVIDIA Rubin","HBM4","تراشه","معماری Blackwell","سخت‌افزار","NVIDIA","Rubin","نقشه راه سخت‌افزار هوش مصنوعی: از Blackwell تا Vera Rubin","تحلیل معماری تراشه‌های ۲۰۲۶ و پایان دیوار حافظه","تحلیل عمیق","استراتژیست فناوری و تحلیلگر اکوسیستم نوآوری","تحلیل فارسی فناوری","تکناو"],"wordCount":637,"timeRequired":"PT12M","genre":"تحلیل عمیق","teaches":["۱. معماری Rubin: فراتر از Blackwell","۲. تراشه Vera: همراهی وفادار برای Rubin","۳. رقبای جدید: ظهور تراشه‌های بومی و RISC-V","نتیجه‌گیری: سیلیکون در خدمتِ نیت"],"author":{"@type":"Person","name":"رادمان قلیچی","url":"https://www.teknav.ir/author/radman-ghelichi","jobTitle":"استراتژیست فناوری و تحلیلگر اکوسیستم نوآوری","description":"رادمان قلیچی استراتژیست فناوری و تحلیلگر اکوسیستم استارتاپ و سرمایه‌گذاری خطرپذیر در تکنّاو است. او با نگاهی کلان به ترندهای بلندمدت فناوری، تأثیر نوآوری بر مدل‌های کسب‌وکار، و مسیر رشد شرکت‌های فناور می‌پردازد. تخصص رادمان در تحلیل موج‌های سرمایه‌گذاری در هوش مصنوعی، ارزیابی اکوسیستم استارتاپ‌های ایرانی و منطقه‌ای، و تبیین استراتژی‌های رقابتی شرکت‌های فناوری جهانی است. او پیش از تکنّاو، به عنوان مشاور استراتژی با چندین استارتاپ مرحله رشد (Growth Stage) همکاری داشته است.","knowsAbout":["استراتژی فناوری","سرمایه‌گذاری VC","اکوسیستم استارتاپ","تحلیل بازار","نوآوری باز","استارتاپ‌های ایرانی"],"sameAs":["https://x.com/teknavir","https://linkedin.com/company/teknav"]},"publisher":{"@id":"https://www.teknav.ir/#organization"},"about":[{"@type":"Thing","name":"سخت‌افزار","url":"https://www.teknav.ir/topics/hardware"},{"@type":"Thing","name":"سخت‌افزار"},{"@type":"Thing","name":"NVIDIA"},{"@type":"Thing","name":"Rubin"},{"@type":"Thing","name":"HBM4"},{"@type":"Thing","name":"سخت‌افزار هوش مصنوعی"}],"mentions":[{"@type":"Thing","name":"سخت‌افزار"},{"@type":"Thing","name":"NVIDIA"},{"@type":"Thing","name":"Rubin"},{"@type":"Thing","name":"HBM4"},{"@type":"Thing","name":"سخت‌افزار هوش مصنوعی"},{"@type":"Thing","name":"NVIDIA Rubin"},{"@type":"Thing","name":"تراشه"},{"@type":"Thing","name":"معماری Blackwell"}],"isPartOf":[{"@id":"https://www.teknav.ir/#website"},{"@type":"CollectionPage","@id":"https://www.teknav.ir/topics/hardware"}],"speakable":{"@type":"SpeakableSpecification","xpath":["/html/head/title","/html/head/meta[@name=\"description\"]/@content"]},"isAccessibleForFree":true,"educationalLevel":"Intermediate","reviewedBy":{"@id":"https://www.teknav.ir/#organization"},"lastReviewed":"2026-02-24"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"تکناو","item":"https://www.teknav.ir"},{"@type":"ListItem","position":2,"name":"مقاله‌ها","item":"https://www.teknav.ir/articles"},{"@type":"ListItem","position":3,"name":"سخت‌افزار","item":"https://www.teknav.ir/category/hardware"},{"@type":"ListItem","position":4,"name":"نقشه راه سخت‌افزار هوش مصنوعی: از Blackwell تا Vera Rubin"}]}]}</script>
+  <script type="module" crossorigin src="/assets/index-C2DS9v2Q.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/vendor-DYLXRpC5.js">
+  <link rel="modulepreload" crossorigin href="/assets/vendor-react-CPqEaazJ.js">
+  <link rel="stylesheet" crossorigin href="/assets/index-Bvy2V8vE.css">
+</head>
+<body>
+  <div id="loading">
+    <div style="font-size:36px;font-weight:900;color:#0F6B73;margin-bottom:8px">تکناو</div>
+    <div style="font-size:11px;color:#5F6B6D;letter-spacing:0.15em;margin-bottom:24px">TEKNAV</div>
+    <div style="width:40px;height:3px;background:#E4DDD2;border-radius:2px;overflow:hidden">
+      <div id="loading-bar" style="height:100%;width:0%;background:#0F6B73;border-radius:2px;transition:width 0.3s"></div>
+    </div>
+  </div>
+
+  <div id="root"></div>
+
+  <script>
+    (() => {
+      const bar = document.getElementById('loading-bar');
+      let p = 0;
+      const prog = setInterval(() => { p = Math.min(p + 8, 90); bar.style.width = p + '%'; }, 120);
+      window.__doneLoading = () => {
+        clearInterval(prog); bar.style.width = '100%';
+        setTimeout(() => { document.getElementById('loading').classList.add('hidden'); }, 300);
+      };
+    })();
+  </script>
+
+</body>
+</html>

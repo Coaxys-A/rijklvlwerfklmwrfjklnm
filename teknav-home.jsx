@@ -168,20 +168,44 @@ function FeaturedArticle({ article }) {
 
 }
 
+// ── Resolve an author's profile URL (username from API or static fallback) ───
+function authorProfilePath(author) {
+  const username = author.username || TeknavData.authors.find(a => a.slug === author.slug)?.username;
+  return username ? `/profile/@${username}` : `/author/${author.slug}`;
+}
+
 // ── Authors Section ─────────────────────────────────────────────────────────
 function AuthorsSection() {
   const { navigate } = useNav();
+  const [authors, setAuthors] = useState(TeknavData.authors);
+
+  useEffect(() => {
+    let cancelled = false;
+    contentApi.listAuthors()
+      .then(items => {
+        if (cancelled || !items?.length) return;
+        // Merge API data with static data to fill missing fields (username, bio, expertise)
+        const merged = items.map(apiAuthor => {
+          const seed = TeknavData.authors.find(a => a.slug === apiAuthor.slug || a.id === apiAuthor.id);
+          return { ...seed, ...apiAuthor, username: apiAuthor.username || seed?.username, bio: seed?.bio || apiAuthor.bio, specialty: seed?.specialty || apiAuthor.specialty };
+        });
+        setAuthors(merged);
+      })
+      .catch(() => {});
+    return () => { cancelled = true; };
+  }, []);
+
   return (
     <section style={{ padding: '60px 0', direction: 'rtl' }}>
       <h2 style={sectionTitle}>نویسندگان تکناو</h2>
       <p style={sectionSubtitle}>متخصصانی که روایت عمیق فناوری را می‌نویسند</p>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(200px,1fr))', gap: 16 }} className="authors-grid">
-        {TeknavData.authors.map((author) =>
-        <div key={author.id} onClick={() => navigate('/author/' + author.slug)} style={{
-          background: '#fff', border: '1px solid #E4DDD2', borderRadius: 12, padding: 20,
-          cursor: 'pointer', textAlign: 'center', transition: 'all 0.2s'
-        }} onMouseEnter={(e) => {e.currentTarget.style.transform = 'translateY(-4px)';e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.08)';}}
-        onMouseLeave={(e) => {e.currentTarget.style.transform = 'translateY(0)';e.currentTarget.style.boxShadow = 'none';}}>
+        {authors.map((author) =>
+          <div key={author.id} onClick={() => navigate(authorProfilePath(author))} style={{
+            background: '#fff', border: '1px solid #E4DDD2', borderRadius: 12, padding: 20,
+            cursor: 'pointer', textAlign: 'center', transition: 'all 0.2s'
+          }} onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.08)'; }}
+            onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}>
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 12 }}>
               <AuthorAvatar author={author} size={56} />
             </div>
@@ -191,8 +215,8 @@ function AuthorsSection() {
           </div>
         )}
       </div>
-    </section>);
-
+    </section>
+  );
 }
 
 // ── Hero Section (light bg, parallax + shimmer) ─────────────────────────────

@@ -66,6 +66,7 @@ Core rules:
 
 ### Full Linux production verification
 - [ ] `npm run seo:sitemap` — regenerate sitemaps
+- [ ] `npm run check:seo` — audit Persian article SEO quality gate
 - [ ] `npm run build` — frontend build
 - [ ] `cd backend && npm run build` — backend TypeScript build
 - [ ] `npm run smoke:prod` — smoke test all endpoints

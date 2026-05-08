@@ -9,7 +9,7 @@ const SITE_NAME = 'تکناو';
 const DEFAULT_TITLE = 'تکناو | تحلیل فناوری، هوش مصنوعی و امنیت سایبری';
 const DEFAULT_DESCRIPTION = 'تکناو رسانه فارسی تحلیل فناوری، هوش مصنوعی، علم داده، امنیت سایبری، نرم‌افزار، سخت‌افزار و آینده تکنولوژی است.';
 const DEFAULT_KEYWORDS = 'تکناو, فناوری, هوش مصنوعی, علم داده, امنیت سایبری, نرم افزار, سخت افزار, استارتاپ, آینده فناوری, تحلیل تکنولوژی';
-const DEFAULT_IMAGE = `${SITE_URL}/favicon.png`;
+const DEFAULT_IMAGE = `${SITE_URL}/images/og/default.jpg`;
 
 function cleanText(value, fallback = '') {
   return String(value ?? fallback)
@@ -31,6 +31,49 @@ function absoluteUrl(path = '/') {
 
 function imageUrl(value) {
   return value ? absoluteUrl(value) : DEFAULT_IMAGE;
+}
+
+function uniqueList(values, limit = 18) {
+  const seen = new Set();
+  return values
+    .map((value) => cleanText(value))
+    .filter(Boolean)
+    .filter((value) => {
+      const key = value.toLocaleLowerCase('fa-IR');
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    })
+    .slice(0, limit);
+}
+
+function articleKeywords(article, category, author) {
+  return uniqueList([
+    ...(article.keywords || []),
+    ...(article.tags || []),
+    article.title,
+    article.subtitle,
+    article.categoryName || category?.name,
+    article.type,
+    author?.specialty,
+    'تحلیل فارسی فناوری',
+    'تکناو',
+  ]);
+}
+
+function articleEntities(article, category) {
+  return uniqueList([
+    article.categoryName || category?.name,
+    ...(article.tags || []),
+    ...(article.keywords || []),
+  ], 24).map((name) => ({ '@type': 'Thing', name }));
+}
+
+function articleSections(content) {
+  return [...String(content || '').matchAll(/<h2[^>]*>(.*?)<\/h2>/g)]
+    .map((match) => cleanText(match[1]))
+    .filter(Boolean)
+    .slice(0, 12);
 }
 
 function setMeta(attr, key, content) {
@@ -70,27 +113,35 @@ function setJsonLd(items) {
 function baseGraph() {
   return [
     {
-      '@type': 'Organization',
+      '@type': ['Organization', 'NewsMediaOrganization'],
       '@id': `${SITE_URL}/#organization`,
       name: SITE_NAME,
       alternateName: ['Teknav', 'تکنّاو'],
       url: SITE_URL,
+      description: DEFAULT_DESCRIPTION,
       logo: {
         '@type': 'ImageObject',
         '@id': `${SITE_URL}/#logo`,
         url: `${SITE_URL}/favicon.png`,
         width: { '@type': 'QuantitativeValue', value: 512 },
         height: { '@type': 'QuantitativeValue', value: 512 },
+        caption: 'تکناو - رسانه فارسی فناوری',
       },
       image: { '@id': `${SITE_URL}/#logo` },
+      publishingPrinciples: `${SITE_URL}/about`,
+      masthead: `${SITE_URL}/authors`,
+      areaServed: { '@type': 'Country', name: 'Iran' },
+      audience: { '@type': 'Audience', audienceType: 'فارسی‌زبانان علاقه‌مند به فناوری' },
       sameAs: [
         'https://twitter.com/teknavir',
+        'https://x.com/teknavir',
         'https://linkedin.com/company/teknav',
       ],
       contactPoint: {
         '@type': 'ContactPoint',
         email: 'info@teknav.ir',
-        contactType: 'editorial',
+        contactType: 'customer service',
+        availableLanguage: { '@type': 'Language', name: 'Persian' },
       },
     },
     {
@@ -98,6 +149,7 @@ function baseGraph() {
       '@id': `${SITE_URL}/#website`,
       url: SITE_URL,
       name: SITE_NAME,
+      alternateName: 'Teknav',
       description: DEFAULT_DESCRIPTION,
       inLanguage: 'fa-IR',
       publisher: { '@id': `${SITE_URL}/#organization` },
@@ -164,26 +216,35 @@ function articleSeo(article) {
   const datePublished = article.publishedAt || article.dateEn;
   const dateModified = article.dateModified || article.updatedAt || article.publishedAt || article.dateEn;
   const image = imageUrl(article.ogImage || article.imageUrl || article.coverUrl);
-
-  // Advanced Entity Linking for Gemini
-  const about = category ? [{ '@type': 'Thing', name: category.name, url: absoluteUrl(`/topics/${category.slug}`) }] : [];
-  const mentions = (article.tags || []).map(tag => ({ '@type': 'Thing', name: tag }));
+  const keywords = articleKeywords(article, category, author);
+  const sections = articleSections(article.content);
+  const about = [
+    category ? { '@type': 'Thing', name: category.name, url: absoluteUrl(`/topics/${category.slug}`) } : null,
+    ...articleEntities(article, category).slice(0, 5),
+  ].filter(Boolean);
+  const mentions = articleEntities(article, category);
 
   return {
     title,
     description,
-    keywords: (article.keywords?.length ? article.keywords : [article.title, article.categoryName, article.type, ...(article.tags || [])]).filter(Boolean).join(', '),
+    keywords: keywords.join(', '),
     canonical: absoluteUrl(path),
     type: 'article',
     image,
     jsonLd: [
       ...baseGraph(),
       {
-        '@type': ['Article', 'TechArticle'],
+        '@type': ['NewsArticle', 'TechArticle'],
         '@id': `${absoluteUrl(path)}#article`,
-        mainEntityOfPage: absoluteUrl(path),
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': absoluteUrl(path),
+        },
         headline: cleanText(article.title).slice(0, 110),
+        alternativeHeadline: cleanText(article.subtitle || article.summary).slice(0, 110) || undefined,
         description,
+        abstract: cleanText(article.summary || article.subtitle || description),
+        articleBody: truncate(article.content, 5000),
         image: {
           '@type': 'ImageObject',
           url: image,
@@ -194,20 +255,27 @@ function articleSeo(article) {
         dateModified,
         inLanguage: 'fa-IR',
         articleSection: article.categoryName || category?.name,
-        keywords: article.keywords?.length ? article.keywords : article.tags,
+        keywords,
         wordCount: cleanText(article.content).split(/\s+/).filter(Boolean).length || undefined,
         timeRequired: article.readTime ? `PT${article.readTime}M` : undefined,
+        genre: article.type,
+        teaches: sections,
         author: {
           '@type': 'Person',
           name: article.authorName || author?.name,
           url: author ? absoluteUrl(`/author/${author.slug}`) : undefined,
           jobTitle: author?.specialty,
           description: author?.bio,
-          sameAs: author?.social ? Object.values(author.social).filter(v => v !== '#') : [],
+          knowsAbout: author?.expertise,
+          sameAs: author?.social ? Object.values(author.social).filter(v => v && v !== '#') : [],
         },
         publisher: { '@id': `${SITE_URL}/#organization` },
         about,
         mentions,
+        isPartOf: [
+          { '@id': `${SITE_URL}/#website` },
+          category ? { '@type': 'CollectionPage', '@id': absoluteUrl(`/topics/${category.slug}`) } : null,
+        ].filter(Boolean),
         speakable: {
           '@type': 'SpeakableSpecification',
           xpath: ['/html/head/title', '/html/head/meta[@name="description"]/@content']
@@ -561,11 +629,17 @@ function pageSeo(page, data) {
       ...baseGraph(),
       {
         '@type': 'WebPage',
+        '@id': `${SITE_URL}/#webpage`,
         name: DEFAULT_TITLE,
         description: DEFAULT_DESCRIPTION,
         url: absoluteUrl('/'),
         inLanguage: 'fa-IR',
         isPartOf: { '@id': `${SITE_URL}/#website` },
+        about: { '@id': `${SITE_URL}/#organization` },
+        speakable: {
+          '@type': 'SpeakableSpecification',
+          xpath: ['/html/head/title', '/html/head/meta[@name="description"]/@content'],
+        },
       },
     ],
   };
@@ -624,7 +698,12 @@ export function SeoManager() {
   const seo = useMemo(() => pageSeo(page, data), [page, data]);
 
   useEffect(() => {
-    document.documentElement.lang = 'fa';
+    const isEn = typeof window !== 'undefined' && window.location.search.includes('lang=en');
+    // Canonical always points to the clean URL — ?lang=en is a UI preference, not a content variant.
+    // This prevents Google from indexing ?lang=en as a separate page.
+    const canonical = seo.canonical.split('?')[0];
+
+    document.documentElement.lang = isEn ? 'en' : 'fa';
     document.documentElement.dir = 'rtl';
     document.title = seo.title;
     setMeta('name', 'description', seo.description);
@@ -632,16 +711,14 @@ export function SeoManager() {
     setMeta('name', 'robots', 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1');
     setMeta('name', 'googlebot', 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1');
     setMeta('name', 'bingbot', 'index,follow,max-snippet:-1,max-image-preview:large');
-    setMeta('name', 'google-site-verification', 'GSC_VERIFICATION_CODE_PLACEHOLDER');
-    setMeta('name', 'msvalidate.01', 'BING_VERIFICATION_CODE_PLACEHOLDER');
-    setMeta('name', 'author', SITE_NAME);
+setMeta('name', 'author', SITE_NAME);
     setMeta('name', 'language', 'fa-IR');
     setMeta('property', 'og:locale', 'fa_IR');
     setMeta('property', 'og:site_name', SITE_NAME);
     setMeta('property', 'og:type', seo.type);
     setMeta('property', 'og:title', seo.title);
     setMeta('property', 'og:description', seo.description);
-    setMeta('property', 'og:url', seo.canonical);
+    setMeta('property', 'og:url', canonical);
     setMeta('property', 'og:image', seo.image);
     setMeta('property', 'og:image:width', '1200');
     setMeta('property', 'og:image:height', '630');
@@ -649,16 +726,12 @@ export function SeoManager() {
     setMeta('name', 'twitter:title', seo.title);
     setMeta('name', 'twitter:description', seo.description);
     setMeta('name', 'twitter:image', seo.image);
-    setLink('canonical', seo.canonical);
-    // Update the hreflang alternate specifically — do NOT touch the RSS feed alternate.
-    let hrefLangEl = document.head.querySelector('link[rel="alternate"][hreflang]');
-    if (!hrefLangEl) {
-      hrefLangEl = document.createElement('link');
-      hrefLangEl.setAttribute('rel', 'alternate');
-      hrefLangEl.setAttribute('hreflang', 'fa-IR');
-      document.head.appendChild(hrefLangEl);
-    }
-    hrefLangEl.setAttribute('href', seo.canonical);
+    setLink('canonical', canonical);
+    // Clean up old fa-IR hreflang if it exists from a previous session
+    const oldFaIr = document.head.querySelector('link[rel="alternate"][hreflang="fa-IR"]');
+    if (oldFaIr) oldFaIr.remove();
+    // Single fa hreflang pointing to the canonical URL — no en variant since content is Persian
+    setLink('alternate', canonical, { hreflang: 'fa' });
     setJsonLd(seo.jsonLd);
   }, [seo]);
 

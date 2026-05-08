@@ -1,10 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://www.teknav.ir/article/mcp-model-context-protocol-2026</loc>
+    <lastmod>2026-05-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://www.teknav.ir/images/og/agentic-ai-production-2026.jpg</image:loc>
+      <image:title>از چت‌بات تا دستیار واقعی: پروتکل MCP چطور هوش مصنوعی را به ابزارهای روزمره وصل کرد</image:title>
+      <image:caption>پروتکل MCP یا Model Context Protocol، استانداردی است که هوش مصنوعی را از یک چت‌بات ساده به دستیاری تبدیل می‌کند که می‌تواند به ایمیل، پایگاه داده، فایل‌ها و سرویس‌های واقعی دسترسی داشته باشد. تحلیل فنی معماری، امنیت، و اکوسیستم جهانی که بر این پروتکل شرط‌بندی کرده است.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.teknav.ir/article/ai-data-centric-2026</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://www.teknav.ir/images/og/data-governance-2026.jpg</image:loc>
+      <image:title>هوش مصنوعی داده‌محور ۲۰۲۶: وقتی قانون مقیاس‌گذاری به بن‌بست رسید</image:title>
+      <image:caption>در سال ۲۰۲۶، قانون مقیاس‌گذاری به دیوار سختی برخورده است. مهندسی کیفیت داده جایگزین مهندسی معماری مدل شده؛ تحلیل عمیق فنی از بحران Model Collapse، Semantic Layers، Data Provenance و اقتصاد داده‌های قابل اعتماد.</image:caption>
+    </image:image>
+  </url>
   <url>
     <loc>https://www.teknav.ir/article/cve-2026-41940-cpanel-zero-day-analysis</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://www.teknav.ir/images/og/cve-2026-41940-cpanel-zero-day-analysis.jpg</image:loc>
+      <image:title>تحلیل فنی Zero-Day جدید سی‌پنل (CVE-2026-41940): دسترسی روت بدون احراز هویت</image:title>
+      <image:caption>بررسی عمیق و فنی آسیب‌پذیری بحرانی CVE-2026-41940 در cPanel که به مهاجمان اجازه می‌دهد با دور زدن مکانیزم لاگین، به دسترسی روت سرور دست پیدا کنند.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://www.teknav.ir/article/ai-clean-data</loc>
@@ -14,6 +41,7 @@
     <image:image>
       <image:loc>https://www.teknav.ir/images/og/ai-clean-data.jpg</image:loc>
       <image:title>نقش داده‌های پاک در موفقیت هوش مصنوعی</image:title>
+      <image:caption>بدون داده‌های باکیفیت، پیشرفته‌ترین مدل‌های هوش مصنوعی هم شکست خواهند خورد.</image:caption>
     </image:image>
   </url>
   <url>
@@ -24,6 +52,7 @@
     <image:image>
       <image:loc>https://www.teknav.ir/images/og/custom-ai-chips.jpg</image:loc>
       <image:title>تراشه‌های سفارشی هوش مصنوعی: پایان عصر پردازنده‌های عمومی</image:title>
+      <image:caption>از GB200 انویدیا تا TPU گوگل؛ رقابت بر سر بهینه‌ترین تراشه هوش مصنوعی.</image:caption>
     </image:image>
   </url>
   <url>
@@ -34,6 +63,7 @@
     <image:image>
       <image:loc>https://www.teknav.ir/images/og/browser-architecture.jpg</image:loc>
       <image:title>معماری مدرن مرورگرها: وقتی وب به یک سیستم‌عامل تبدیل می‌شود</image:title>
+      <image:caption>اجرای مدل‌های هوشمند و برنامه‌های سنگین مستقیماً در مرورگر شما.</image:caption>
     </image:image>
   </url>
   <url>
@@ -44,6 +74,7 @@
     <image:image>
       <image:loc>https://www.teknav.ir/images/og/software-supply-chain.jpg</image:loc>
       <image:title>امنیت زنجیره تأمین نرم‌افزار: نبرد در رگ‌های کد</image:title>
+      <image:caption>مهاجمان دیگر به درهای بسته حمله نمی‌کنند؛ آن‌ها وارد مواد اولیه نرم‌افزار می‌شوند.</image:caption>
     </image:image>
   </url>
   <url>
@@ -54,6 +85,7 @@
     <image:image>
       <image:loc>https://www.teknav.ir/images/og/iranian-startups-scale.jpg</image:loc>
       <image:title>چالش‌های مقیاس‌پذیری استارتاپ‌های ایرانی در عصر محدودیت</image:title>
+      <image:caption>هنر مقیاس‌گذاری در ایران؛ جایی که معماری‌های فوق‌تاب‌آور حرف اول را می‌زنند.</image:caption>
     </image:image>
   </url>
   <url>
@@ -64,6 +96,7 @@
     <image:image>
       <image:loc>https://www.teknav.ir/images/og/small-llms.jpg</image:loc>
       <image:title>مدل‌های زبانی کوچک (SLM): وقتی کوچک‌تر، هوشمندتر است</image:title>
+      <image:caption>چرا در سال ۱۴۰۵، شرکت‌ها به جای مدل‌های غول‌آسا به مدل‌های کوچک روی آورده‌اند؟</image:caption>
     </image:image>
   </url>
   <url>
@@ -74,6 +107,7 @@
     <image:image>
       <image:loc>https://www.teknav.ir/images/og/edge-computing.jpg</image:loc>
       <image:title>رایانش لبه‌ای: خروج هوش مصنوعی از مرکز به لبه شبکه</image:title>
+      <image:caption>در سال ۲۰۲۶، دستگاه‌های ما به قدری هوشمند شده‌اند که ابر فقط برای هماهنگی است.</image:caption>
     </image:image>
   </url>
   <url>
@@ -84,6 +118,7 @@
     <image:image>
       <image:loc>https://www.teknav.ir/images/og/synthetic-data.jpg</image:loc>
       <image:title>داده‌های مصنوعی: نجات‌بخش یا قاتل هوش مصنوعی؟</image:title>
+      <image:caption>با اتمام داده‌های انسانی، آیا هوش مصنوعی در حلقه‌ی تکرار خود غرق می‌شود؟</image:caption>
     </image:image>
   </url>
   <url>
@@ -94,6 +129,7 @@
     <image:image>
       <image:loc>https://www.teknav.ir/images/og/ai-hardware-roadmap.jpg</image:loc>
       <image:title>نقشه راه سخت‌افزار هوش مصنوعی: از Blackwell تا Vera Rubin</image:title>
+      <image:caption>انویدیا با Rubin قوانین بازی را تغییر می‌دهد؛ بررسی حافظه‌های HBM4 و پردازنده Vera.</image:caption>
     </image:image>
   </url>
   <url>
@@ -104,6 +140,7 @@
     <image:image>
       <image:loc>https://www.teknav.ir/images/og/quantum-computing.jpg</image:loc>
       <image:title>رایانش کوانتومی ۲۰۲۶: عصر کوبیت‌های منطقی و اصلاح خطا</image:title>
+      <image:caption>عبور از سد نویز؛ چطور گوگل و IBM به پایداری کوانتومی دست یافتند.</image:caption>
     </image:image>
   </url>
   <url>
@@ -114,6 +151,7 @@
     <image:image>
       <image:loc>https://www.teknav.ir/images/og/microservices-vs-monolith.jpg</image:loc>
       <image:title>میکروسرویس یا مونولیت؟ بلوغ معماری در سال ۱۴۰۵</image:title>
+      <image:caption>پایان تعصب معماری؛ چطور بر اساس ابعاد تیم و نیاز بازار بهترین ساختار را انتخاب کنیم؟</image:caption>
     </image:image>
   </url>
   <url>
@@ -124,6 +162,7 @@
     <image:image>
       <image:loc>https://www.teknav.ir/images/og/fintech-regulation.jpg</image:loc>
       <image:title>تحول فین‌تک و RegTech: نظارت هوشمند بر ریال دیجیتال</image:title>
+      <image:caption>در سال ۱۴۰۵، اعتماد سنتی جای خود را به اعتماد الگوریتمیک داده است.</image:caption>
     </image:image>
   </url>
   <url>
@@ -134,6 +173,7 @@
     <image:image>
       <image:loc>https://www.teknav.ir/images/og/llm-security.jpg</image:loc>
       <image:title>امنیت مدل‌های زبانی: دفاع در برابر تزریق پرامپت غیرمستقیم</image:title>
+      <image:caption>وقتی هوش مصنوعی به دستورات مخرب پنهان در وب‌سایت‌ها پاسخ می‌دهد.</image:caption>
     </image:image>
   </url>
   <url>
@@ -144,6 +184,7 @@
     <image:image>
       <image:loc>https://www.teknav.ir/images/og/data-governance-2026.jpg</image:loc>
       <image:title>حاکمیت داده در عصر هوش مصنوعی: فراتر از انطباق قانونی</image:title>
+      <image:caption>بررسی تحولات حاکمیت داده؛ از نبرد برای شفافیت در EU AI Act تا ظهور فیوزهای قطع‌کننده در عامل‌های هوشمند.</image:caption>
     </image:image>
   </url>
   <url>
@@ -154,6 +195,7 @@
     <image:image>
       <image:loc>https://www.teknav.ir/images/og/robotics-warehouse-orchestration.jpg</image:loc>
       <image:title>ارکستر رباتیک: وقتی انبارها به شبکه‌های عصبی تبدیل می‌شوند</image:title>
+      <image:caption>تحلیل حضور Figure 03 و Amazon Proteus in خطوط تولید؛ چطور مدل‌های VLA درک فیزیکی ماشین‌ها را تغییر دادند.</image:caption>
     </image:image>
   </url>
   <url>
@@ -164,6 +206,7 @@
     <image:image>
       <image:loc>https://www.teknav.ir/images/og/open-source-ai-sovereignty.jpg</image:loc>
       <image:title>حاکمیت بر هوش: نبرد مدل‌های متن‌باز در برابر باغ‌های محصور</image:title>
+      <image:caption>آیا لاما ۴ واقعاً متن‌باز است؟ بررسی نبرد فلسفی و فنی برای شفافیت در آموزش مدل‌های هوش مصنوعی.</image:caption>
     </image:image>
   </url>
   <url>
@@ -174,6 +217,7 @@
     <image:image>
       <image:loc>https://www.teknav.ir/images/og/rust-systems-2026.jpg</image:loc>
       <image:title>سیستم‌های Rust: ردیابی نفوذ رستم به قلب زیرساخت‌های جهان</image:title>
+      <image:caption>چطور راست (Rust) از یک زبان آزمایشی به پیش‌نیاز قانونی برای زیرساخت‌های حیاتی در سال ۱۴۰۵ تبدیل شد.</image:caption>
     </image:image>
   </url>
   <url>
@@ -184,6 +228,7 @@
     <image:image>
       <image:loc>https://www.teknav.ir/images/og/venture-capital-ai-2026.jpg</image:loc>
       <image:title>سرمایه‌گذاری در هوش مصنوعی: پایان هایپ و آغاز عصر ROI واقعی</image:title>
+      <image:caption>تحلیل بازار سرمایه هوش مصنوعی؛ عبور از مدل‌های پایه به سمت ابزارهایی با جاذبه گردش کار (Workflow Gravity).</image:caption>
     </image:image>
   </url>
   <url>
@@ -194,6 +239,7 @@
     <image:image>
       <image:loc>https://www.teknav.ir/images/og/claude-47-opus-reasoning.jpg</image:loc>
       <image:title>کلود ۴.۷ اوپوس: کالبدشکافی تفکر تطبیقی و پارامتر xhigh</image:title>
+      <image:caption>تحلیل فنی Claude 4.7 Opus؛ مدلی که قبل از حرف زدن فکر می‌کند و رکورددار حل باگ‌های مهندسی است.</image:caption>
     </image:image>
   </url>
   <url>
@@ -204,6 +250,7 @@
     <image:image>
       <image:loc>https://www.teknav.ir/images/og/agentic-ai-production-2026.jpg</image:loc>
       <image:title>عصر عامل‌های هوش مصنوعی: چرا AI Agents داغ‌ترین موج فناوری هستند؟</image:title>
+      <image:caption>عامل‌های هوشمند نسل بعدی هوش مصنوعی هستند که به جای مشورت، اجرا می‌کنند.</image:caption>
     </image:image>
   </url>
   <url>
@@ -214,26 +261,7 @@
     <image:image>
       <image:loc>https://www.teknav.ir/images/og/vibe-coding-2026.jpg</image:loc>
       <image:title>وایب‌کدینگ: وقتی تخیل به سینتکس برتری می‌یابد</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.teknav.ir/article/ai-energy-crisis-nuclear</loc>
-    <lastmod>2026-05-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-    <image:image>
-      <image:loc>https://www.teknav.ir/images/og/ai-energy-crisis-nuclear.jpg</image:loc>
-      <image:title>بحران انرژی هوش مصنوعی: رنسانس هسته‌ای در دیتاسنترها</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.teknav.ir/article/llama-4-open-frontier</loc>
-    <lastmod>2026-05-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-    <image:image>
-      <image:loc>https://www.teknav.ir/images/og/llama-4-open-frontier.jpg</image:loc>
-      <image:title>لاما ۴ و مرزهای باز: پایان انحصار با معماری Early Fusion</image:title>
+      <image:caption>بررسی متدولوژی وایب‌کدینگ؛ چطور در سال ۱۴۰۵ برنامه‌نویسی از نوشتن کد به توصیف نیت تغییر یافت.</image:caption>
     </image:image>
   </url>
   <url>
@@ -244,6 +272,7 @@
     <image:image>
       <image:loc>https://www.teknav.ir/images/og/deepseek-v4-engram.jpg</image:loc>
       <image:title>DeepSeek-V4: پایان انحصار با معماری Engram و حافظه شرطی</image:title>
+      <image:caption>کالبدشکافی عمیق DeepSeek-V4؛ مدلی که با تفکیک حافظه از استدلال، هزینه‌های استنتاج را به حداقل رساند.</image:caption>
     </image:image>
   </url>
   <url>
@@ -254,6 +283,7 @@
     <image:image>
       <image:loc>https://www.teknav.ir/images/og/physical-ai-humanoids-2026.jpg</image:loc>
       <image:title>هوش مصنوعی فیزیکی: ربات‌های انسان‌نما در آستانه تولید میلیونی</image:title>
+      <image:caption>عبور از شبیه‌سازی به واقعیت؛ چطور مدل‌های VLA و World Models باعث جان گرفتن ماشین‌ها در سال ۱۴۰۵ شدند.</image:caption>
     </image:image>
   </url>
   <url>
@@ -264,66 +294,7 @@
     <image:image>
       <image:loc>https://www.teknav.ir/images/og/post-quantum-cryptography-qday.jpg</image:loc>
       <image:title>رمزنگاری پساکوانتومی: زره‌پوشی دنیای دیجیتال در برابر Q-Day</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.teknav.ir/article/apple-spatial-intelligence-2026</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-    <image:image>
-      <image:loc>https://www.teknav.ir/images/og/apple-spatial-intelligence-2026.jpg</image:loc>
-      <image:title>هوش مکانی اپل: کالبدشکافی Siri 2.0 و تراشه A20</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.teknav.ir/article/dna-data-storage-biomemory</loc>
-    <lastmod>2026-05-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-    <image:image>
-      <image:loc>https://www.teknav.ir/images/og/dna-data-storage-biomemory.jpg</image:loc>
-      <image:title>ذخیره‌سازی داده روی DNA: رنسانس بیولوژیک در دیتاسنترها</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.teknav.ir/article/ai-native-operating-systems</loc>
-    <lastmod>2026-05-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-    <image:image>
-      <image:loc>https://www.teknav.ir/images/og/ai-native-operating-systems.jpg</image:loc>
-      <image:title>سیستم‌عامل‌های نیتیو-هوشمند: تولد هسته AIOS</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.teknav.ir/article/neuromorphic-computing-loihi-3</loc>
-    <lastmod>2026-05-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-    <image:image>
-      <image:loc>https://www.teknav.ir/images/og/neuromorphic-computing-loihi-3.jpg</image:loc>
-      <image:title>رایانش نورومورفیک: وقتی سیلیکون به تکامل می‌رسد</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.teknav.ir/article/orbital-edge-computing-spacex</loc>
-    <lastmod>2026-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-    <image:image>
-      <image:loc>https://www.teknav.ir/images/og/orbital-edge-computing-spacex.jpg</image:loc>
-      <image:title>رایانش لبه‌ای مداری: فرار از بن‌بست انرژی زمین</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.teknav.ir/article/graphene-semiconductors-2026</loc>
-    <lastmod>2026-05-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-    <image:image>
-      <image:loc>https://www.teknav.ir/images/og/graphene-semiconductors-2026.jpg</image:loc>
-      <image:title>نیمه‌رسانای گرافنی: طلوع عصر پساسیلیکون</image:title>
+      <image:caption>اینترنت در آستانه تحول؛ بررسی الگوریتم‌های ML-KEM و ML-DSA و ضرورت مهاجرت به PQC برای مقابله با تهدیدات کوانتومی.</image:caption>
     </image:image>
   </url>
 </urlset>
